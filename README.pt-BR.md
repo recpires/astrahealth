@@ -780,9 +780,9 @@ Detalhes: [AI_DISCLOSURE.md](AI_DISCLOSURE.md) (em inglês).
 |---|---|
 | Rodrigo Eufrásio Costa Pires | [recpires](https://github.com/recpires) |
 | Vinicius Gomes Jeronimo | [vinnlacoste](https://github.com/vinnlacoste) |
-| Jecika Lilia Cavalcante e Silva Saito | — |
-| Diego Felippe Scorsi Prado | — |
-| Yvna Marçal Sousa Rosa | — |
+| Jecika Lilia Cavalcante e Silva Saito | [jecikasaito](https://github.com/jecikasaito) |
+| Diego Felippe Scorsi Prado | [Dprado93](https://github.com/Dprado93) |
+| Yvna Marçal Sousa Rosa | [YVNAROSA](https://github.com/YVNAROSA) |
 | Kennedy Teixeira da Silva | — |
 
 ## 📄 Licença
