@@ -3,7 +3,7 @@ import { REFERENCE_CONFIG, formatRange } from "@/config/reference-ranges";
 import { NASA_RESOURCE, TEAM_BRIEF_ASSUMPTIONS, isResourceConfirmed } from "@/config/scientific-sources";
 import { SCENARIO_ORDER, SCENARIOS } from "@/lib/scenarios";
 import { VITAL_KEYS } from "@/lib/types";
-import { Badge, Panel } from "@/components/ui/primitives";
+import { Badge, Panel, ScrollArea } from "@/components/ui/primitives";
 import { ProvenanceLegend, ProvenanceTable } from "@/components/science/Provenance";
 import { EvidenceLibrary } from "@/components/science/EvidenceLibrary";
 import { OsdrDatasetPanel } from "@/components/science/OsdrDatasetPanel";
@@ -94,7 +94,7 @@ export function ScienceView() {
         actions={<Badge tone="caution">{REFERENCE_CONFIG.status}</Badge>}
       >
         <p className="mb-3 text-sm text-level-caution">{REFERENCE_CONFIG.provenance}</p>
-        <div className="overflow-x-auto">
+        <ScrollArea label="Provisional demo thresholds">
           <table className="w-full min-w-[640px] text-left text-sm">
             <thead className="text-[10px] uppercase tracking-[0.14em] text-ink-faint">
               <tr>
@@ -124,7 +124,7 @@ export function ScienceView() {
               })}
             </tbody>
           </table>
-        </div>
+        </ScrollArea>
         <p className="mt-3 text-xs text-ink-faint">
           Persistence: {REFERENCE_CONFIG.persistenceSamples} samples · sensor look-back: {REFERENCE_CONFIG.sensorLookbackSamples} samples ·
           degraded quality &lt; {REFERENCE_CONFIG.degradedQuality * 100} % · poor quality &lt; {REFERENCE_CONFIG.poorQuality * 100} %. Edit

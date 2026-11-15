@@ -1,6 +1,6 @@
 # ASTRA Health — módulos FUTURE (prévia da plataforma)
 
-> 🇺🇸 [English version](README.md) · 🧪 [Relatório de testes](TEST_REPORT.pt-BR.md)
+> 🇺🇸 [English version](README.md) · 🎬 [Roteiro de demo](DEMO_SCRIPT.pt-BR.md) · 🖼 [Capturas](../screenshots/future/README.md) · 🧪 [Relatório de testes](TEST_REPORT.pt-BR.md) · ♿ [Acessibilidade](../ACCESSIBILITY.pt-BR.md)
 
 O MVP submetido demonstra **MEDIR → ENTENDER → AGIR → COMUNICAR** com três cenários testados. Os módulos FUTURE mostram como o ASTRA Health pode evoluir para um **sistema autônomo de apoio à decisão em saúde espacial** que é:
 
@@ -105,6 +105,12 @@ O ASTRA Health **nunca simula nem estima** pressão intracraniana, imagem de ret
 
 ## Earth Link (store-and-forward)
 
+### Recarga offline (service worker)
+
+`public/sw.js` é registrado nos builds de produção. Na instalação, ele guarda todas as páginas do app (inclusive a demo testada) e os arquivos que elas usam. Páginas e dados sempre vêm primeiro da rede, então o comportamento online não muda; quando a rede falha, usa-se a cópia guardada. Depois de uma visita com internet, o app recarrega e navega **sem rede e sem servidor** — o `E2E-OFF-05` desliga o servidor web, deixa o navegador offline, recarrega as 11 páginas (com todas as imagens) e faz uma nova avaliação. A barra da plataforma mostra **Available offline** quando o worker controla a página. Aumente `SW_VERSION` em `public/sw.js` para forçar todos os dispositivos a guardar de novo.
+
+### Fila store-and-forward
+
 Os itens são sempre criados localmente. Com o link perdido, aguardam. Com o link disponível, saem por ordem de prioridade — **urgente → prioritário → rotina**, depois do mais antigo — chegam à Terra após o atraso de ida e são confirmados após a ida e volta (a confirmação precisa do link). Toda transição fica na trilha de auditoria. Use **Simulate link loss / Restore link** e **+15 min / +1 h / Next day** na barra da plataforma.
 
 ## Referências científicas
@@ -121,9 +127,12 @@ Três deles (cardiovascular, hipóxia, condições médicas em missão) são cob
 ## Testes
 
 ```bash
-npm run test:future            # 107 testes unitários, de integração e de interface (tests/future)
+npm run test:future            # 110 testes unitários, de integração e de interface (tests/future)
 npm run build
-npm run test:e2e:future        # 18 verificações no navegador: F01–F05, rede cortada, recarga, exportação, layout celular/tablet
+npm run test:e2e:future        # 19 verificações no navegador: F01–F05, rede cortada, recarga, exportação, layout celular/tablet,
+                               #   recarga completa com o servidor desligado
+npm run test:a11y              # auditoria de acessibilidade → docs/ACCESSIBILITY.pt-BR.md
+npm run screenshots:future     # as 14 capturas do roteiro de demo
 npm run test:regression        # os 77 testes originais
 npm run test:e2e:regression    # as 14 verificações de navegador dos três cenários
 npm run test:report:future     # gera docs/future/TEST_REPORT(.pt-BR).md
@@ -134,6 +143,6 @@ Veja o [relatório de testes](TEST_REPORT.pt-BR.md) com resultados, capturas e a
 ## Limites e próximos passos
 
 - Regras, intervalos, checklists e premissas de equipamento: valores demonstrativos que precisam de revisão especializada.
-- A operação offline é demonstrada depois que o app carregou; um sistema de voo rodaria num servidor de bordo ou com service worker.
+- Offline: o app precisa de uma visita com internet antes de poder recarregar sem rede; um sistema de voo também teria um servidor de bordo para que vários dispositivos compartilhem os mesmos registros (hoje cada dispositivo guarda os seus).
 - O checksum da auditoria detecta edições casuais; um sistema de voo assinaria as entradas e as replicaria para o solo.
 - Próximos: papéis de usuário (oficial médico, comandante), regras revisadas por especialistas com controle de mudanças, interface bilíngue, adaptadores de equipamentos reais, console em solo.

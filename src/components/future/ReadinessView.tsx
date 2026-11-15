@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { CheckCircle2, Download, FileSearch, ListTree, ShieldCheck, ShieldAlert, Users, XCircle } from "lucide-react";
 import matrix from "@/data/future/verification-matrix.json";
-import { Badge, Button, Panel, cx } from "@/components/ui/primitives";
+import { Badge, Button, Panel, ScrollArea, cx } from "@/components/ui/primitives";
 import type { ToneName } from "@/components/ui/levels";
 import { Note } from "@/components/future/common";
 import { useTelemetrySnapshot } from "@/components/future/ProfileView";
@@ -124,7 +124,7 @@ export function ReadinessView() {
         </Panel>
 
         <Panel title="Versioned rule sets & protocols" icon={ListTree}>
-          <div className="overflow-x-auto">
+          <ScrollArea label="Versioned rule sets">
           <table className="w-full min-w-[420px] text-left text-xs" data-testid="rulesets">
             <thead className="border-b border-line text-[10px] uppercase tracking-[0.12em] text-ink-faint">
               <tr>
@@ -147,7 +147,7 @@ export function ReadinessView() {
               ))}
             </tbody>
           </table>
-          </div>
+          </ScrollArea>
           <h3 className="mb-1.5 mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">Completion criteria — how they are verified</h3>
           <ul className="space-y-1.5 text-xs" data-testid="verification-matrix">
             {matrix.criteria.map((c) => (
@@ -195,7 +195,7 @@ export function ReadinessView() {
             </select>
           </label>
         </div>
-        <div className="max-h-[480px] overflow-auto">
+        <div role="region" aria-label="Audit trail" tabIndex={0} className="max-h-[480px] overflow-auto focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent">
           <table className="w-full min-w-[820px] text-left text-xs" data-testid="audit-table">
             <thead className="sticky top-0 border-b border-line bg-space-900 text-[10px] uppercase tracking-[0.12em] text-ink-faint">
               <tr>

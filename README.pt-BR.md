@@ -191,11 +191,20 @@ Ao lado da demo testada, **Platform preview** (`/future`) mostra como o ASTRA He
 | **F04 · EVA e resposta autônoma** (`/future/eva`) | Checklists pré / durante / pós-EVA, passos condicionados a equipamentos, proposta GO / HOLD usando F01 e F02, eventos durante a EVA, decisões do comandante com motivo obrigatório para sobrepor, relatórios priorizados para o Earth Link. |
 | **F05 · Verificação e prontidão da missão** (`/future/readiness`) | Prontidão de dados da tripulação (não é liberação médica), verificações do sistema, conjuntos de regras versionados com checksum, trilha de auditoria encadeada com teste de adulteração e exportação JSON. |
 
-Tudo funciona com o link com a Terra perdido: os relatórios aguardam numa fila store-and-forward e saem por ordem de prioridade (urgente → prioritário → rotina) quando ele volta. Todas as regras e protocolos são **conteúdo demonstrativo PROVISIONAL**, não são procedimentos da NASA e não são clinicamente validados.
+Tudo funciona com o link com a Terra perdido: os relatórios aguardam numa fila store-and-forward e saem por ordem de prioridade (urgente → prioritário → rotina) quando ele volta. Um **service worker** guarda uma cópia de cada página no dispositivo; depois de uma visita com internet, o app inteiro — inclusive a demo testada — **recarrega sem nenhuma rede** (testado com o servidor desligado). Todas as regras e protocolos são **conteúdo demonstrativo PROVISIONAL**, não são procedimentos da NASA e não são clinicamente validados.
 
-📘 [Documentação dos módulos FUTURE](docs/future/README.pt-BR.md) · 🧪 [Relatório de testes FUTURE](docs/future/TEST_REPORT.pt-BR.md) — 107 testes automatizados + 18 verificações no navegador (incl. rede cortada, recarga e layout em celular/tablet) + regressão completa.
+📘 [Documentação FUTURE](docs/future/README.pt-BR.md) · 🎬 [Roteiro de demo](docs/future/DEMO_SCRIPT.pt-BR.md) · 🖼 [14 capturas](docs/screenshots/future/README.md) · 🧪 [Relatório de testes](docs/future/TEST_REPORT.pt-BR.md) — 110 testes automatizados + 19 verificações no navegador (incl. rede cortada, recarga com o servidor desligado, layout em celular/tablet) + regressão completa · ♿ [Auditoria de acessibilidade](docs/ACCESSIBILITY.pt-BR.md)
 
-<p align="center"><img src="docs/test-results/future/e2e/E2E-F02-02.png" alt="FUTURE 02 — avaliação de sintomas com evidências, incerteza e revisão humana" width="90%" /></p>
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/future/04-assessment-headache.png" alt="F02 avaliação de sintomas" /><br/><sub><b>F02</b> — Regras versionadas, evidências usadas e incerteza declarada</sub></td>
+    <td width="50%"><img src="docs/screenshots/future/06-health-profile.png" alt="F03 perfil de saúde espacial" /><br/><sub><b>F03</b> — Nove domínios; “No data” em vez de exames simulados</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/future/08-eva-event.png" alt="F04 evento na EVA" /><br/><sub><b>F04</b> — EVA sem link e sem telemetria: passos alternativos, o comandante decide</sub></td>
+    <td><img src="docs/screenshots/future/12-audit-trail.png" alt="F05 trilha de auditoria" /><br/><sub><b>F05</b> — Trilha de auditoria encadeada e teste de adulteração</sub></td>
+  </tr>
+</table>
 
 ---
 
@@ -548,6 +557,7 @@ npm run dev
 | `npm run generate:data` | Regenera os cenários simulados (com semente, reproduzível) |
 | `npm run screenshots` | 15 capturas para apresentação → `docs/screenshots/` ¹ |
 | `npm run screenshots:sequence` | Sequência de 16 quadros do Cenário 2 → `docs/screenshots/sequence-vital-deviation/` ¹ |
+| `npm run screenshots:future` | 14 capturas FUTURE seguindo o roteiro de demo → `docs/screenshots/future/` (sobe o próprio servidor) ² |
 | `npm run banners` | Banners do README (EN / PT) → `docs/assets/` ² |
 | `npm run osdr:import -- OSD-575` | Importa um arquivo público do NASA OSDR para `src/data/osdr/` (`--list`, `--file <nome>`) ³ |
 | `npm run science:check-links` | Confere todos os links da biblioteca de evidências e do OSDR nos servidores oficiais ³ |
@@ -561,6 +571,7 @@ npm run dev
 | `npm run test:e2e:future` | Verificações FUTURE no navegador (F01–F05, rede cortada, recarga, exportação) contra o build de produção ² |
 | `npm run test:regression` / `npm run test:e2e:regression` | Os 77 testes originais / 14 verificações de navegador dos cenários, resultados → `docs/test-results/future/regression/` |
 | `npm run test:report:future` | Regenera `docs/future/TEST_REPORT.md` e `.pt-BR.md` a partir dos resultados |
+| `npm run test:a11y` | Auditoria de acessibilidade (axe-core WCAG 2.2 A/AA em todas as páginas, desktop + celular + estados interativos, passagem por teclado) → `docs/ACCESSIBILITY.pt-BR.md` ² |
 
 ¹ Requer o servidor em execução (`BASE_URL`, padrão `http://localhost:3000`) e o Playwright com Chromium.
 ² Requer o Playwright com Chromium.
@@ -604,7 +615,11 @@ npm test
 | `tests/ui/science.test.tsx` | Página Science & Limits: três categorias, cartões de evidência e filtro por tema, identificação da fonte do OSDR, importação de arquivo (válido, inválido, sem accession). |
 | `tests/ui/modules.test.tsx` | Os quatro módulos renderizados com Testing Library: botões de incidente, achados, confirmação, registro de checklist, atalhos de atraso, geração e envio do relatório, valores não verificados de sensor suspeito. |
 
-Com os módulos FUTURE, `npm test` executa **184 testes em 17 arquivos**: os 77 acima, sem alteração, mais 107 em `tests/future/` (veja o [relatório de testes FUTURE](docs/future/TEST_REPORT.pt-BR.md)).
+Com os módulos FUTURE, `npm test` executa **187 testes em 18 arquivos**: os 77 acima, sem alteração, mais 110 em `tests/future/` (veja o [relatório de testes FUTURE](docs/future/TEST_REPORT.pt-BR.md)).
+
+### Acessibilidade
+
+`npm run test:a11y` executa o axe-core (WCAG 2.0, 2.1 e 2.2, níveis A e AA) nas 11 páginas, em largura de desktop e de celular, e em 7 estados interativos (incidente em andamento, relatório gerado, resultado de avaliação, evento de EVA…), depois percorre cada página com Tab verificando se o foco é visível, não fica escondido sob o cabeçalho fixo e nunca fica preso. Resultado: **0 violações, 0 problemas de teclado** — veja [docs/ACCESSIBILITY.pt-BR.md](docs/ACCESSIBILITY.pt-BR.md) com os detalhes, o que foi corrigido e os limites (ainda sem sessão com leitor de tela).
 
 Verificações executadas antes de cada commit: `npm test`, `npm run lint`, `npm run typecheck`, `npm run build`.
 
@@ -616,6 +631,7 @@ Todas as imagens são capturadas da aplicação em execução (não são montage
 
 - [`docs/screenshots/`](docs/screenshots/) — 15 capturas cobrindo os três cenários e a seção Science & Limits (2880 × 1620 px).
 - [`docs/screenshots/sequence-vital-deviation/`](docs/screenshots/sequence-vital-deviation/) — a sequência de 16 quadros acima, com legendas.
+- [`docs/screenshots/future/`](docs/screenshots/future/README.md) — 14 capturas dos módulos FUTURE seguindo o [roteiro de demo](docs/future/DEMO_SCRIPT.pt-BR.md), incluindo uma captura de celular e uma recarga com o servidor desligado (legendas em inglês e português).
 - [`docs/assets/`](docs/assets/) — banners do README em inglês e português, gerados a partir de `scripts/banner/banner.html`.
 
 ---
@@ -726,7 +742,9 @@ Próximos passos possíveis (não são compromissos):
 - [ ] Atraso Terra–Marte baseado em efemérides e janelas de bloqueio por conjunção solar; modelo de largura de banda.
 - [x] Visão para múltiplos tripulantes — FUTURE 01 / FUTURE 05 (prévia); console do Oficial Médico ainda em aberto.
 - [ ] Revisão por especialistas dos conjuntos de regras e protocolos FUTURE, com controle de mudanças.
-- [ ] Interface totalmente bilíngue (EN / PT-BR) e auditoria de acessibilidade.
+- [x] Auditoria automática de acessibilidade (axe-core WCAG 2.2 A/AA + teclado) — [docs/ACCESSIBILITY.pt-BR.md](docs/ACCESSIBILITY.pt-BR.md).
+- [x] Operação totalmente offline, inclusive recarregando sem rede (service worker).
+- [ ] Interface totalmente bilíngue (EN / PT-BR) e revisão com leitor de tela.
 
 ---
 

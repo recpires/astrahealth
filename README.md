@@ -187,11 +187,20 @@ Beside the tested demo, **Platform preview** (`/future`) shows how ASTRA Health 
 | **F04 · EVA & Autonomous Response** (`/future/eva`) | Pre / during / post-EVA checklists, equipment-conditioned steps, GO / HOLD proposal using F01 and F02, in-EVA events, commander decisions with mandatory reasons for overrides, prioritised Earth Link reports. |
 | **F05 · Verification & Mission Readiness** (`/future/readiness`) | Crew data readiness (not a medical clearance), system checks, versioned rule sets with checksums, checksum-chained audit trail with tamper test and JSON export. |
 
-Everything works with the Earth link lost: reports wait in a store-and-forward queue and leave in priority order (urgent → priority → routine) when it returns. All rules and protocols are **PROVISIONAL demonstration content**, not NASA procedures and not clinically validated.
+Everything works with the Earth link lost: reports wait in a store-and-forward queue and leave in priority order (urgent → priority → routine) when it returns. A **service worker** keeps a copy of every page on the device, so after one online visit the whole app — tested demo included — **reloads with no network at all** (tested with the web server stopped). All rules and protocols are **PROVISIONAL demonstration content**, not NASA procedures and not clinically validated.
 
-📘 [FUTURE modules documentation](docs/future/README.md) · 🧪 [FUTURE test report](docs/future/TEST_REPORT.md) — 107 automated tests + 18 browser checks (incl. network cut, reload and phone/tablet layout) + full regression.
+📘 [FUTURE documentation](docs/future/README.md) · 🎬 [Demo script](docs/future/DEMO_SCRIPT.md) · 🖼 [14 screenshots](docs/screenshots/future/README.md) · 🧪 [Test report](docs/future/TEST_REPORT.md) — 110 automated tests + 19 browser checks (incl. network cut, reload with the server stopped, phone/tablet layout) + full regression · ♿ [Accessibility audit](docs/ACCESSIBILITY.md)
 
-<p align="center"><img src="docs/test-results/future/e2e/E2E-F02-02.png" alt="FUTURE 02 — symptom assessment with evidence, uncertainty and human review" width="90%" /></p>
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/future/04-assessment-headache.png" alt="F02 symptom assessment" /><br/><sub><b>F02</b> — Versioned rules, evidence used and stated uncertainty</sub></td>
+    <td width="50%"><img src="docs/screenshots/future/06-health-profile.png" alt="F03 space health profile" /><br/><sub><b>F03</b> — Nine domains; “No data” instead of simulated exams</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/future/08-eva-event.png" alt="F04 EVA event" /><br/><sub><b>F04</b> — EVA without link or telemetry: alternative steps, commander decides</sub></td>
+    <td><img src="docs/screenshots/future/12-audit-trail.png" alt="F05 audit trail" /><br/><sub><b>F05</b> — Checksum-chained audit trail and tamper test</sub></td>
+  </tr>
+</table>
 
 ---
 
@@ -543,6 +552,7 @@ npm run dev
 | `npm run generate:data` | Regenerate the simulated scenarios (seeded, reproducible) |
 | `npm run screenshots` | 15 presentation screenshots → `docs/screenshots/` ¹ |
 | `npm run screenshots:sequence` | 16-frame Scenario 2 walkthrough → `docs/screenshots/sequence-vital-deviation/` ¹ |
+| `npm run screenshots:future` | 14 FUTURE screenshots following the demo script → `docs/screenshots/future/` (starts its own server) ² |
 | `npm run banners` | README banners (EN / PT) → `docs/assets/` ² |
 | `npm run osdr:import -- OSD-575` | Import a public NASA OSDR file into `src/data/osdr/` (`--list`, `--file <name>`) ³ |
 | `npm run science:check-links` | Check every evidence-library and OSDR link against the official servers ³ |
@@ -556,6 +566,7 @@ npm run dev
 | `npm run test:e2e:future` | FUTURE browser checks (F01–F05, network cut, reload, export) against the production build ² |
 | `npm run test:regression` / `npm run test:e2e:regression` | The original 77 tests / 14 scenario browser checks, results → `docs/test-results/future/regression/` |
 | `npm run test:report:future` | Regenerates `docs/future/TEST_REPORT.md` and `.pt-BR.md` from the results |
+| `npm run test:a11y` | Accessibility audit (axe-core WCAG 2.2 A/AA on every page, desktop + phone + interactive states, keyboard pass) → `docs/ACCESSIBILITY.md` ² |
 
 ¹ Needs a running server (`BASE_URL`, default `http://localhost:3000`) and Playwright with Chromium.
 ² Needs Playwright with Chromium.
@@ -599,7 +610,11 @@ npm test
 | `tests/ui/science.test.tsx` | Science & Limits page: three categories, evidence cards and topic filter, OSDR source identification, file import (valid, invalid, missing accession). |
 | `tests/ui/modules.test.tsx` | The four modules rendered with Testing Library: incident buttons, findings, confirmation, checklist logging, delay presets, report generation and queuing, unverified sensor values. |
 
-Since the FUTURE modules were added, `npm test` runs **184 tests in 17 files**: the 77 above, unchanged, plus 107 in `tests/future/` (see the [FUTURE test report](docs/future/TEST_REPORT.md)).
+Since the FUTURE modules were added, `npm test` runs **187 tests in 18 files**: the 77 above, unchanged, plus 110 in `tests/future/` (see the [FUTURE test report](docs/future/TEST_REPORT.md)).
+
+### Accessibility
+
+`npm run test:a11y` runs axe-core (WCAG 2.0, 2.1 and 2.2, levels A and AA) on all 11 pages at desktop and phone widths and in 7 interactive states (incident running, report generated, assessment result, EVA event…), then tabs through every page checking that focus is visible, not hidden behind the sticky header and never trapped. Result: **0 violations, 0 keyboard problems** — see [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md) for the details, what was fixed and the limits (no screen-reader session yet).
 
 Quality gates run before each commit: `npm test`, `npm run lint`, `npm run typecheck`, `npm run build`.
 
@@ -611,6 +626,7 @@ All images are captured from the running application (not mock-ups) in **16:9** 
 
 - [`docs/screenshots/`](docs/screenshots/) — 15 captures covering the three scenarios and the Science & Limits section (2880 × 1620 px).
 - [`docs/screenshots/sequence-vital-deviation/`](docs/screenshots/sequence-vital-deviation/) — the 16-frame walkthrough above, with captions.
+- [`docs/screenshots/future/`](docs/screenshots/future/README.md) — 14 captures of the FUTURE modules following the [demo script](docs/future/DEMO_SCRIPT.md), including a phone capture and a reload with the server stopped (captions in English and Portuguese).
 - [`docs/assets/`](docs/assets/) — README banners in English and Portuguese, rendered from `scripts/banner/banner.html`.
 
 ---
@@ -721,7 +737,9 @@ Possible next steps (not commitments):
 - [ ] Ephemeris-based Earth–Mars delay and conjunction blackout windows; bandwidth model.
 - [x] Multi-crew view — FUTURE 01 / FUTURE 05 (preview); Crew Medical Officer console still open.
 - [ ] Expert review of the FUTURE rule sets and protocols, with change control.
-- [ ] Fully bilingual interface (EN / PT-BR) and accessibility audit.
+- [x] Automated accessibility audit (axe-core WCAG 2.2 A/AA + keyboard) — [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md).
+- [x] Full offline operation, including a reload with no network (service worker).
+- [ ] Fully bilingual interface (EN / PT-BR) and a screen-reader review.
 
 ---
 

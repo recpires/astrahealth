@@ -159,6 +159,20 @@ export function KeyValue({ label, children }: { label: string; children: ReactNo
   );
 }
 
+/** Horizontally scrollable area that keyboard users can focus and scroll (WCAG 2.1.1). */
+export function ScrollArea({ label, className, children }: { label: string; className?: string; children: ReactNode }) {
+  return (
+    <div
+      role="region"
+      aria-label={label}
+      tabIndex={0}
+      className={cx("overflow-x-auto rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent", className)}
+    >
+      {children}
+    </div>
+  );
+}
+
 export function EmptyState({ children }: { children: ReactNode }) {
   return <p className="rounded-lg border border-dashed border-line px-4 py-6 text-center text-sm text-ink-faint">{children}</p>;
 }

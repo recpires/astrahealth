@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AlertTriangle, CheckCircle2, Circle, ClipboardCheck, Gavel, History, Rocket, Wrench } from "lucide-react";
-import { Badge, Button, EmptyState, Panel, cx } from "@/components/ui/primitives";
+import { Badge, Button, EmptyState, Panel, ScrollArea, cx } from "@/components/ui/primitives";
 import { Field, Note, PRIORITY_TONE, ReferenceLink, inputClass } from "@/components/future/common";
 import { OutboxPanel } from "@/components/future/OutboxPanel";
 import { EVA_PROTOCOL, EVA_PROTOCOL_REF, checklistStatus, gateProposal, type CheckStatus, type EvaPhase, type EvaSession } from "@/features/eva/logic";
@@ -306,7 +306,7 @@ function DecisionHistory() {
   ]);
   if (!rows.length) return <EmptyState>No EVA decisions yet.</EmptyState>;
   return (
-    <div className="overflow-x-auto">
+    <ScrollArea label="EVA decision history">
       <table className="w-full text-left text-xs" data-testid="eva-decisions">
         <thead className="border-b border-line text-[10px] uppercase tracking-[0.12em] text-ink-faint">
           <tr>
@@ -333,7 +333,7 @@ function DecisionHistory() {
           ))}
         </tbody>
       </table>
-    </div>
+    </ScrollArea>
   );
 }
 

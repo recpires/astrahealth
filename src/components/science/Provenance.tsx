@@ -1,7 +1,7 @@
 import { Database, FlaskConical, Layers, ScrollText } from "lucide-react";
 import { PROVENANCE, PROVENANCE_KINDS } from "@/config/data-provenance";
 import type { ProvenanceKind } from "@/lib/science/types";
-import { Badge, Panel, cx } from "@/components/ui/primitives";
+import { Badge, Panel, ScrollArea, cx } from "@/components/ui/primitives";
 import { TONES, type ToneName } from "@/components/ui/levels";
 
 export const PROVENANCE_TONE: Record<ProvenanceKind, ToneName> = {
@@ -53,7 +53,7 @@ export function ProvenanceLegend() {
 export function ProvenanceTable() {
   return (
     <Panel title="What is what in ASTRA Health" eyebrow="Data & rules provenance" icon={Layers}>
-      <div className="overflow-x-auto">
+      <ScrollArea label="Provenance table">
         <table className="w-full min-w-[720px] text-left text-sm" data-testid="provenance-table">
           <thead className="text-[10px] uppercase tracking-[0.14em] text-ink-faint">
             <tr>
@@ -76,7 +76,7 @@ export function ProvenanceTable() {
             ))}
           </tbody>
         </table>
-      </div>
+      </ScrollArea>
     </Panel>
   );
 }

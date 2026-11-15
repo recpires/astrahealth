@@ -73,8 +73,10 @@ function MetricRow({ m }: { m: MetricView }) {
             <dt className="inline text-ink-faint">Last result: </dt>
             <dd className="inline">{m.lastResult}</dd>
           </div>
-          <dd className="text-level-caution/90">ASTRA Health does not simulate or estimate this value.</dd>
         </dl>
+      ) : null}
+      {unavailable ? (
+        <p className="mt-0.5 text-[11px] text-level-caution/90">ASTRA Health does not simulate or estimate this value.</p>
       ) : (
         <div className="mt-1 flex flex-wrap items-center gap-1.5 text-[11px] text-ink-muted">
           <span>{m.timeText}</span>

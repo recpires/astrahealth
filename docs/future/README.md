@@ -1,6 +1,6 @@
 # ASTRA Health — FUTURE modules (platform preview)
 
-> 🇧🇷 [Versão em português](README.pt-BR.md) · 🧪 [Test report](TEST_REPORT.md)
+> 🇧🇷 [Versão em português](README.pt-BR.md) · 🎬 [Demo script](DEMO_SCRIPT.md) · 🖼 [Screenshots](../screenshots/future/README.md) · 🧪 [Test report](TEST_REPORT.md) · ♿ [Accessibility](../ACCESSIBILITY.md)
 
 The submitted MVP demonstrates **MEASURE → UNDERSTAND → ACT → COMMUNICATE** with three tested scenarios. The FUTURE modules show how ASTRA Health can grow into an **autonomous space health decision-support system** that is:
 
@@ -113,6 +113,12 @@ ASTRA Health **never simulates or estimates** intracranial pressure, retina/opti
 
 ## Earth Link (store-and-forward)
 
+### Offline reload (service worker)
+
+`public/sw.js` is registered in production builds. On installation it stores every page of the app (tested demo included) and the files they use. Pages and data always come from the network first, so online behaviour is unchanged; when the network fails, the stored copy is used. After one online visit, the app reloads and navigates with **no network and no server** — `E2E-OFF-05` stops the web server, takes the browser offline, reloads all 11 pages (with every image) and runs a new assessment. The platform bar shows **Available offline** once the worker controls the page. Bump `SW_VERSION` in `public/sw.js` to force every device to re-cache.
+
+### Store-and-forward queue
+
 Items are always created locally. While the link is lost they wait. When it is available they leave in priority order — **urgent → priority → routine**, then oldest first — reach Earth after the one-way delay and are acknowledged after the round trip (the acknowledgement needs the link). Every transition is in the audit trail. Use **Simulate link loss / Restore link** and **+15 min / +1 h / Next day** in the platform bar.
 
 ## Scientific references
@@ -129,9 +135,12 @@ Three of them (cardiovascular, hypoxia, in-mission medical conditions) are cover
 ## Tests
 
 ```bash
-npm run test:future            # 107 unit, integration and interface tests (tests/future)
+npm run test:future            # 110 unit, integration and interface tests (tests/future)
 npm run build
-npm run test:e2e:future        # 18 browser checks: F01–F05, network cut, reload, export, phone/tablet layout
+npm run test:e2e:future        # 19 browser checks: F01–F05, network cut, reload, export, phone/tablet layout,
+                               #   full reload with the server stopped
+npm run test:a11y              # accessibility audit → docs/ACCESSIBILITY.md
+npm run screenshots:future     # the 14 screenshots of the demo script
 npm run test:regression        # the original 77 tests
 npm run test:e2e:regression    # the 14 browser checks of the three scenarios
 npm run test:report:future     # writes docs/future/TEST_REPORT(.pt-BR).md
@@ -142,6 +151,6 @@ See the [test report](TEST_REPORT.md) for results, screenshots and the status of
 ## Limits and next steps
 
 - Rules, intervals, checklists, equipment assumptions: demonstration values that need expert review.
-- Offline operation is demonstrated after the app has loaded; a flight system would run on an onboard server or a service worker.
+- Offline: the app needs one online visit before it can reload without network; a flight system would also run an onboard server so several devices share the same records (today each device keeps its own).
 - The audit checksum detects casual edits; a flight system would sign entries and replicate them to the ground.
 - Next: multi-user roles (CMO, commander), expert-reviewed rule sets with change control, bilingual interface, real device adapters, ground-side console.

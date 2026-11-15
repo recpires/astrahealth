@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import { MissionProvider } from "@/state/MissionProvider";
 import { AppShell } from "@/components/layout/AppShell";
+import { ServiceWorkerRegistration } from "@/components/layout/ServiceWorker";
 
 export const metadata: Metadata = {
   title: {
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <MissionProvider>
           <AppShell>{children}</AppShell>
         </MissionProvider>
+        <ServiceWorkerRegistration />
       </body>
     </html>
   );

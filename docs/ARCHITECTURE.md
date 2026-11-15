@@ -102,3 +102,7 @@ All routes prerender as static content, which makes Vercel deployment configurat
 ## FUTURE modules (platform preview)
 
 The FUTURE modules (F01–F05) live in `src/features/` and `src/app/future/`, with their own pure reducer (`src/features/platform/store.ts`), mission-day clock, on-device storage and checksum-chained audit trail. They never write to `src/lib/mission`; FUTURE 03 only reads the latest simulated vital signs through `useMission()`. The tested code changed in two places only: one menu entry in `AppShell` and an optional `--out` folder in `scripts/e2e-scenarios.cjs`. Full description: [docs/future/README.md](future/README.md).
+
+## Offline service worker
+
+`public/sw.js` (registered by `src/components/layout/ServiceWorker.tsx` in production builds) pre-caches every route and the files they reference. Pages and RSC data are network-first, static files are cache-first, so online behaviour is unchanged and the whole app reloads without network after one online visit. `next.config.ts` serves `/sw.js` with `Cache-Control: no-cache`; `tests/future/offline.test.ts` checks that every route of `src/app` is pre-cached.

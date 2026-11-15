@@ -189,13 +189,13 @@ function build(en) {
   for (const line of en
     ? [
         "They verify software behaviour against the specification, not clinical validity. Every threshold, rule and checklist is a demonstration value.",
-        "Offline operation is tested with the browser's offline mode after the app has loaded. A full reload without any network would need a service worker or an onboard server — not part of this prototype.",
+        "Offline reload is tested after one online visit (the service worker must have cached the app first): the web server is stopped and the browser goes offline (E2E-OFF-05). Records stay on each device; sharing them between devices would need an onboard server.",
         "The audit-trail checksum detects accidental or casual edits; it is not a cryptographic signature.",
         "NASA HRR references are checked title-for-title against the official index (snapshot in `src/data/future/hrr-risk-index.snapshot.json`; refresh with `npm run future:check-refs`).",
       ]
     : [
         "Verificam o comportamento do software em relação à especificação, não validade clínica. Todo limite, regra e checklist é um valor demonstrativo.",
-        "A operação offline é testada com o modo offline do navegador depois que o app carregou. Uma recarga completa sem nenhuma rede exigiria um service worker ou um servidor a bordo — fora do escopo deste protótipo.",
+        "A recarga offline é testada depois de uma visita com internet (o service worker precisa ter guardado o app antes): o servidor web é desligado e o navegador fica offline (E2E-OFF-05). Os registros ficam em cada dispositivo; compartilhá-los entre dispositivos exigiria um servidor de bordo.",
         "O checksum da trilha de auditoria detecta edições acidentais ou casuais; não é uma assinatura criptográfica.",
         "As referências NASA HRR são conferidas título a título com o índice oficial (snapshot em `src/data/future/hrr-risk-index.snapshot.json`; atualize com `npm run future:check-refs`).",
       ])

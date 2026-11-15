@@ -42,3 +42,7 @@ Point at the *SIMULATED DATA · DEMO* tag and the mission clock.
 
 "Thresholds are provisional; the NASA scientific resource slot is ready and stays empty until the team confirms the
 official challenge statement. No diagnosis, no treatment advice, and AI assistance is disclosed."
+
+## Optional — platform preview (FUTURE modules)
+
+A separate ≈ 4-minute script for the FUTURE modules (journal, symptom assessment, health profile, EVA, readiness, offline reload) is in [docs/future/DEMO_SCRIPT.md](future/DEMO_SCRIPT.md) ([português](future/DEMO_SCRIPT.pt-BR.md)).

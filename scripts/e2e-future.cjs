@@ -39,7 +39,7 @@ const freePort = () =>
   });
 
 async function startServer() {
-  if (process.env.BASE_URL) return { url: process.env.BASE_URL, stop: () => {} };
+  if (process.env.BASE_URL) return { url: process.env.BASE_URL, stop: () => {}, canStop: false };
   const port = await freePort();
   const proc = spawn(process.execPath, [path.join(ROOT, "node_modules", "next", "dist", "bin", "next"), "start", "-p", String(port)], {
     cwd: ROOT,
@@ -49,7 +49,7 @@ async function startServer() {
   const url = `http://localhost:${port}`;
   for (let i = 0; i < 60; i++) {
     try {
-      if ((await fetch(url)).ok) return { url, stop: () => proc.kill() };
+      if ((await fetch(url)).ok) return { url, stop: () => proc.kill("SIGKILL"), canStop: true };
     } catch {}
     await new Promise((r) => setTimeout(r, 500));
   }
@@ -190,7 +190,7 @@ async function main() {
       await crew("crew-b");
       await page.selectOption(tid("assess-symptom"), "dizziness");
       await page.locator(tid("assess-severity")).getByText("Moderate").click();
-      await page.click(tid("assess-warning-fainting"));
+      await page.click(`label:has(${tid("assess-warning-fainting")})`);
       await page.click(tid("assess-submit"));
       const level = await expectText(tid("assess-level"), /Medical support now/);
       const steps = await text(tid("assess-steps"));
@@ -390,6 +390,37 @@ async function main() {
       must(!problems.length, problems.join("; "));
       return `${routes.length} pages × 2 widths: no horizontal page scroll`;
     });
+
+    // Last check: it stops the server for good.
+    await check("E2E-OFF-05", "Platform", "Full reload with no server and no network", "After the service worker has cached the app, the server is stopped and the browser goes offline: all 11 pages reload, saved records are there, navigation and a new assessment still work", async () => {
+      await page.goto(`${server.url}/future`);
+      await page.waitForFunction(() => navigator.serviceWorker && navigator.serviceWorker.controller, null, { timeout: 30_000 });
+      await expectText(tid("offline-ready"), /Available offline/);
+      if (server.canStop) server.stop();
+      await context.setOffline(true);
+      await page.waitForTimeout(800);
+      const routes = ["/", "/analysis", "/response", "/comms", "/science", "/future", "/future/journal", "/future/assess", "/future/profile", "/future/eva", "/future/readiness"];
+      const brokenImages = [];
+      for (const r of routes) {
+        await page.goto(`${server.url}${r}`, { timeout: T });
+        await page.locator(r === "/" ? tid("vital-card-hr") : "main h1").first().waitFor({ timeout: T });
+        await page.waitForFunction(() => [...document.images].every((i) => i.complete), null, { timeout: T });
+        const broken = await page.evaluate(() => [...document.images].filter((i) => i.naturalWidth === 0).map((i) => i.getAttribute("alt") || i.src));
+        if (broken.length) brokenImages.push(`${r}: ${broken.join(", ")}`);
+      }
+      must(!brokenImages.length, `images not available offline — ${brokenImages.join("; ")}`);
+      await page.goto(`${server.url}/future/journal`);
+      await crew("crew-d");
+      const saved = await expectText(tid("checkin-saved"), /Saved for Crew Member D/);
+      await page.click('nav[aria-label="FUTURE modules"] a[href="/future/assess"]');
+      await page.locator(tid("assess-submit")).waitFor({ timeout: T });
+      await page.click(tid("assess-submit"));
+      const level = await expectText(tid("assess-level"), /./);
+      await page.click('nav[aria-label="Modules"] a[href="/comms"]');
+      await page.waitForURL((u) => new URL(u).pathname === "/comms", { timeout: T });
+      await page.locator("main h1").first().waitFor({ timeout: T });
+      return `${server.canStop ? "server stopped + " : ""}browser offline · ${routes.length}/${routes.length} pages reloaded with every image · "${saved}" · new assessment: ${level} · menu navigation to Earth Link OK`;
+    }, "top");
 
     results.find((r) => r.id === "E2E-OFF-01").networkRequestsWhileOffline = offlineRequests.length;
   } finally {

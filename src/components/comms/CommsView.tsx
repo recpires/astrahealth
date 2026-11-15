@@ -315,11 +315,20 @@ function MessageRow({ m }: { m: LinkMessage }) {
         </div>
       )}
       <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-[10px] text-ink-faint sm:grid-cols-5">
-        <div>queued {formatMET(tl.createdAt)}</div>
-        <div>sent {tl.sentAt !== null ? formatMET(tl.sentAt) : "—"}</div>
-        <div>at Earth {tl.receivedAt !== null ? formatMET(tl.receivedAt) : "—"}</div>
-        <div>reply sent {tl.replySentAt !== null ? formatMET(tl.replySentAt) : "—"}</div>
-        <div>reply in {tl.replyReceivedAt !== null ? formatMET(tl.replyReceivedAt) : "—"}</div>
+        {(
+          [
+            ["queued", tl.createdAt],
+            ["sent", tl.sentAt],
+            ["at Earth", tl.receivedAt],
+            ["reply sent", tl.replySentAt],
+            ["reply in", tl.replyReceivedAt],
+          ] as const
+        ).map(([label, t]) => (
+          <div key={label}>
+            <dt className="inline">{label} </dt>
+            <dd className="inline">{t !== null ? formatMET(t) : "—"}</dd>
+          </div>
+        ))}
       </dl>
       {st.state === "response-received" && (
         <p className="mt-2 flex gap-2 rounded-md border border-level-nominal/40 bg-level-nominal/5 px-3 py-2 text-xs text-ink-muted">

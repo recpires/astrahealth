@@ -52,9 +52,9 @@ function Header() {
   const { state, view, dispatch } = useMission();
   const complete = isPlaybackComplete(state);
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-space-950/90 backdrop-blur">
+    <header className="z-30 border-b border-line bg-space-950/90 backdrop-blur md:sticky md:top-0">
       <div className="flex flex-wrap items-center gap-x-6 gap-y-2 px-4 py-2.5 lg:px-6">
-        <Link href="/" className="flex items-center gap-3" aria-label="ASTRA Health home">
+        <Link href="/" className="flex items-center gap-3">
           <AstraLogo size={44} />
           <div className="leading-tight">
             <p className="text-base font-bold tracking-[0.2em] text-ink">

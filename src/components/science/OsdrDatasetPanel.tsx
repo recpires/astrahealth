@@ -16,8 +16,8 @@ interface ImportedFile {
 }
 
 function SourceIdentification({ snapshot }: { snapshot: OsdrSnapshot }) {
-  const row = (label: string, value: React.ReactNode) => (
-    <div className="min-w-0">
+  const row = (label: string, value: React.ReactNode, className = "") => (
+    <div className={`min-w-0 ${className}`}>
       <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-faint">{label}</dt>
       <dd className="mt-0.5 break-words text-sm text-ink">{value}</dd>
     </div>
@@ -32,7 +32,7 @@ function SourceIdentification({ snapshot }: { snapshot: OsdrSnapshot }) {
         </a>,
       )}
       {row("Public release", snapshot.publicReleaseDate ?? "—")}
-      <div className="sm:col-span-2 xl:col-span-3">{row("Study title", snapshot.title)}</div>
+      {row("Study title", snapshot.title, "sm:col-span-2 xl:col-span-3")}
       {row("Mission", `${snapshot.mission.name ?? "—"} (${snapshot.mission.start ?? "?"} – ${snapshot.mission.end ?? "?"})`)}
       {row(
         "File",
@@ -253,7 +253,7 @@ export function OsdrDatasetPanel() {
             placeholder="OSD-575"
             className="w-28 rounded-md border border-line bg-space-850 px-2 py-1 font-mono text-sm text-ink placeholder:text-ink-faint"
           />
-          <label className={cx("inline-flex cursor-pointer items-center gap-2 rounded-lg border border-line-strong bg-space-800 px-3 py-1.5 text-sm text-ink hover:bg-space-700")}>
+          <label className={cx("inline-flex cursor-pointer items-center gap-2 rounded-lg border border-line-strong bg-space-800 px-3 py-1.5 text-sm text-ink hover:bg-space-700 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent")}>
             <FileUp aria-hidden className="h-4 w-4" />
             Choose CSV file
             <input type="file" accept=".csv,text/csv" onChange={onFile} className="sr-only" data-testid="osdr-file-input" />

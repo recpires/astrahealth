@@ -44,9 +44,11 @@ function EvidenceCard({ item }: { item: EvidenceItem }) {
         </div>
         <div>
           <dt className="inline text-ink-faint">Authors: </dt>
-          <dd className="inline">{item.authors}</dd>
-          <span className="text-ink-faint"> · </span>
-          <dd className="inline">{item.date}</dd>
+          <dd className="inline">
+            {item.authors}
+            <span className="text-ink-faint"> · </span>
+            {item.date}
+          </dd>
         </div>
       </dl>
       <div className="mt-3 flex flex-wrap gap-2">

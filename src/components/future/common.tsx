@@ -79,7 +79,7 @@ export function Segmented<T extends string>({
 }
 
 export const inputClass =
-  "w-full rounded-lg border border-line bg-space-950/60 px-2.5 py-1.5 text-sm text-ink placeholder:text-ink-faint focus:border-accent/60 focus:outline-none";
+  "w-full rounded-lg border border-line bg-space-950/60 px-2.5 py-1.5 text-sm text-ink placeholder:text-ink-faint focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/50";
 
 export function Field({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
   return (

@@ -6,6 +6,7 @@ import { useState, type ReactNode } from "react";
 import { Clock, HardDrive, RadioTower, RotateCcw, WifiOff } from "lucide-react";
 import { Badge, Button, DemoTag, cx } from "@/components/ui/primitives";
 import { FutureProvider, useFuture } from "@/features/platform/FutureProvider";
+import { useOfflineReady } from "@/components/layout/ServiceWorker";
 import { pendingCount } from "@/features/platform/earth-link";
 import { formatMissionTime } from "@/features/platform/time";
 import { DELAY_PRESETS } from "@/lib/comms/delay";
@@ -22,6 +23,7 @@ export const FUTURE_TABS = [
 function PlatformBar() {
   const { state, dispatch, ready, storageWritable, resetDemo } = useFuture();
   const [confirmReset, setConfirmReset] = useState(false);
+  const offlineReady = useOfflineReady();
   const { clock, link, outbox } = state.platform;
   const pending = pendingCount(outbox);
   const queued = outbox.filter((m) => m.state === "queued").length;
@@ -93,6 +95,12 @@ function PlatformBar() {
         </div>
 
         <div className="ml-auto flex items-center gap-2">
+          {offlineReady && (
+            <span className="inline-flex items-center gap-1 text-[11px] text-level-nominal" data-testid="offline-ready" title="Every page and file is cached on this device: the app reloads without any network.">
+              <WifiOff aria-hidden className="h-3.5 w-3.5" />
+              Available offline
+            </span>
+          )}
           <span className="inline-flex items-center gap-1 text-[11px] text-ink-faint" data-testid="storage-status">
             <HardDrive aria-hidden className="h-3.5 w-3.5" />
             {!ready ? "Loading on-device data…" : storageWritable === false ? "Memory only (storage blocked)" : "Saved on this device"}

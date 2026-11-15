@@ -75,3 +75,10 @@ body {
 input[type="range"].astra-range {
   accent-color: var(--color-accent);
 }
+
+/* The header is sticky from md up: keep focused or linked elements clear of it (WCAG 2.4.11). */
+@media (min-width: 48rem) {
+  html {
+    scroll-padding-top: 5rem;
+  }
+}

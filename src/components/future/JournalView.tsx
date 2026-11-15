@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { BookHeart, CalendarCheck, Flag, History, LineChart as LineIcon, Send, Users } from "lucide-react";
-import { Badge, Button, EmptyState, Panel, cx } from "@/components/ui/primitives";
+import { Badge, Button, EmptyState, Panel, ScrollArea, cx } from "@/components/ui/primitives";
 import type { ToneName } from "@/components/ui/levels";
 import { CrewPicker, Field, Note, Segmented, SourceTag, inputClass } from "@/components/future/common";
 import { CREW, JOURNAL_RULES, JOURNAL_RULESET_REF, METRIC_LABEL, SCALES, SYMPTOMS, crewName } from "@/features/journal/config";
@@ -82,7 +82,7 @@ function CheckInForm({ crewId, existing }: { crewId: CrewId; existing: CheckIn |
               <label
                 key={s.id}
                 className={cx(
-                  "cursor-pointer rounded-md border px-2 py-1 text-xs",
+                  "cursor-pointer rounded-md border px-2 py-1 text-xs has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent",
                   on ? "border-level-caution/50 bg-level-caution/10 text-level-caution" : "border-line text-ink-muted hover:text-ink",
                 )}
               >
@@ -259,7 +259,7 @@ export function JournalView() {
 
       <div className="grid gap-4 xl:grid-cols-3">
         <Panel title={`History — ${crewName(crewId)}`} icon={History} className="xl:col-span-2" bodyClassName="p-0">
-          <div className="overflow-x-auto">
+          <ScrollArea label="Check-in history" className="rounded-none">
             <table className="w-full min-w-[640px] text-left text-xs" data-testid="journal-history">
               <thead className="border-b border-line text-[10px] uppercase tracking-[0.12em] text-ink-faint">
                 <tr>
@@ -292,7 +292,7 @@ export function JournalView() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </ScrollArea>
         </Panel>
 
         <Panel title="Crew overview — today" icon={Users}>

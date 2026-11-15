@@ -32,9 +32,9 @@
     {
       "id": "C5",
       "criterion": "The system works with local sources during a communication loss.",
-      "how": "Integration tests run every module with the Earth link lost and check priority-ordered sync on restore; the browser test cuts the network (offline mode) and keeps working, then reloads and finds the records on the device.",
+      "how": "Integration tests run every module with the Earth link lost and check priority-ordered sync on restore; in the browser the network is cut while the app keeps working, and a service worker lets all 11 pages reload with the web server stopped and the browser offline (E2E-OFF-05).",
       "criterion_pt": "O sistema funciona com fontes locais durante a perda de comunicação.",
-      "how_pt": "Testes de integração executam todos os módulos com o link com a Terra perdido e verificam a sincronização por prioridade ao restabelecer; o teste no navegador corta a rede (modo offline) e continua funcionando, depois recarrega e encontra os registros no dispositivo."
+      "how_pt": "Testes de integração executam todos os módulos com o link com a Terra perdido e verificam a sincronização por prioridade ao restabelecer; no navegador a rede é cortada e o app continua funcionando, e um service worker permite recarregar as 11 páginas com o servidor web desligado e o navegador offline (E2E-OFF-05)."
     },
     {
       "id": "C6",

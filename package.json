@@ -14,6 +14,7 @@
     "generate:future": "node scripts/generate-future-demo.mjs",
     "screenshots": "node scripts/screenshots.cjs",
     "screenshots:sequence": "node scripts/capture-vital-sequence.cjs",
+    "screenshots:future": "node scripts/screenshots-future.cjs",
     "banners": "node scripts/render-banners.cjs",
     "osdr:import": "node scripts/import-osdr.mjs",
     "science:check-links": "node scripts/check-evidence-links.mjs",
@@ -25,7 +26,8 @@
     "test:regression": "vitest run --exclude \"tests/future/**\" --reporter=default --reporter=json --outputFile.json=docs/test-results/future/regression/vitest-results.json",
     "test:e2e:future": "node scripts/e2e-future.cjs",
     "test:e2e:regression": "node scripts/e2e-scenarios.cjs --out docs/test-results/future/regression",
-    "test:report:future": "node scripts/build-future-report.mjs"
+    "test:report:future": "node scripts/build-future-report.mjs",
+    "test:a11y": "node scripts/a11y-audit.cjs"
   },
   "dependencies": {
     "lucide-react": "^1.73.0",
@@ -35,6 +37,7 @@
     "recharts": "^3.10.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@tailwindcss/turbopack": "4.3.3",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",

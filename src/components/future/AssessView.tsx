@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { BookOpen, ClipboardList, Gauge, History, ListChecks, Send, ShieldQuestion, Stethoscope, UserCheck } from "lucide-react";
+import { BookOpen, Check, ClipboardList, Gauge, History, ListChecks, Send, ShieldQuestion, Stethoscope, UserCheck } from "lucide-react";
 import { Badge, Button, EmptyState, Panel, cx } from "@/components/ui/primitives";
 import type { ToneName } from "@/components/ui/levels";
 import { CrewPicker, Field, Note, PRIORITY_TONE, ReferenceLink, Segmented, inputClass } from "@/components/future/common";
@@ -133,14 +133,29 @@ function IntakeForm({ crewId }: { crewId: CrewId }) {
         <legend className="px-1 text-xs font-medium text-level-warning">Warning signs present now?</legend>
         <div className="grid gap-1 sm:grid-cols-2">
           {SYMPTOM_RULESET.warningSigns.map((w) => (
-            <label key={w.id} className="flex items-start gap-2 text-xs text-ink-muted">
+            <label
+              key={w.id}
+              className={cx(
+                "flex min-h-9 cursor-pointer items-start gap-2 rounded-md border px-2 py-1.5 text-xs has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent",
+                warningSigns.includes(w.id) ? "border-level-warning/60 bg-level-warning/10 text-ink" : "border-line text-ink-muted hover:text-ink",
+              )}
+            >
               <input
                 type="checkbox"
-                className="mt-0.5"
+                className="sr-only"
                 checked={warningSigns.includes(w.id)}
                 onChange={() => setWarningSigns((cur) => (cur.includes(w.id) ? cur.filter((x) => x !== w.id) : [...cur, w.id]))}
                 data-testid={`assess-warning-${w.id}`}
               />
+              <span
+                aria-hidden
+                className={cx(
+                  "mt-px flex h-4 w-4 shrink-0 items-center justify-center rounded border",
+                  warningSigns.includes(w.id) ? "border-level-warning bg-level-warning text-space-950" : "border-line-strong",
+                )}
+              >
+                {warningSigns.includes(w.id) && <Check className="h-3 w-3" strokeWidth={3} />}
+              </span>
               {w.label}
             </label>
           ))}
