@@ -12,7 +12,7 @@
   <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white" />
   <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white" />
   <img alt="Recharts 3" src="https://img.shields.io/badge/Recharts-3-22D3EE" />
-  <img alt="Vitest: 52 testes" src="https://img.shields.io/badge/Vitest-52_testes_passando-6E9F18?logo=vitest&logoColor=white" />
+  <img alt="Vitest: 53 testes" src="https://img.shields.io/badge/Vitest-53_testes_passando-6E9F18?logo=vitest&logoColor=white" />
   <img alt="Pronto para Vercel" src="https://img.shields.io/badge/Vercel-pronto-000000?logo=vercel&logoColor=white" />
   <br/>
   <img alt="NASA Space Apps Challenge 2026" src="https://img.shields.io/badge/NASA_Space_Apps-2026-0B3D91" />
@@ -79,7 +79,7 @@ de quatro etapas:
 - 🚨 Indicação clara de **quando** pedir suporte médico — sem jamais recomendar tratamento.
 - 📡 Simulador do link Terra–Marte com atraso de 3 a 22 min por sentido, fila de transmissão, simulação de queda do link e estados de mensagem.
 - 🧾 Relatório de incidente estruturado (texto + JSON) gerado a partir do estado atual.
-- 🧪 52 testes automatizados, incluindo o fluxo completo dos três cenários.
+- 🧪 53 testes automatizados, incluindo o fluxo completo dos três cenários.
 
 ---
 
@@ -526,14 +526,14 @@ npm run dev
 npm test
 ```
 
-**52 testes em 5 arquivos**, todos determinísticos:
+**53 testes em 5 arquivos**, todos determinísticos:
 
 | Arquivo | O que cobre |
 |---|---|
 | `tests/scenarios.test.ts` | Fluxo completo MEDIR → ENTENDER → AGIR → COMUNICAR de cada cenário no reducer da missão: detecções, escalonamento, procedimentos, confirmação, relatório e todos os estados da mensagem. |
 | `tests/analysis.test.ts` | Cada regra (persistência/histerese, perda de leitura, plausibilidade, taxa de variação, qualidade, valor congelado, verificação cruzada), confiabilidade, eventos, resultados da confirmação e ausência de termos diagnósticos. |
 | `tests/comms.test.ts` | Limites do atraso, ida e volta, distância percorrida pela luz, fila por ordem de chegada e por prioridade, queda do link, fixação do atraso e linha do tempo dos estados. |
-| `tests/science.test.ts` | Salvaguardas: nenhum recurso da NASA declarado enquanto pendente; rótulos de provisório; procedimentos sem termos de medicamento ou intervenção clínica. |
+| `tests/science.test.ts` | Salvaguardas: nenhum recurso da NASA declarado enquanto pendente; rótulos de provisório; procedimentos sem termos de medicamento ou intervenção clínica; declaração de uso de IA exibida na página de ciência. |
 | `tests/ui/modules.test.tsx` | Os quatro módulos renderizados com Testing Library: botões de incidente, achados, confirmação, registro de checklist, atalhos de atraso, geração e envio do relatório, valores não verificados de sensor suspeito. |
 
 Verificações executadas antes de cada commit: `npm test`, `npm run lint`, `npm run typecheck`, `npm run build`.

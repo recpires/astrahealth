@@ -102,16 +102,16 @@ function VitalCard({ vital, series }: { vital: VitalKey; series: ChartPoint[] })
       aria-label={`${vc.label} (simulated)`}
     >
       <div className="flex items-start justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <span className={cx("grid h-8 w-8 place-items-center rounded-lg border", t.border, t.bg)}>
+        <div className="flex min-w-0 items-center gap-2">
+          <span className={cx("grid h-8 w-8 shrink-0 place-items-center rounded-lg border", t.border, t.bg)}>
             <Icon aria-hidden className={cx("h-4 w-4", t.text)} />
           </span>
-          <div className="leading-tight">
+          <div className="min-w-0 leading-tight">
             <p className="text-sm font-semibold text-ink">{vc.label}</p>
             <p className="text-[11px] text-ink-faint">Demo ref. {formatRange(vital, vc.normal)}</p>
           </div>
         </div>
-        <DemoTag label="Sim" />
+        <DemoTag label="Sim" className="shrink-0" />
       </div>
       <div className="mt-3 flex items-end gap-2">
         <span className={cx("tabular font-mono text-5xl font-semibold leading-none", excluded ? "text-level-sensor line-through decoration-2" : "text-ink")}>
@@ -231,7 +231,7 @@ export function MonitorView() {
       </div>
       <ScenarioControl />
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-4">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 xl:col-span-3">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 xl:col-span-3">
           {VITAL_KEYS.map((k) => (
             <VitalCard key={k} vital={k} series={series[k]} />
           ))}

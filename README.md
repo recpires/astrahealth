@@ -12,7 +12,7 @@
   <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white" />
   <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white" />
   <img alt="Recharts 3" src="https://img.shields.io/badge/Recharts-3-22D3EE" />
-  <img alt="Vitest: 52 tests" src="https://img.shields.io/badge/Vitest-52_tests_passing-6E9F18?logo=vitest&logoColor=white" />
+  <img alt="Vitest: 53 tests" src="https://img.shields.io/badge/Vitest-53_tests_passing-6E9F18?logo=vitest&logoColor=white" />
   <img alt="Vercel ready" src="https://img.shields.io/badge/Vercel-ready-000000?logo=vercel&logoColor=white" />
   <br/>
   <img alt="NASA Space Apps Challenge 2026" src="https://img.shields.io/badge/NASA_Space_Apps-2026-0B3D91" />
@@ -78,7 +78,7 @@
 - 🚨 Clear indication of **when** to request medical support — without ever recommending treatment.
 - 📡 Earth–Mars link simulator with 3–22 min one-way delay, transmission queue, outage simulation and message states.
 - 🧾 Structured incident report (text + JSON) generated from the live state.
-- 🧪 52 automated tests, including end-to-end flows of all three scenarios.
+- 🧪 53 automated tests, including end-to-end flows of all three scenarios.
 
 ---
 
@@ -521,14 +521,14 @@ npm run dev
 npm test
 ```
 
-**52 tests in 5 files**, all deterministic:
+**53 tests in 5 files**, all deterministic:
 
 | File | What it covers |
 |---|---|
 | `tests/scenarios.test.ts` | End-to-end MEASURE → UNDERSTAND → ACT → COMMUNICATE flow of each scenario through the mission reducer: detections, escalation, procedures, confirmation, report and every message state. |
 | `tests/analysis.test.ts` | Each rule (persistence/hysteresis, dropout, plausibility, rate of change, quality, frozen value, cross-check), reliability, events, confirmation outcomes and absence of diagnostic wording. |
 | `tests/comms.test.ts` | Delay limits, round trip, light-travel distance, FIFO and priority queue, outage, delay locking and state timeline. |
-| `tests/science.test.ts` | Guards: no NASA resource claimed while pending; provisional labels; procedures free of medication and clinical-intervention terms. |
+| `tests/science.test.ts` | Guards: no NASA resource claimed while pending; provisional labels; procedures free of medication and clinical-intervention terms; AI disclosure shown on the Science page. |
 | `tests/ui/modules.test.tsx` | The four modules rendered with Testing Library: incident buttons, findings, confirmation, checklist logging, delay presets, report generation and queuing, unverified sensor values. |
 
 Quality gates run before each commit: `npm test`, `npm run lint`, `npm run typecheck`, `npm run build`.

@@ -40,3 +40,16 @@ describe("demonstration procedures", () => {
     }
   });
 });
+
+describe("AI tools & usage disclosure", () => {
+  it("is shown verbatim on the Science & limits page", async () => {
+    const { render, screen } = await import("@testing-library/react");
+    const { ScienceView } = await import("@/components/science/ScienceView");
+    render(ScienceView());
+    const panel = screen.getByTestId("ai-disclosure");
+    expect(panel).toHaveTextContent(
+      "Team ANGARIS used AI-assisted tools, including Claude Code, Codex, and ChatGPT, as applicable, to support software development, code review, documentation, and presentation preparation.",
+    );
+    expect(panel).toHaveTextContent("is not a clinically validated medical device");
+  });
+});

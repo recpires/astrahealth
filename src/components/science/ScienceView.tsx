@@ -135,19 +135,21 @@ export function ScienceView() {
           </ul>
         </Panel>
 
-        <Panel title="AI assistance disclosure" eyebrow="Transparency" icon={Bot}>
-          <div className="space-y-2 text-sm text-ink-muted">
+        <Panel title="AI Tools & Usage Disclosure" eyebrow="Transparency" icon={Bot}>
+          <div className="space-y-2 text-sm text-ink-muted" data-testid="ai-disclosure">
             <p>
-              This prototype&apos;s source code, simulated-data generator, demonstration procedures, interface text and documentation were
-              produced with the help of an AI coding assistant (Claude Code, by Anthropic) working from the Team ANGARIS brief.
+              Team ANGARIS used AI-assisted tools, including Claude Code, Codex, and ChatGPT, as applicable, to support software
+              development, code review, documentation, and presentation preparation.
+            </p>
+            <p>The project&rsquo;s concept, technical decisions, testing, and final validation are the responsibility of Team ANGARIS.</p>
+            <p>
+              All physiological data presented in the prototype are simulated. ASTRA Health is an experimental demonstration and is not
+              a clinically validated medical device.
             </p>
             <p>
-              The team is responsible for reviewing all AI-assisted content, confirming the scientific statement and NASA resource, and
-              validating every rule before any claim is made. See <code>AI_DISCLOSURE.md</code> in the repository.
-            </p>
-            <p>
-              The ASTRA Health logo (and the emblem cropped from it for the header and favicon) is an AI-generated image supplied by
-              the team; the original file keeps its &quot;AI-generated&quot; label (<code>public/brand/astra-health-logo.png</code>).
+              The ASTRA Health logo (and the emblem cropped from it for the header and favicon) is an AI-generated image; the original
+              file keeps its &quot;AI-generated&quot; label (<code>public/brand/astra-health-logo.png</code>). See{" "}
+              <code>AI_DISCLOSURE.md</code> in the repository.
             </p>
             <p className="flex items-center gap-2 text-xs text-ink-faint">
               <FlaskConical className="h-4 w-4" /> No AI model runs inside the application: all analysis is deterministic.
