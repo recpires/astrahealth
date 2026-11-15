@@ -26,10 +26,6 @@
   <b>follow predefined procedures</b> on board — even when every message to Earth takes minutes to arrive.
 </p>
 
-<p align="center">
-  📄 <a href="docs/ASTRA_Health_ANGARIS_Technical_Documentation_EN.pdf"><b>Technical documentation (PDF)</b></a> — version 1.0, 15 November 2026
-</p>
-
 > [!WARNING]
 > **Demonstration prototype.** Every vital-sign value in this project is **simulated**. ASTRA Health is **not a medical
 > device**, gives **no diagnosis**, recommends **no medication, treatment or clinical intervention**, and has **no
