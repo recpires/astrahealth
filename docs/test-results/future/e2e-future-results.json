@@ -1,0 +1,184 @@
+{
+  "generatedBy": "scripts/e2e-future.cjs",
+  "date": "2026-11-15T04:30:42.009Z",
+  "browser": "Chromium 153.0.8010.12",
+  "viewport": "1440×900",
+  "target": "next start (production build)",
+  "durationSec": 15,
+  "passed": 17,
+  "failed": 0,
+  "pageErrors": [],
+  "results": [
+    {
+      "id": "E2E-F01-01",
+      "module": "F01",
+      "description": "Demo journal: storyline flags appear for Crew Member B and D",
+      "expected": "B: SHORT_SLEEP + HIGH_FATIGUE (days 10–14); D: CHECKIN_MISSING (days 12, 14); D body mass overdue",
+      "observed": "B: short sleep + high fatigue · D: \"Missing check-in CHECKIN_MISSING No check-in recorded for Crew Member …\" · D body mass: overdue",
+      "status": "passed",
+      "durationMs": 657,
+      "screenshot": "e2e/E2E-F01-01.png"
+    },
+    {
+      "id": "E2E-F01-02",
+      "module": "F01",
+      "description": "Crew Member A records today's check-in",
+      "expected": "Saved with mission time and stored on the device; listed as a crew entry",
+      "observed": "\"Saved for Crew Member A · Day 15 · 08:00 · stored on this device\" · history: D 15 08:00 7.4 h 3 /5 4 /5 2 /5 3 /5 — Crew entry",
+      "status": "passed",
+      "durationMs": 591,
+      "screenshot": "e2e/E2E-F01-02.png"
+    },
+    {
+      "id": "E2E-F01-03",
+      "module": "F01",
+      "description": "A routine is marked done",
+      "expected": "Body mass (Crew Member D) changes from Overdue to Done today",
+      "observed": "Body mass measurement Every 7 days · last day 15 · next due day 22 Done today Equipment: Body mass measurement device",
+      "status": "passed",
+      "durationMs": 178,
+      "screenshot": null
+    },
+    {
+      "id": "E2E-F02-01",
+      "module": "F02",
+      "description": "Moderate, worsening headache for Crew Member C",
+      "expected": "Inform crew medical officer; uncertainty HIGH (no symptom-specific NASA reference); rules ASTRA-SYM@0.1.0-demo",
+      "observed": "level \"Inform crew medical officer\" · uncertainty HIGH · reviewed: accepted",
+      "status": "passed",
+      "durationMs": 432,
+      "screenshot": null
+    },
+    {
+      "id": "E2E-F02-02",
+      "module": "F02",
+      "description": "Dizziness with a warning sign for Crew Member B",
+      "expected": "Medical support now; URGENT report and EVA hold proposed; verified NASA excerpt quoted; report queued as urgent",
+      "observed": "level \"Medical support now\" · steps include URGENT report + EVA hold · evidence: verified excerpt + reference-only · queued (urgent)",
+      "status": "passed",
+      "durationMs": 829,
+      "screenshot": "e2e/E2E-F02-02.png"
+    },
+    {
+      "id": "E2E-F03-01",
+      "module": "F03",
+      "description": "Nine domains; unavailable exams show 'No data' and are never simulated",
+      "expected": "9 domain panels; intracranial pressure, bone density, kidney imaging = No data; heart rate from simulated telemetry for Crew Member A only",
+      "observed": "9 domains · ICP / bone density / kidney imaging: No data · HR Crew A 71 bpm (simulated) · Crew B: No data",
+      "status": "passed",
+      "durationMs": 576,
+      "screenshot": "e2e/E2E-F03-01.png"
+    },
+    {
+      "id": "E2E-F03-02",
+      "module": "F03",
+      "description": "Typed blood-pressure reading",
+      "expected": "400 rejected by the typing check (not a clinical limit); 118 stored as crew-entered (not validated)",
+      "observed": "400 → \"Value must be between 60 and 250 mmHg (typing check, not a clinical limit).\" · 118 → 118 mmHg, crew-entered (not validated)",
+      "status": "passed",
+      "durationMs": 197,
+      "screenshot": null
+    },
+    {
+      "id": "E2E-F04-01",
+      "module": "F04",
+      "description": "Pre-EVA gate for Crew Members A and B",
+      "expected": "System proposes HOLD: Crew B has no check-in today and is held by the urgent assessment; GO is disabled without a reason",
+      "observed": "proposal HOLD · PRE-01 \"check: No check-in today: Crew Member B.\" · PRE-02 held · GO disabled",
+      "status": "passed",
+      "durationMs": 561,
+      "screenshot": "e2e/E2E-F04-01.png"
+    },
+    {
+      "id": "E2E-F04-02",
+      "module": "F04",
+      "description": "Override, equipment loss and an in-EVA event",
+      "expected": "Override GO logged with reason; telemetry unavailable → alternative steps; 'feeling unwell' → urgent report queued; commander ends the EVA",
+      "observed": "GO override logged · DUR-02 + U3 use alternatives · urgent report queued · EVA ended by commander",
+      "status": "passed",
+      "durationMs": 1234,
+      "screenshot": "e2e/E2E-F04-02.png"
+    },
+    {
+      "id": "E2E-F04-03",
+      "module": "F04",
+      "description": "Post-EVA closure",
+      "expected": "EVA log queued (routine); closing with open items requires a reason; EVA moves to history",
+      "observed": "closed; decision history: Time Decision point Proposal Decision By Day 15 · 08:00 EVA-0007 pre-EVA gate HOLD GO override “ Ground-reviewed exercis…",
+      "status": "passed",
+      "durationMs": 137,
+      "screenshot": null
+    },
+    {
+      "id": "E2E-OFF-01",
+      "module": "Platform",
+      "description": "Earth link lost and the browser cut from the network: modules keep working on local data",
+      "expected": "Check-in, assessment and report work offline; items wait in the queue (Waiting to send)",
+      "observed": "check-in saved offline for Crew Member D · 4 item(s) in queue · browser offline: true",
+      "status": "passed",
+      "durationMs": 639,
+      "screenshot": "e2e/E2E-OFF-01.png",
+      "networkRequestsWhileOffline": 0
+    },
+    {
+      "id": "E2E-OFF-02",
+      "module": "Platform",
+      "description": "Moving between FUTURE modules while offline",
+      "expected": "Client-side navigation to F05 works without the network; records are visible",
+      "observed": "F05 rendered offline · V-OFFLINE Works without the Earth link PASS Link LOST · 1 item(s) waiting to be sent · all FUTURE data and ref",
+      "status": "passed",
+      "durationMs": 771,
+      "screenshot": "e2e/E2E-OFF-02.png"
+    },
+    {
+      "id": "E2E-OFF-03",
+      "module": "Platform",
+      "description": "Earth link restored",
+      "expected": "Queued items are sent in priority order (urgent first) and acknowledged after the round trip",
+      "observed": "4 items · first sent: urgent · after +1 h: 0 pending (all acknowledged)",
+      "status": "passed",
+      "durationMs": 862,
+      "screenshot": "e2e/E2E-OFF-03.png"
+    },
+    {
+      "id": "E2E-OFF-04",
+      "module": "Platform",
+      "description": "Reload the page: records come back from the device",
+      "expected": "Crew Member D's offline check-in, the queue history and the audit trail are restored after reload",
+      "observed": "clock Day 15 · 09:00 restored · \"Saved for Crew Member D · Day 15 · 08:00 · stored on this device\"",
+      "status": "passed",
+      "durationMs": 1054,
+      "screenshot": "e2e/E2E-OFF-04.png"
+    },
+    {
+      "id": "E2E-F05-01",
+      "module": "F05",
+      "description": "Readiness, verification and tamper test",
+      "expected": "4 crew cards; audit trail intact; no rule set presented as validated; tamper test detects an edited copy",
+      "observed": "4 crew cards · V-AUDIT PASS · V-NOT-VALIDATED PASS · 43 audit entries · tamper: \"Edited a copy of entry #22 → verification failed at entry #22: entry content changed after…\"",
+      "status": "passed",
+      "durationMs": 393,
+      "screenshot": "e2e/E2E-F05-01.png"
+    },
+    {
+      "id": "E2E-F05-02",
+      "module": "F05",
+      "description": "Export of the full trace",
+      "expected": "Downloaded JSON contains the state, the rule-set versions and a verified checksum chain",
+      "observed": "astra-health-trace-day15.json · 43 entries, chain ok · kinds: action, data, decision, evidence, sync, system · rule sets: ASTRA-JOURNAL@0.1.0-demo, ASTRA-SYM@0.1.0-demo, ASTRA-PROFILE@0.1.0-demo, ASTRA-EVA@0.1.0-demo",
+      "status": "passed",
+      "durationMs": 492,
+      "screenshot": "e2e/E2E-F05-02.png"
+    },
+    {
+      "id": "E2E-REG-01",
+      "module": "Regression",
+      "description": "The tested demo is unchanged and reachable",
+      "expected": "Monitoring still shows the three vital cards and scenario buttons; 'Platform preview' is an extra menu entry",
+      "observed": "vital cards + scenario buttons present · nav: Monitoring, Analysis, Response, Earth Link, Science & Limits, Platform preview",
+      "status": "passed",
+      "durationMs": 502,
+      "screenshot": "e2e/E2E-REG-01.png"
+    }
+  ]
+}
