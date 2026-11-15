@@ -1,0 +1,243 @@
+{
+  "generatedBy": "tests/acceptance/scenarios.acceptance.test.ts",
+  "cases": {
+    "S1-01": {
+      "summary": "400 samples: 0 outside the demo ranges (HR 66–76 bpm, SpO₂ 97–99 %, temperature 36.6–36.9 °C); 0 sensor readings not online",
+      "samplesChecked": 400,
+      "observedRanges": {
+        "heartRate": "66–76 bpm",
+        "spo2": "97–99 %",
+        "temperature": "36.6–36.9 °C"
+      },
+      "samplesOutOfDemoRange": 0,
+      "sensorReadingsNotOnline": 0,
+      "scenarioFlaggedSimulated": true
+    },
+    "S1-02": {
+      "summary": "0/400 samples not NOMINAL; 0 findings; 0 non-system events; lowest reliability 87 %",
+      "samplesChecked": 400,
+      "samplesNotNominal": 0,
+      "findingsAtEnd": 0,
+      "events": [
+        "system: Scenario 1 — Nominal monitoring started"
+      ],
+      "lowestReliabilityScore": 87,
+      "reliabilityLabel": "High"
+    },
+    "S1-03": {
+      "summary": "Medical support not required by the demo rules; procedures: PROC-NM-01",
+      "medicalSupport": "none — Medical support not required by the demo rules",
+      "procedures": [
+        "PROC-NM-01 Routine monitoring"
+      ]
+    },
+    "S1-04": {
+      "summary": "queued +0 s → sent +30 s → received +12 min 30 s → response-pending +14 min 30 s → response-received +26 min 30 s",
+      "oneWayDelay": "12 min",
+      "roundTripShownInUi": "24 min",
+      "reportId": "IR-02-001",
+      "reportRequest": "For information: routine status. No action requested.",
+      "statesObserved": {
+        "queued": "+0 s",
+        "sent": "+30 s",
+        "received": "+12 min 30 s",
+        "response-pending": "+14 min 30 s",
+        "response-received": "+26 min 30 s"
+      },
+      "timeline": {
+        "sent": "+30 s",
+        "received": "+12 min 30 s",
+        "responsePending": "+14 min 30 s",
+        "responseReceived": "+26 min 30 s"
+      }
+    },
+    "S2-01": {
+      "summary": "HR 67 → 130 bpm, SpO₂ 98 → 88 %, temperature 36.8 → 37.8 °C; sensors online / online / online",
+      "beforeOnset": {
+        "heartRate": 67,
+        "spo2": 98,
+        "temperature": 36.8
+      },
+      "endOfRecording": {
+        "heartRate": 130,
+        "spo2": 88,
+        "temperature": 37.8
+      },
+      "sensorStatusAtEnd": {
+        "heartRate": "online",
+        "spo2": "online",
+        "temperature": "online"
+      },
+      "playbackComplete": true
+    },
+    "S2-02": {
+      "summary": "onset +20 s; first detection 1 min 10 s after onset; 3 detections; escalated to WARNING: Oxygen saturation below; Heart rate above",
+      "incidentOnset": "+20 s",
+      "eventTimeline": [
+        "+1 min 30 s detected CAUTION — Oxygen saturation below demo reference range",
+        "+1 min 50 s detected CAUTION — Heart rate above demo reference range",
+        "+2 min detected CAUTION — Body temperature above demo reference range",
+        "+2 min 20 s escalated WARNING — Oxygen saturation below demo reference range",
+        "+2 min 30 s escalated WARNING — Heart rate above demo reference range"
+      ],
+      "firstDetectionAfterOnset": "+1 min 10 s",
+      "detections": 3,
+      "escalationsToWarning": [
+        "Oxygen saturation below demo reference range",
+        "Heart rate above demo reference range"
+      ]
+    },
+    "S2-03": {
+      "summary": "WARNING · vital-deviation · reliability High (94 %) · 0 diagnostic terms",
+      "attentionLevel": "WARNING",
+      "status": "vital-deviation",
+      "reliability": "High (94 %)",
+      "findings": [
+        "WARNING Heart rate above demo reference range",
+        "WARNING Oxygen saturation below demo reference range",
+        "CAUTION Body temperature above demo reference range"
+      ],
+      "diagnosticTermsFound": []
+    },
+    "S2-04": {
+      "summary": "Request medical support now; PROC-ESC-01 + PROC-VD-01; 0 treatment terms in procedures",
+      "identifiedEvent": "Heart rate above demo reference range",
+      "medicalSupport": "urgent — Request medical support now",
+      "reasons": [
+        "Heart rate above demo reference range; Oxygen saturation below demo reference range — beyond the demo caution band with reliable sensor data.",
+        "3 vital signs are outside the demo reference ranges at the same time.",
+        "A deviation has persisted for 19 min or more."
+      ],
+      "procedures": [
+        "PROC-ESC-01 Medical support request",
+        "PROC-VD-01 Vital-sign deviation — general safety checklist"
+      ],
+      "treatmentTermsFound": []
+    },
+    "S2-05": {
+      "summary": "2 steps logged at +30 min and +30 min 20 s",
+      "actionLog": [
+        "+30 min Step completed [PROC-ESC-01] Notify the Crew Medical Officer (CMO) on board now.",
+        "+30 min 20 s Step completed [PROC-VD-01] Stop the current physical task or exercise session."
+      ]
+    },
+    "S2-06": {
+      "summary": "IR-02-001: simulated=true, WARNING, 3 findings, urgency urgent, request \"PRIORITY\", 2 actions",
+      "reportId": "IR-02-001",
+      "format": "ASTRA-IR/0.1",
+      "simulated": true,
+      "attentionLevel": "WARNING",
+      "activeFindings": 3,
+      "medicalSupport": "urgent",
+      "requestToGround": "PRIORITY: Request flight surgeon review of the attached simulated data and guidance through approved procedures.",
+      "actionsIncluded": 2,
+      "disclaimer": "SIMULATED DEMONSTRATION REPORT — generated by ASTRA Health from synthetic data. Not real astronaut data. Not a diagnosis. Not clinically validated."
+    },
+    "S2-07": {
+      "summary": "link down: queued + queued; transmitted first: urgent report; urgent report: queued +0 s → sent +1 min 30 s → received +6 min 30 s → response-pending +8 min 30 s → response-received +13 min 30 s",
+      "oneWayDelay": "5 min",
+      "statesWhileLinkDown": [
+        "queued",
+        "queued"
+      ],
+      "transmissionOrder": [
+        "MSG-002 (urgent)",
+        "MSG-001 (routine)"
+      ],
+      "urgentReportStatesObserved": {
+        "queued": "+0 s",
+        "sent": "+1 min 30 s",
+        "received": "+6 min 30 s",
+        "response-pending": "+8 min 30 s",
+        "response-received": "+13 min 30 s"
+      }
+    },
+    "S3-01": {
+      "summary": "SpO₂ sensor suspect, 24 dropouts, quality ≤ 35 %; heart rate online, temperature online",
+      "sensorStatusAtEnd": {
+        "heartRate": "online",
+        "spo2": "suspect",
+        "temperature": "online"
+      },
+      "spo2SignalQualityAfterOnset": "18–35 %",
+      "spo2DropoutsAfterOnset": 24,
+      "heartRateRangeAfterOnset": "66–75 bpm"
+    },
+    "S3-02": {
+      "summary": "first detection 0 s after onset; 4 sensor findings, 0 vital deviations; CAUTION; reliability Low (13 %)",
+      "incidentOnset": "+20 s",
+      "firstDetectionAfterOnset": "+0 s",
+      "eventTimeline": [
+        "+20 s detected ADVISORY — Oxygen saturation: abrupt jump between readings",
+        "+30 s escalated CAUTION — Oxygen saturation: abrupt jump between readings",
+        "+30 s detected ADVISORY — Oxygen saturation: degraded signal quality",
+        "+40 s escalated CAUTION — Oxygen saturation: poor signal quality",
+        "+40 s detected ADVISORY — Oxygen saturation: missing readings",
+        "+50 s detected CAUTION — Oxygen saturation: reading inconsistent — confirmation needed",
+        "+1 min 30 s escalated CAUTION — Oxygen saturation: missing readings"
+      ],
+      "findings": [
+        "CAUTION [sensor-issue] Oxygen saturation: reading inconsistent — confirmation needed",
+        "CAUTION [sensor-issue] Oxygen saturation: abrupt jump between readings",
+        "CAUTION [sensor-issue] Oxygen saturation: missing readings",
+        "CAUTION [sensor-issue] Oxygen saturation: poor signal quality"
+      ],
+      "attentionLevel": "CAUTION",
+      "status": "sensor-issue",
+      "reliability": "Low (13 %)"
+    },
+    "S3-03": {
+      "summary": "confirmation requested for spo2; Keep monitoring — medical support not yet required; PROC-SC-01",
+      "confirmationRequestedFor": [
+        "spo2"
+      ],
+      "medicalSupport": "monitor — Keep monitoring — medical support not yet required",
+      "procedures": [
+        "PROC-SC-01 Sensor reading check"
+      ]
+    },
+    "S3-04": {
+      "summary": "reading 98 % → artifact; excluded: spo2; ADVISORY; reliability High (94 %); Medical support not required by the demo rules; PROC-SR-01",
+      "confirmationReading": "98 % (quality 0.96)",
+      "outcome": "artifact",
+      "excludedVitals": [
+        "spo2"
+      ],
+      "attentionLevel": "ADVISORY",
+      "reliability": "High (94 %)",
+      "resolvedFindings": 4,
+      "medicalSupport": "none — Medical support not required by the demo rules",
+      "procedures": [
+        "PROC-SR-01"
+      ],
+      "actionLogged": "Confirmation reading Oxygen saturation: 98 % — abnormal value NOT reproduced (sensor artifact)"
+    },
+    "S3-05": {
+      "summary": "Request medical support; procedures: PROC-SC-01, PROC-ESC-01",
+      "medicalSupport": "recommended — Request medical support",
+      "reasons": [
+        "An inconsistent reading could not be verified by the crew."
+      ],
+      "procedures": [
+        "PROC-SC-01",
+        "PROC-ESC-01"
+      ]
+    },
+    "S3-06": {
+      "summary": "1 confirmation and 4 resolved findings in the report; urgency none; \"For information: sensor event handled on board. No medical support requested.\"",
+      "reportId": "IR-02-001",
+      "attentionLevel": "ADVISORY",
+      "confirmations": [
+        "Oxygen saturation: Not reproduced — attributed to sensor (98 %)"
+      ],
+      "resolvedFindings": [
+        "Oxygen saturation: reading inconsistent — confirmation needed",
+        "Oxygen saturation: abrupt jump between readings",
+        "Oxygen saturation: missing readings",
+        "Oxygen saturation: poor signal quality"
+      ],
+      "medicalSupport": "none",
+      "requestToGround": "For information: sensor event handled on board. No medical support requested."
+    }
+  }
+}
