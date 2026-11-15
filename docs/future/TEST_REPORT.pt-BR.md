@@ -1,6 +1,6 @@
 # ASTRA Health — relatório de testes dos módulos FUTURE
 
-> Gerado por `scripts/build-future-report.mjs` a partir dos arquivos de resultado brutos. Versão do código: `58ba699`. Execuções no navegador: Chromium 153.0.8010.12, 2026-11-15.
+> Gerado por `scripts/build-future-report.mjs` a partir dos arquivos de resultado brutos. Versão do código: `6b1730c`. Execuções no navegador: Chromium 153.0.8010.12, 2026-11-15.
 
 Todos os dados de tripulação destes testes são simulados ou digitados pelo próprio teste. Regras e protocolos são conteúdo demonstrativo (PROVISIONAL) — testes aprovados mostram que o software se comporta como especificado, não que alguma regra seja clinicamente válida.
 
@@ -9,7 +9,7 @@ Todos os dados de tripulação destes testes são simulados ou digitados pelo pr
 | Suíte | Comando | Aprovados |
 |---|---|---|
 | Testes FUTURE unitários, de integração e de interface | `npm run test:future` | **107/107** |
-| Verificações FUTURE ponta a ponta no navegador (incl. offline + recarga) | `npm run test:e2e:future` | **17/17** |
+| Verificações FUTURE ponta a ponta no navegador (incl. offline + recarga) | `npm run test:e2e:future` | **18/18** |
 | Regressão — 77 testes originais | `npm run test:regression` | **77/77** |
 | Regressão — 14 verificações no navegador dos três cenários | `npm run test:e2e:regression` | **14/14** |
 
@@ -181,7 +181,7 @@ Erros de página no navegador: 0 · Resultado geral: **TUDO APROVADO**
 
 ## Verificações ponta a ponta no navegador (build de produção)
 
-Executado com `next start`, Chromium 153.0.8010.12, janela 1440×900, 15 s. As descrições ficam em inglês, como no código dos testes.
+Executado com `next start`, Chromium 153.0.8010.12, janela 1440×900, 26 s. As descrições ficam em inglês, como no código dos testes.
 
 | ID | Módulo | Verificação | Esperado | Observado | Resultado |
 |---|---|---|---|---|---|
@@ -190,7 +190,7 @@ Executado com `next start`, Chromium 153.0.8010.12, janela 1440×900, 15 s. As d
 | E2E-F01-03 | F01 | A routine is marked done | Body mass (Crew Member D) changes from Overdue to Done today | Body mass measurement Every 7 days · last day 15 · next due day 22 Done today Equipment: Body mass measurement device | ✅ |
 | E2E-F02-01 | F02 | Moderate, worsening headache for Crew Member C | Inform crew medical officer; uncertainty HIGH (no symptom-specific NASA reference); rules ASTRA-SYM@0.1.0-demo | level "Inform crew medical officer" · uncertainty HIGH · reviewed: accepted | ✅ |
 | E2E-F02-02 | F02 | Dizziness with a warning sign for Crew Member B | Medical support now; URGENT report and EVA hold proposed; verified NASA excerpt quoted; report queued as urgent | level "Medical support now" · steps include URGENT report + EVA hold · evidence: verified excerpt + reference-only · queued (urgent) [📷](../test-results/future/e2e/E2E-F02-02.png) | ✅ |
-| E2E-F03-01 | F03 | Nine domains; unavailable exams show 'No data' and are never simulated | 9 domain panels; intracranial pressure, bone density, kidney imaging = No data; heart rate from simulated telemetry for Crew Member A only | 9 domains · ICP / bone density / kidney imaging: No data · HR Crew A 71 bpm (simulated) · Crew B: No data [📷](../test-results/future/e2e/E2E-F03-01.png) | ✅ |
+| E2E-F03-01 | F03 | Nine domains; unavailable exams show 'No data' and are never simulated | 9 domain panels; intracranial pressure, bone density, kidney imaging = No data; heart rate from simulated telemetry for Crew Member A only | 9 domains · ICP / bone density / kidney imaging: No data · HR Crew A 69 bpm (simulated) · Crew B: No data [📷](../test-results/future/e2e/E2E-F03-01.png) | ✅ |
 | E2E-F03-02 | F03 | Typed blood-pressure reading | 400 rejected by the typing check (not a clinical limit); 118 stored as crew-entered (not validated) | 400 → "Value must be between 60 and 250 mmHg (typing check, not a clinical limit)." · 118 → 118 mmHg, crew-entered (not validated) | ✅ |
 | E2E-F04-01 | F04 | Pre-EVA gate for Crew Members A and B | System proposes HOLD: Crew B has no check-in today and is held by the urgent assessment; GO is disabled without a reason | proposal HOLD · PRE-01 "check: No check-in today: Crew Member B." · PRE-02 held · GO disabled [📷](../test-results/future/e2e/E2E-F04-01.png) | ✅ |
 | E2E-F04-02 | F04 | Override, equipment loss and an in-EVA event | Override GO logged with reason; telemetry unavailable → alternative steps; 'feeling unwell' → urgent report queued; commander ends the EVA | GO override logged · DUR-02 + U3 use alternatives · urgent report queued · EVA ended by commander [📷](../test-results/future/e2e/E2E-F04-02.png) | ✅ |
@@ -202,6 +202,7 @@ Executado com `next start`, Chromium 153.0.8010.12, janela 1440×900, 15 s. As d
 | E2E-F05-01 | F05 | Readiness, verification and tamper test | 4 crew cards; audit trail intact; no rule set presented as validated; tamper test detects an edited copy | 4 crew cards · V-AUDIT PASS · V-NOT-VALIDATED PASS · 43 audit entries · tamper: "Edited a copy of entry #22 → verification failed at entry #22: entry content changed after…" [📷](../test-results/future/e2e/E2E-F05-01.png) | ✅ |
 | E2E-F05-02 | F05 | Export of the full trace | Downloaded JSON contains the state, the rule-set versions and a verified checksum chain | astra-health-trace-day15.json · 43 entries, chain ok · kinds: action, data, decision, evidence, sync, system · rule sets: ASTRA-JOURNAL@0.1.0-demo, ASTRA-SYM@0.1.0-demo, ASTRA-PROFILE@0.1.0-demo, ASTRA-EVA@0.1.0-demo [📷](../test-results/future/e2e/E2E-F05-02.png) | ✅ |
 | E2E-REG-01 | Regression | The tested demo is unchanged and reachable | Monitoring still shows the three vital cards and scenario buttons; 'Platform preview' is an extra menu entry | vital cards + scenario buttons present · nav: Monitoring, Analysis, Response, Earth Link, Science & Limits, Platform preview [📷](../test-results/future/e2e/E2E-REG-01.png) | ✅ |
+| E2E-RESP-01 | Platform | Responsive layout of every FUTURE page | No horizontal page scroll at phone (390 px) and tablet (820 px) widths; wide tables scroll inside their own panel | 6 pages × 2 widths: no horizontal page scroll | ✅ |
 
 Com o navegador offline (E2E-OFF-01), a página tentou **0** requisição(ões) de rede: todas as ações FUTURE rodaram com dados locais.
 

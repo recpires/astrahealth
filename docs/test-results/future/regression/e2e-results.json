@@ -1,6 +1,6 @@
 {
   "generatedBy": "scripts/e2e-scenarios.cjs",
-  "date": "2026-11-15T04:30:26.225Z",
+  "date": "2026-11-15T04:42:16.133Z",
   "browser": "Chromium 153.0.8010.12",
   "viewport": "1440×810",
   "target": "next start (production build)",
@@ -19,7 +19,7 @@
       "expected": "NOMINAL; 3 × 'Within demo range'; 3 × 'Sensor Online'; 'Simulated data' label",
       "observed": "level NOMINAL; 3/3 within demo range; 3/3 sensors online; simulated label shown",
       "status": "passed",
-      "durationMs": 482,
+      "durationMs": 459,
       "screenshot": "e2e/E2E-S1-01.png"
     },
     {
@@ -31,7 +31,7 @@
       "expected": "NOMINAL; 'Findings (0)'; reliability High",
       "observed": "level NOMINAL; 0 findings; reliability High",
       "status": "passed",
-      "durationMs": 11,
+      "durationMs": 9,
       "screenshot": null
     },
     {
@@ -43,7 +43,7 @@
       "expected": "'Medical support not required by the demo rules'; PROC-NM-01",
       "observed": "\"Medical support not required by the demo rules\"; procedure PROC-NM-01 shown",
       "status": "passed",
-      "durationMs": 406,
+      "durationMs": 412,
       "screenshot": "e2e/E2E-S1-03.png"
     },
     {
@@ -55,7 +55,7 @@
       "expected": "priority routine; queued → sent → received → response pending → response received",
       "observed": "MSG-001 (routine): queued → sent → received → response-pending → response-received",
       "status": "passed",
-      "durationMs": 9085,
+      "durationMs": 9044,
       "screenshot": "e2e/E2E-S1-04.png"
     },
     {
@@ -66,9 +66,9 @@
       ],
       "description": "'Simulate incident' leads to WARNING with HR above and SpO₂ below the demo range",
       "expected": "WARNING within 60 s of real time at 10×; HR 'Above demo range'; SpO₂ 'Below demo range'; sensors online",
-      "observed": "WARNING after 14.0 s real time (10×); HR 127 bpm (above demo range 50–100); SpO₂ 88 % (below demo range 95–100); 3/3 sensors online",
+      "observed": "WARNING after 14.1 s real time (10×); HR 127 bpm (above demo range 50–100); SpO₂ 88 % (below demo range 95–100); 3/3 sensors online",
       "status": "passed",
-      "durationMs": 14445,
+      "durationMs": 14525,
       "screenshot": "e2e/E2E-S2-01.png"
     },
     {
@@ -81,7 +81,7 @@
       "expected": "3 VITAL_OUT_OF_RANGE findings; 'not a diagnosis'; reliability High; 'escalated' events",
       "observed": "level WARNING; 3 vital-sign findings; reliability High; 2 escalation events; 'not a diagnosis' shown 4×",
       "status": "passed",
-      "durationMs": 795,
+      "durationMs": 440,
       "screenshot": "e2e/E2E-S2-02.png"
     },
     {
@@ -94,7 +94,7 @@
       "expected": "'Request medical support now'; PROC-ESC-01 + PROC-VD-01; step logged in the action log",
       "observed": "\"Request medical support now\"; PROC-ESC-01 + PROC-VD-01 shown; log: \"Step completed [PROC-ESC-01] Notify the Crew Medical Officer (CMO) on board now\"",
       "status": "passed",
-      "durationMs": 494,
+      "durationMs": 530,
       "screenshot": "e2e/E2E-S2-03.png"
     },
     {
@@ -107,7 +107,7 @@
       "expected": "report shows WARNING + disclaimer; priority urgent; every message state reached",
       "observed": "MSG-002 (urgent); report: WARNING + simulation disclaimer; queued → sent → received → response-pending → response-received",
       "status": "passed",
-      "durationMs": 9203,
+      "durationMs": 9285,
       "screenshot": "e2e/E2E-S2-04.png"
     },
     {
@@ -118,9 +118,9 @@
       ],
       "description": "'Simulate sensor fault' gives CAUTION with SpO₂ unverified and other sensors online",
       "expected": "CAUTION; SpO₂ card 'unverified' and sensor not online; HR and temperature sensors online",
-      "observed": "CAUTION after 3.3 s real time (10×); SpO₂ value shown as unverified; SpO₂ sensor \"Suspect\"; HR and temperature sensors online",
+      "observed": "CAUTION after 2.9 s real time (10×); SpO₂ value shown as unverified; SpO₂ sensor \"Suspect\"; HR and temperature sensors online",
       "status": "passed",
-      "durationMs": 3704,
+      "durationMs": 3373,
       "screenshot": "e2e/E2E-S3-01.png"
     },
     {
@@ -132,7 +132,7 @@
       "expected": "READING_INCONSISTENT with 'Confirmation needed'; 0 vital-deviation findings; reliability Low",
       "observed": "level CAUTION; inconsistent-reading finding with confirmation request; 0 vital-sign findings; reliability Low",
       "status": "passed",
-      "durationMs": 1704,
+      "durationMs": 1713,
       "screenshot": "e2e/E2E-S3-02.png"
     },
     {
@@ -144,7 +144,7 @@
       "expected": "confirmation box for SpO₂; 'not yet required'; PROC-SC-01",
       "observed": "\"Keep monitoring — medical support not yet required\"; SpO₂ confirmation requested; PROC-SC-01 shown",
       "status": "passed",
-      "durationMs": 424,
+      "durationMs": 436,
       "screenshot": "e2e/E2E-S3-03.png"
     },
     {
@@ -156,7 +156,7 @@
       "expected": "'sensor artifact'; 'not required'; Monitoring level ADVISORY; SpO₂ card 'Excluded'",
       "observed": "confirmation reading 98 % — \"Not reproduced — sensor artifact\"; \"Medical support not required by the demo rules\"; level ADVISORY; SpO₂ card \"Excluded — sensor artifact\"",
       "status": "passed",
-      "durationMs": 939,
+      "durationMs": 967,
       "screenshot": "e2e/E2E-S3-04.png"
     },
     {
@@ -168,7 +168,7 @@
       "expected": "report text: 'RESOLVED BY CREW CONFIRMATION', 'CONFIRMATIONS', 'For information'; priority routine",
       "observed": "report includes resolved findings, the confirmation and \"For information\"; priority routine",
       "status": "passed",
-      "durationMs": 447,
+      "durationMs": 444,
       "screenshot": "e2e/E2E-S3-06.png"
     },
     {
@@ -180,7 +180,7 @@
       "expected": "'Request medical support'; PROC-ESC-01 added",
       "observed": "\"Request medical support\"; PROC-ESC-01 added",
       "status": "passed",
-      "durationMs": 6887,
+      "durationMs": 6909,
       "screenshot": "e2e/E2E-S3-05.png"
     }
   ]
