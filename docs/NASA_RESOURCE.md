@@ -4,9 +4,11 @@ ASTRA Health integrates real NASA science in **two clearly separated ways**, and
 
 | Resource | Status | Where | Role in the app |
 |---|---|---|---|
-| NASA Human Research Program (HRP) evidence library | **Integrated** (verified 2026-11-15) | `src/config/evidence-library.ts` | Scientific context in *Science & Limits*; no threshold derived |
+| NASA Human Research Program (HRP) evidence library | **Integrated** (verified 2026-11-15) | `src/data/science/nasa-hrp-evidence.json` (typed in `src/config/evidence-library.ts`) | Scientific context in *Science & Limits*; no threshold derived |
 | NASA OSDR dataset OSD-575 | **Integrated** (imported 2026-11-15) | `src/data/osdr/OSD-575.json` | Real data shown in *Science & Limits*; never mixed with simulated vital signs |
 | NASA source for the analysis thresholds | **Pending team confirmation** | `src/config/scientific-sources.ts` | Empty — all thresholds remain provisional demonstration values |
+
+Verification of all sources, the imported file and the statistics: [SCIENCE_VERIFICATION.md](SCIENCE_VERIFICATION.md).
 
 ## 1. HRP evidence library
 
@@ -33,7 +35,7 @@ To add or update an entry:
 1. Open the official document (HRR evidence page or NTRS) and copy title, date and authors exactly.
 2. Copy the risk statement from the HRR risk page and any quote **verbatim** (mark omissions with "…" and original typos with "[sic]").
 3. Write how ASTRA Health uses it and its limitations; keep `derivesThresholds: false`.
-4. Update `verifiedOn`, then run `npm run science:check-links` and `npm test`.
+4. The entries live in `src/data/science/nasa-hrp-evidence.json`. Update `verifiedOn`, then run `npm run science:check-links`, `python3 scripts/verify-science-sources.py` and `npm test`.
 
 ## 2. NASA OSDR dataset
 

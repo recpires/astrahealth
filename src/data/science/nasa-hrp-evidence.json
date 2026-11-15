@@ -1,0 +1,191 @@
+{
+  "description": "NASA Human Research Program evidence library used by ASTRA Health as scientific context only. Titles, dates, authors, risk statements and quotes are copied verbatim from the official sources; see docs/SCIENCE_VERIFICATION.md.",
+  "verifiedOn": "2026-11-15",
+  "entries": [
+    {
+      "id": "hrp-cardiovascular-2022",
+      "topic": "cardiovascular",
+      "title": "Evidence Report: Risk of Cardiovascular Adaptations Contributing to Adverse Mission Performance and Health Outcomes",
+      "documentType": "HRP Evidence Report",
+      "source": "NASA Human Research Program — Human Health and Countermeasures Element · Lyndon B. Johnson Space Center",
+      "authors": "Lee SMC, Saha J, Charvat J, Suresh R, Lytle JR, Blattnig S, Laurie SS, Macias BR",
+      "date": "Approved for public release: December 15, 2022",
+      "links": [
+        {
+          "label": "Evidence report (PDF, HRR)",
+          "url": "https://humanresearchroadmap.nasa.gov/evidence/reports/Cardio%20Risk%20EB%202022%20FINAL_4-3-2023.pdf",
+          "kind": "pdf"
+        },
+        {
+          "label": "HRR risk page",
+          "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=179",
+          "kind": "risk-page"
+        },
+        {
+          "label": "NASA risk overview",
+          "url": "https://www.nasa.gov/directorates/esdmd/hhp/cv-risk/",
+          "kind": "overview"
+        }
+      ],
+      "related": [
+        {
+          "label": "Risk of Cardiac Rhythm Problems During Spaceflight (2017, NTRS 20170005625)",
+          "url": "https://ntrs.nasa.gov/citations/20170005625",
+          "kind": "record"
+        },
+        {
+          "label": "Risk of Orthostatic Intolerance During Re-Exposure to Gravity (2015, NTRS 20150007319)",
+          "url": "https://ntrs.nasa.gov/citations/20150007319",
+          "kind": "record"
+        }
+      ],
+      "riskStatement": {
+        "text": "Given exposure to the spaceflight environment can contribute to cardiovascular deconditioning, dysfunction, and remodeling, there is a possibility that crews will experience impaired performance and adverse cardiovascular health outcomes that necessitate intervention during and after spaceflight and planetary operations.",
+        "where": "HRR risk page — Risk Statement"
+      },
+      "keyQuotes": [
+        {
+          "text": "Development of dysrhythmias and venous thromboembolism (VTE), which has been reported recently, are the primary concerns during a spaceflight mission.",
+          "where": "Evidence report — Executive Summary"
+        },
+        {
+          "text": "…while there have been anecdotal reports and some documented cases of cardiac dysrhythmias during and after spaceflight, it is inconclusive whether spaceflight exposure causes or increases the frequency of these.",
+          "where": "Evidence report — Executive Summary"
+        },
+        {
+          "text": "Orthostatic intolerance after short- and long-duration spaceflight in low Earth orbit (LEO) is well-documented and is considered the primary risk during re-exposure to acceleration, including re-entry and landing on Earth.",
+          "where": "Evidence report — Executive Summary"
+        },
+        {
+          "text": "Cardiovascular disease (CVD) is considered the primary long-term health risk and concern for flight certification, especially for long-duration missions beyond LEO when exposure to space radiation will be greatest.",
+          "where": "Evidence report — Executive Summary"
+        }
+      ],
+      "useInAstra": "Scientific context for why ASTRA Health monitors heart rate and treats a sustained change as an event that needs attention. No heart-rate limit, alarm level or rule in the application is taken from this report.",
+      "derivesThresholds": false,
+      "limitations": [
+        "The report itself states that it is inconclusive whether spaceflight causes or increases cardiac dysrhythmias.",
+        "It is a review of research evidence approved for public release in December 2022 — not an operational procedure, a medical standard or an alarm specification.",
+        "ASTRA Health only simulates heart rate: dysrhythmias, venous thromboembolism and orthostatic intolerance cannot be detected from its signals."
+      ],
+      "verifiedOn": "2026-11-15"
+    },
+    {
+      "id": "hrp-dcs-hypoxia-2023",
+      "topic": "hypoxia",
+      "title": "Evidence Report: Risk of Reduced Crew Health and Performance Due to Decompression Sickness and Hypoxia",
+      "documentType": "HRP Evidence Report",
+      "source": "NASA Human Research Program · Lyndon B. Johnson Space Center",
+      "authors": "Garbino A, Norcross JR",
+      "date": "Approved for public release: October 31, 2023",
+      "links": [
+        {
+          "label": "Evidence report (PDF, HRR)",
+          "url": "https://humanresearchroadmap.nasa.gov/evidence/reports/Evidence%20Report%20Hypoxia%20and%20DCS_FINAL_1-8-2024.pdf",
+          "kind": "pdf"
+        },
+        {
+          "label": "HRR risk page (Hypoxia)",
+          "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=173",
+          "kind": "risk-page"
+        },
+        {
+          "label": "NASA risk overview",
+          "url": "https://www.nasa.gov/directorates/esdmd/hhp/risk-of-reduced-crew-health-and-performance-due-to-hypoxia/",
+          "kind": "overview"
+        }
+      ],
+      "related": [
+        {
+          "label": "NTRS record of this report (draft, September 2023, NTRS 20230013523)",
+          "url": "https://ntrs.nasa.gov/citations/20230013523",
+          "kind": "record"
+        },
+        {
+          "label": "Previous report: Risk of Hypobaric Hypoxia from the Exploration Atmosphere (2015, NTRS 20150021491)",
+          "url": "https://ntrs.nasa.gov/citations/20150021491",
+          "kind": "record"
+        }
+      ],
+      "riskStatement": {
+        "text": "Given that future human exploration missions require robust, flexible Extravehicular Activity (EVA) architecture protocols that include the use of a reduced pressure cabin atmosphere enabling staged denitrogenation, there is a possibility that this atmosphere could result in compromised health and performance to the crewmember due to exposure to mild hypobaric hypoxia.",
+        "where": "HRR risk page — Risk Statement"
+      },
+      "keyQuotes": [
+        {
+          "text": "In addition to hypobaric hypoxia associated with staged denitrogenation, there are additional factors that can result in hypoxic exposure to the crewmember such as cabin depressurization, Environmental Control and Life Support System (ECLSS) failure, toxic exposure or crewmember illness/injury.",
+          "where": "HRR risk page — Notes"
+        },
+        {
+          "text": "Although severe hypoxia is a risk during spaceflight due to a failure in pressure control or oxygen regulation, the focus of this risk and this evidence report will be on the risk of mild hypoxia associated with staged dinitrogenation [sic] … Standards, requirements, and hazard controls for severe hypoxia are covered elsewhere in the program.",
+          "where": "Evidence report — Hypoxia section"
+        },
+        {
+          "text": "The exploration atmosphere (8.2 psia/34% O2) was selected by the Exploration Atmospheres Working Group (EAWG) because it was considered to be a mildly hypoxic atmosphere with acceptable flammability risk and low O2 prebreathe (PB) overhead…",
+          "where": "HRR risk page — HSRB State of Knowledge"
+        }
+      ],
+      "useInAstra": "Scientific context for why ASTRA Health monitors oxygen saturation (SpO₂) and why a falling SpO₂ deserves attention. The application's SpO₂ demo ranges are not taken from this report.",
+      "derivesThresholds": false,
+      "limitations": [
+        "The report focuses on mild hypobaric hypoxia from the reduced-pressure exploration atmosphere and on decompression sickness; it states that standards for severe hypoxia are covered elsewhere in the program.",
+        "ASTRA Health does not use it as a source of pulse-oximetry limits; the application's SpO₂ ranges remain provisional demonstration values.",
+        "A single simulated finger SpO₂ stream cannot distinguish between the causes listed by NASA (atmosphere, depressurization, life-support failure, illness or injury)."
+      ],
+      "verifiedOn": "2026-11-15"
+    },
+    {
+      "id": "hrp-medical-conditions-2017",
+      "topic": "medical-capability",
+      "title": "Evidence Report: Risk of Adverse Health Outcomes and Decrements in Performance due to In-Flight Medical Conditions",
+      "documentType": "HRP Evidence Report",
+      "source": "NASA Human Research Program — Exploration Medical Capabilities (ExMC) Element · Lyndon B. Johnson Space Center",
+      "authors": "Antonsen E, et al.",
+      "date": "Approved for public release: May 8, 2017",
+      "links": [
+        {
+          "label": "Evidence report (PDF, HRR)",
+          "url": "https://humanresearchroadmap.nasa.gov/evidence/reports/Medical.pdf",
+          "kind": "pdf"
+        },
+        {
+          "label": "HRR risk page (Medical Conditions)",
+          "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=95",
+          "kind": "risk-page"
+        },
+        {
+          "label": "NTRS record 20170004604",
+          "url": "https://ntrs.nasa.gov/citations/20170004604",
+          "kind": "record"
+        }
+      ],
+      "related": [],
+      "riskStatement": {
+        "text": "Given that medical conditions will occur during human spaceflight missions, there is a possibility of adverse health outcomes & decrements in performance during these missions and for long term health.",
+        "where": "HRR risk page — Risk Statement"
+      },
+      "keyQuotes": [
+        {
+          "text": "…communication with the ground will be limited in the best of circumstances by latency secondary to distance, with delays of up to 50 minutes for round trip communications near Mars (Hamilton et al. 2008; Baisden et al. 2008).",
+          "where": "Evidence report — Communication, Telemetry, and Data Constraints"
+        },
+        {
+          "text": "…available bandwidth for deep-space communications is likely to be severely limited, restricting available time for crew-to-ground consultation possibly to as little as one hour in a 24 hour period.",
+          "where": "Evidence report — Communication, Telemetry, and Data Constraints"
+        },
+        {
+          "text": "These limitations lead to a need for a highly robust, autonomous, and self-supported medical system…",
+          "where": "Evidence report — Communication, Telemetry, and Data Constraints"
+        }
+      ],
+      "useInAstra": "Motivation for ASTRA Health's on-board autonomy (understand and act locally) and for the delayed Earth-link simulator. The simulator's 3–22 min one-way delay comes from the team brief and is not derived from this report.",
+      "derivesThresholds": false,
+      "limitations": [
+        "Approved for public release in May 2017; the HRR risk page (last published May 2025) may reflect a newer state of knowledge.",
+        "It describes needs and evidence for exploration medical capability; it does not approve ASTRA Health's checklists, which remain demonstration content.",
+        "The communication figures are cited by the report from earlier studies (Hamilton et al. 2008; Baisden et al. 2008)."
+      ],
+      "verifiedOn": "2026-11-15"
+    }
+  ]
+}

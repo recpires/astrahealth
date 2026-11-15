@@ -12,7 +12,7 @@
   <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white" />
   <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white" />
   <img alt="Recharts 3" src="https://img.shields.io/badge/Recharts-3-22D3EE" />
-  <img alt="Vitest: 71 testes" src="https://img.shields.io/badge/Vitest-71_testes_passando-6E9F18?logo=vitest&logoColor=white" />
+  <img alt="Vitest: 72 testes" src="https://img.shields.io/badge/Vitest-72_testes_passando-6E9F18?logo=vitest&logoColor=white" />
   <img alt="Pronto para Vercel" src="https://img.shields.io/badge/Vercel-pronto-000000?logo=vercel&logoColor=white" />
   <br/>
   <img alt="NASA Space Apps Challenge 2026" src="https://img.shields.io/badge/NASA_Space_Apps-2026-0B3D91" />
@@ -80,7 +80,7 @@ de quatro etapas:
 - 📡 Simulador do link Terra–Marte com atraso de 3 a 22 min por sentido, fila de transmissão, simulação de queda do link e estados de mensagem.
 - 🧾 Relatório de incidente estruturado (texto + JSON) gerado a partir do estado atual.
 - 📚 **Science & Limits**: evidências verificadas do NASA Human Research Program (riscos cardiovasculares, hipóxia e capacidade médica) e um conjunto de dados real do NASA OSDR, sempre separados dos dados simulados e das regras demonstrativas.
-- 🧪 71 testes automatizados, incluindo o fluxo completo dos três cenários.
+- 🧪 72 testes automatizados, incluindo o fluxo completo dos três cenários.
 
 ---
 
@@ -455,10 +455,11 @@ astrahealth/
 │   ├── config/
 │   │   ├── reference-ranges.ts   # Limites PROVISÓRIOS
 │   │   ├── scientific-sources.ts # Registro NASA para fonte de limites (pendente)
-│   │   ├── evidence-library.ts   # Biblioteca de evidências do HRP (links e citações verificados)
+│   │   ├── evidence-library.ts   # Acesso tipado à biblioteca de evidências do HRP
 │   │   └── data-provenance.ts    # Classificação simulado / real / regra demonstrativa
 │   ├── data/
 │   │   ├── scenarios/*.json      # Gravações SIMULADAS (180 amostras × 10 s)
+│   │   ├── science/nasa-hrp-evidence.json # Evidências do HRP (links verificados + citações literais)
 │   │   ├── osdr/OSD-575.json     # Arquivo REAL do NASA OSDR, salvo na íntegra + SHA-256
 │   │   └── procedures.json       # Checklists demonstrativos
 │   └── assets/astra-emblem.png
@@ -528,6 +529,7 @@ npm run dev
 | `npm run banners` | Banners do README (EN / PT) → `docs/assets/` ² |
 | `npm run osdr:import -- OSD-575` | Importa um arquivo público do NASA OSDR para `src/data/osdr/` (`--list`, `--file <nome>`) ³ |
 | `npm run science:check-links` | Confere todos os links da biblioteca de evidências e do OSDR nos servidores oficiais ³ |
+| `python3 scripts/verify-science-sources.py` | Verificação independente de citações, integridade do arquivo, unidades e estatísticas (requer `pip install pypdf`) ³ |
 
 ¹ Requer o servidor em execução (`BASE_URL`, padrão `http://localhost:3000`) e o Playwright com Chromium.
 ² Requer o Playwright com Chromium.
@@ -541,7 +543,7 @@ npm run dev
 npm test
 ```
 
-**71 testes em 8 arquivos**, todos determinísticos e sem acesso à rede:
+**72 testes em 8 arquivos**, todos determinísticos e sem acesso à rede:
 
 | Arquivo | O que cobre |
 |---|---|
@@ -550,7 +552,7 @@ npm test
 | `tests/comms.test.ts` | Limites do atraso, ida e volta, distância percorrida pela luz, fila por ordem de chegada e por prioridade, queda do link, fixação do atraso e linha do tempo dos estados. |
 | `tests/science.test.ts` | Salvaguardas: nenhuma fonte NASA de limites declarada enquanto pendente; rótulos de provisório; procedimentos sem termos de medicamento ou intervenção clínica; declaração de uso de IA exibida na página de ciência. |
 | `tests/evidence.test.ts` | Biblioteca de evidências: os três temas cobertos; título, fonte, data, link do PDF e limitações presentes; apenas domínios oficiais da NASA com HTTPS; nenhum limite derivado e nenhuma alegação de aprovação da NASA; classificação de procedência. |
-| `tests/osdr.test.ts` | Leitor do OSDR (casos de CSV, momentos, resumos, erros); a cópia do OSD-575 confere com o SHA-256; dados reais nunca importados pelos módulos da simulação. |
+| `tests/osdr.test.ts` | Leitor do OSDR (casos de CSV, momentos, resumos, erros); a cópia do OSD-575 confere com o SHA-256; estatísticas iguais às de um cálculo independente em Python a partir do arquivo enviado ao OSDR; dados reais nunca importados pelos módulos da simulação. |
 | `tests/ui/science.test.tsx` | Página Science & Limits: três categorias, cartões de evidência e filtro por tema, identificação da fonte do OSDR, importação de arquivo (válido, inválido, sem accession). |
 | `tests/ui/modules.test.tsx` | Os quatro módulos renderizados com Testing Library: botões de incidente, achados, confirmação, registro de checklist, atalhos de atraso, geração e envio do relatório, valores não verificados de sensor suspeito. |
 
@@ -592,7 +594,7 @@ O ASTRA Health mantém três tipos de conteúdo rigorosamente separados e os ide
 | Categoria | O quê | Onde no código | Usado em |
 |---|---|---|---|
 | 🟦 **Dados simulados** | Sinais vitais, qualidade de sinal, perdas de leitura, leitura de confirmação, confirmação da Terra | `src/data/scenarios/*.json` (gerador com semente) | Monitoramento, Análise, Resposta, Link com a Terra |
-| 🟩 **Dados e evidências científicas reais** | Relatórios de evidência do NASA HRP; conjunto de dados OSD-575 do NASA OSDR | `src/config/evidence-library.ts`, `src/data/osdr/` | Somente Science & Limits — contexto e exibição |
+| 🟩 **Dados e evidências científicas reais** | Relatórios de evidência do NASA HRP; conjunto de dados OSD-575 do NASA OSDR | `src/data/science/nasa-hrp-evidence.json`, `src/data/osdr/` | Somente Science & Limits — contexto e exibição |
 | 🟨 **Regras demonstrativas** | Faixas de referência, regras de análise, escalonamento, checklists, tempos do link | `src/config/reference-ranges.ts`, `src/lib/`, `src/data/procedures.json` | Análise, Resposta, Link com a Terra |
 
 #### Biblioteca de evidências do NASA Human Research Program
@@ -615,6 +617,21 @@ O ASTRA Health mantém três tipos de conteúdo rigorosamente separados e os ide
 - **Importação no app:** *Science & Limits → Import another OSDR file* lê uma tabela multiplex do OSDR escolhida pelo usuário, exige o accession do OSDR e a mantém **apenas no navegador** (não é salva).
 - **Separação:** os dados do OSDR ficam em `src/data/osdr/`, separados de `src/data/scenarios/`; os módulos de simulação, análise e relatório nunca os importam (testado). A página mostra **apenas estatísticas resumidas** (n, média, mínimo e máximo por momento) — sem valores por pessoa, sem faixas de referência e sem interpretação clínica.
 - **Por que não há download direto no navegador:** a API do OSDR só aceita requisições de navegador vindas de `osdr.nasa.gov` (CORS); por isso a importação é feita por linha de comando ou a partir de um arquivo local.
+
+#### Verificação
+
+Verificado em 15/11/2026 com arquivos oficiais baixados novamente — relatório completo em
+[docs/SCIENCE_VERIFICATION.md](docs/SCIENCE_VERIFICATION.md) (em inglês):
+
+- **Links:** 17/17 respondem nos servidores oficiais (`npm run science:check-links`).
+- **Textos:** títulos, datas e autores (9/9), declarações de risco (3/3) e citações (10/10) encontrados literalmente nos PDFs e nas páginas oficiais do HRR.
+- **Arquivo do OSD-575:** a cópia salva é idêntica, byte a byte, a um novo download (SHA-256); os 252 valores e as 9 unidades conferem com o arquivo *enviado* pelos pesquisadores, indicado nos metadados ISA do estudo.
+- **Estatísticas:** n, média, mínimo e máximo dos 63 grupos (biomarcador × momento) recalculados de forma independente em Python a partir do arquivo enviado — idênticos aos do app (maior diferença relativa de 2,1 × 10⁻¹⁶); a comparação também roda sem internet no `npm test`.
+- **Controle negativo:** cópias alteradas de propósito (uma citação invertida, um dígito trocado, um erro de 0,1 % numa estatística) foram todas detectadas.
+- Para refazer tudo: `python3 scripts/verify-science-sources.py` (Python 3 + `pip install pypdf`).
+
+Esta verificação cobre a **exatidão das fontes, do arquivo e dos cálculos**. Ela **não** valida os limites do motor de
+análise, que continuam provisórios (próxima seção).
 
 #### Fonte para os limites de análise — *aguardando confirmação da equipe*
 

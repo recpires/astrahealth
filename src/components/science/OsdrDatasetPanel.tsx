@@ -205,6 +205,10 @@ export function OsdrDatasetPanel() {
           <li>Only summary statistics per timepoint are shown; per-person values are not displayed.</li>
           <li>Not used by the analysis engine, the alerts or the reports, and not comparable with the simulated heart rate, SpO₂ or temperature.</li>
           <li>No reference range or clinical interpretation is applied to these values.</li>
+          <li>
+            Verified on 2026-11-15: identical to a fresh OSDR download (SHA-256); all 252 values and 9 units cross-checked with the
+            submitted results file; statistics confirmed by an independent implementation (docs/SCIENCE_VERIFICATION.md).
+          </li>
         </ul>
       </div>
 

@@ -60,7 +60,7 @@ const ANALYTE_LABELS: Record<string, string> = {
   a2_macroglobulin: "α2-Macroglobulin",
   agp: "AGP (α1-acid glycoprotein)",
   crp: "CRP (C-reactive protein)",
-  fetuin_a36: "Fetuin-A",
+  fetuin_a36: "Fetuin-A36",
   fibrinogen: "Fibrinogen",
   haptoglobin: "Haptoglobin",
   l_selectin: "L-Selectin",

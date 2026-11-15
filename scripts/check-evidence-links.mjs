@@ -12,8 +12,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const library = readFileSync(join(ROOT, "src", "config", "evidence-library.ts"), "utf8");
-const urls = new Set([...library.matchAll(/url:\s*"(https:\/\/[^"]+)"/g)].map((m) => m[1]));
+const library = JSON.parse(readFileSync(join(ROOT, "src", "data", "science", "nasa-hrp-evidence.json"), "utf8"));
+const urls = new Set(library.entries.flatMap((e) => [...e.links, ...e.related].map((l) => l.url)));
 
 const osdrDir = join(ROOT, "src", "data", "osdr");
 if (existsSync(osdrDir)) {

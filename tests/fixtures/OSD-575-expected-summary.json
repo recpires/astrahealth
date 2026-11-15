@@ -1,0 +1,511 @@
+{
+ "accession": "OSD-575",
+ "source": "LSDS-8_Multiplex_serum.cardiovascular.EvePanel_SUBMITTED.csv (OSDR submitted results file)",
+ "method": "Python 3 csv + statistics.fmean, independent from the TypeScript parser",
+ "groups": [
+  {
+   "analyte": "a2_macroglobulin",
+   "timepoint": "L-3",
+   "n": 4,
+   "mean": 1905925.0,
+   "min": 1002300.0,
+   "max": 2948400.0
+  },
+  {
+   "analyte": "a2_macroglobulin",
+   "timepoint": "L-44",
+   "n": 4,
+   "mean": 639409.6799999999,
+   "min": 531433.88,
+   "max": 734243.34
+  },
+  {
+   "analyte": "a2_macroglobulin",
+   "timepoint": "L-92",
+   "n": 4,
+   "mean": 1831335.6724999999,
+   "min": 903742.69,
+   "max": 3030400.0
+  },
+  {
+   "analyte": "a2_macroglobulin",
+   "timepoint": "R+1",
+   "n": 4,
+   "mean": 1666364.2875,
+   "min": 913857.15,
+   "max": 3051700.0
+  },
+  {
+   "analyte": "a2_macroglobulin",
+   "timepoint": "R+194",
+   "n": 4,
+   "mean": 1897075.0,
+   "min": 1568600.0,
+   "max": 2342900.0
+  },
+  {
+   "analyte": "a2_macroglobulin",
+   "timepoint": "R+45",
+   "n": 4,
+   "mean": 1843150.0,
+   "min": 1130800.0,
+   "max": 2895000.0
+  },
+  {
+   "analyte": "a2_macroglobulin",
+   "timepoint": "R+82",
+   "n": 4,
+   "mean": 2077625.0,
+   "min": 1403700.0,
+   "max": 2993600.0
+  },
+  {
+   "analyte": "agp",
+   "timepoint": "L-3",
+   "n": 4,
+   "mean": 2522825.0,
+   "min": 1214100.0,
+   "max": 3653700.0
+  },
+  {
+   "analyte": "agp",
+   "timepoint": "L-44",
+   "n": 4,
+   "mean": 1735550.0,
+   "min": 1068100.0,
+   "max": 2165100.0
+  },
+  {
+   "analyte": "agp",
+   "timepoint": "L-92",
+   "n": 4,
+   "mean": 2187600.0,
+   "min": 1048700.0,
+   "max": 2932000.0
+  },
+  {
+   "analyte": "agp",
+   "timepoint": "R+1",
+   "n": 4,
+   "mean": 1718713.585,
+   "min": 942754.34,
+   "max": 3338700.0
+  },
+  {
+   "analyte": "agp",
+   "timepoint": "R+194",
+   "n": 4,
+   "mean": 3073325.0,
+   "min": 2220700.0,
+   "max": 4564200.0
+  },
+  {
+   "analyte": "agp",
+   "timepoint": "R+45",
+   "n": 4,
+   "mean": 2573875.0,
+   "min": 1285200.0,
+   "max": 3484600.0
+  },
+  {
+   "analyte": "agp",
+   "timepoint": "R+82",
+   "n": 4,
+   "mean": 2831325.0,
+   "min": 2455500.0,
+   "max": 3249500.0
+  },
+  {
+   "analyte": "crp",
+   "timepoint": "L-3",
+   "n": 4,
+   "mean": 18419675.0,
+   "min": 5131700.0,
+   "max": 42838000.0
+  },
+  {
+   "analyte": "crp",
+   "timepoint": "L-44",
+   "n": 4,
+   "mean": 3608050.0,
+   "min": 1289600.0,
+   "max": 9383100.0
+  },
+  {
+   "analyte": "crp",
+   "timepoint": "L-92",
+   "n": 4,
+   "mean": 31109775.0,
+   "min": 8927100.0,
+   "max": 75749000.0
+  },
+  {
+   "analyte": "crp",
+   "timepoint": "R+1",
+   "n": 4,
+   "mean": 30316775.0,
+   "min": 9311500.0,
+   "max": 83617000.0
+  },
+  {
+   "analyte": "crp",
+   "timepoint": "R+194",
+   "n": 4,
+   "mean": 23065600.0,
+   "min": 9379400.0,
+   "max": 46006000.0
+  },
+  {
+   "analyte": "crp",
+   "timepoint": "R+45",
+   "n": 4,
+   "mean": 17997025.0,
+   "min": 3677200.0,
+   "max": 39190000.0
+  },
+  {
+   "analyte": "crp",
+   "timepoint": "R+82",
+   "n": 4,
+   "mean": 13561500.0,
+   "min": 7902300.0,
+   "max": 25030000.0
+  },
+  {
+   "analyte": "fetuin_a36",
+   "timepoint": "L-3",
+   "n": 4,
+   "mean": 288265.06,
+   "min": 155302.07,
+   "max": 373933.42
+  },
+  {
+   "analyte": "fetuin_a36",
+   "timepoint": "L-44",
+   "n": 4,
+   "mean": 188552.4325,
+   "min": 180155.97,
+   "max": 194978.74
+  },
+  {
+   "analyte": "fetuin_a36",
+   "timepoint": "L-92",
+   "n": 4,
+   "mean": 258030.34,
+   "min": 144424.41,
+   "max": 357755.04
+  },
+  {
+   "analyte": "fetuin_a36",
+   "timepoint": "R+1",
+   "n": 4,
+   "mean": 226068.145,
+   "min": 125785.45,
+   "max": 334021.3
+  },
+  {
+   "analyte": "fetuin_a36",
+   "timepoint": "R+194",
+   "n": 4,
+   "mean": 274029.8675,
+   "min": 241485.24,
+   "max": 295881.1
+  },
+  {
+   "analyte": "fetuin_a36",
+   "timepoint": "R+45",
+   "n": 4,
+   "mean": 247190.86000000002,
+   "min": 159096.21,
+   "max": 287113.08
+  },
+  {
+   "analyte": "fetuin_a36",
+   "timepoint": "R+82",
+   "n": 4,
+   "mean": 279038.1425,
+   "min": 245913.55,
+   "max": 316530.95
+  },
+  {
+   "analyte": "fibrinogen",
+   "timepoint": "L-3",
+   "n": 4,
+   "mean": 4837.9275,
+   "min": 2780.38,
+   "max": 6533.18
+  },
+  {
+   "analyte": "fibrinogen",
+   "timepoint": "L-44",
+   "n": 4,
+   "mean": 4265.2425,
+   "min": 3602.38,
+   "max": 5707.32
+  },
+  {
+   "analyte": "fibrinogen",
+   "timepoint": "L-92",
+   "n": 4,
+   "mean": 3561.5275,
+   "min": 3208.77,
+   "max": 4153.93
+  },
+  {
+   "analyte": "fibrinogen",
+   "timepoint": "R+1",
+   "n": 4,
+   "mean": 3330.91,
+   "min": 1999.88,
+   "max": 4531.17
+  },
+  {
+   "analyte": "fibrinogen",
+   "timepoint": "R+194",
+   "n": 4,
+   "mean": 4041.29,
+   "min": 2852.5,
+   "max": 4587.13
+  },
+  {
+   "analyte": "fibrinogen",
+   "timepoint": "R+45",
+   "n": 4,
+   "mean": 3534.7775,
+   "min": 2732.11,
+   "max": 4491.95
+  },
+  {
+   "analyte": "fibrinogen",
+   "timepoint": "R+82",
+   "n": 4,
+   "mean": 3448.085,
+   "min": 2513.02,
+   "max": 4447.08
+  },
+  {
+   "analyte": "haptoglobin",
+   "timepoint": "L-3",
+   "n": 4,
+   "mean": 7325500.0,
+   "min": 1305900.0,
+   "max": 17907000.0
+  },
+  {
+   "analyte": "haptoglobin",
+   "timepoint": "L-44",
+   "n": 4,
+   "mean": 120029.0775,
+   "min": 73870.48,
+   "max": 203473.61
+  },
+  {
+   "analyte": "haptoglobin",
+   "timepoint": "L-92",
+   "n": 4,
+   "mean": 10016950.0,
+   "min": 1049100.0,
+   "max": 17907000.0
+  },
+  {
+   "analyte": "haptoglobin",
+   "timepoint": "R+1",
+   "n": 4,
+   "mean": 6192656.8875,
+   "min": 568223.15,
+   "max": 17907000.0
+  },
+  {
+   "analyte": "haptoglobin",
+   "timepoint": "R+194",
+   "n": 4,
+   "mean": 20406875.0,
+   "min": 2571500.0,
+   "max": 55113000.0
+  },
+  {
+   "analyte": "haptoglobin",
+   "timepoint": "R+45",
+   "n": 4,
+   "mean": 9422450.0,
+   "min": 1864800.0,
+   "max": 17907000.0
+  },
+  {
+   "analyte": "haptoglobin",
+   "timepoint": "R+82",
+   "n": 4,
+   "mean": 11603525.0,
+   "min": 2919100.0,
+   "max": 17907000.0
+  },
+  {
+   "analyte": "l_selectin",
+   "timepoint": "L-3",
+   "n": 4,
+   "mean": 1097788.2325,
+   "min": 561452.93,
+   "max": 1364800.0
+  },
+  {
+   "analyte": "l_selectin",
+   "timepoint": "L-44",
+   "n": 4,
+   "mean": 801516.525,
+   "min": 675114.37,
+   "max": 893494.17
+  },
+  {
+   "analyte": "l_selectin",
+   "timepoint": "L-92",
+   "n": 4,
+   "mean": 1007539.3,
+   "min": 515957.2,
+   "max": 1285900.0
+  },
+  {
+   "analyte": "l_selectin",
+   "timepoint": "R+1",
+   "n": 4,
+   "mean": 850470.92,
+   "min": 596429.89,
+   "max": 1119400.0
+  },
+  {
+   "analyte": "l_selectin",
+   "timepoint": "R+194",
+   "n": 4,
+   "mean": 1122233.0575,
+   "min": 762532.23,
+   "max": 1398200.0
+  },
+  {
+   "analyte": "l_selectin",
+   "timepoint": "R+45",
+   "n": 4,
+   "mean": 1097337.2625,
+   "min": 568449.05,
+   "max": 1317500.0
+  },
+  {
+   "analyte": "l_selectin",
+   "timepoint": "R+82",
+   "n": 4,
+   "mean": 1157950.0,
+   "min": 1058100.0,
+   "max": 1266600.0
+  },
+  {
+   "analyte": "pf4",
+   "timepoint": "L-3",
+   "n": 4,
+   "mean": 17698.24,
+   "min": 8602.35,
+   "max": 26633.16
+  },
+  {
+   "analyte": "pf4",
+   "timepoint": "L-44",
+   "n": 4,
+   "mean": 2941.655,
+   "min": 2156.35,
+   "max": 3903.78
+  },
+  {
+   "analyte": "pf4",
+   "timepoint": "L-92",
+   "n": 4,
+   "mean": 13926.4275,
+   "min": 6973.32,
+   "max": 21999.42
+  },
+  {
+   "analyte": "pf4",
+   "timepoint": "R+1",
+   "n": 4,
+   "mean": 14142.36,
+   "min": 5951.22,
+   "max": 28157.23
+  },
+  {
+   "analyte": "pf4",
+   "timepoint": "R+194",
+   "n": 4,
+   "mean": 16548.765,
+   "min": 11371.31,
+   "max": 21024.9
+  },
+  {
+   "analyte": "pf4",
+   "timepoint": "R+45",
+   "n": 4,
+   "mean": 15230.66,
+   "min": 6374.28,
+   "max": 25381.08
+  },
+  {
+   "analyte": "pf4",
+   "timepoint": "R+82",
+   "n": 4,
+   "mean": 17694.697500000002,
+   "min": 12168.67,
+   "max": 23891.75
+  },
+  {
+   "analyte": "sap",
+   "timepoint": "L-3",
+   "n": 4,
+   "mean": 12035825.0,
+   "min": 6057300.0,
+   "max": 18242000.0
+  },
+  {
+   "analyte": "sap",
+   "timepoint": "L-44",
+   "n": 4,
+   "mean": 4826200.0,
+   "min": 4048000.0,
+   "max": 5428000.0
+  },
+  {
+   "analyte": "sap",
+   "timepoint": "L-92",
+   "n": 4,
+   "mean": 10616000.0,
+   "min": 4760000.0,
+   "max": 16583000.0
+  },
+  {
+   "analyte": "sap",
+   "timepoint": "R+1",
+   "n": 4,
+   "mean": 10212550.0,
+   "min": 5592700.0,
+   "max": 16745000.0
+  },
+  {
+   "analyte": "sap",
+   "timepoint": "R+194",
+   "n": 4,
+   "mean": 11132100.0,
+   "min": 7739400.0,
+   "max": 13414000.0
+  },
+  {
+   "analyte": "sap",
+   "timepoint": "R+45",
+   "n": 4,
+   "mean": 10819725.0,
+   "min": 6670900.0,
+   "max": 13993000.0
+  },
+  {
+   "analyte": "sap",
+   "timepoint": "R+82",
+   "n": 4,
+   "mean": 11765500.0,
+   "min": 9482000.0,
+   "max": 13775000.0
+  }
+ ]
+}

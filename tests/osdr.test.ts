@@ -79,6 +79,23 @@ describe("bundled OSD-575 snapshot", () => {
     for (const a of s.analytes) for (const p of a.points) expect(p.n).toBe(4);
   });
 
+  it("matches statistics computed independently (Python) from the OSDR submitted results file", () => {
+    const expected = JSON.parse(readFileSync(join(__dirname, "fixtures", "OSD-575-expected-summary.json"), "utf8")) as {
+      groups: { analyte: string; timepoint: string; n: number; mean: number; min: number; max: number }[];
+    };
+    const s = summarizeOsdrMultiplex(snap.content);
+    const ts = s.analytes.flatMap((a) => a.points.map((p) => ({ analyte: a.key, ...p })));
+    expect(ts).toHaveLength(expected.groups.length);
+    for (const g of expected.groups) {
+      const p = ts.find((x) => x.analyte === g.analyte && x.timepoint === g.timepoint);
+      expect(p, `${g.analyte} ${g.timepoint}`).toBeDefined();
+      expect(p!.n).toBe(g.n);
+      for (const f of ["mean", "min", "max"] as const) {
+        expect(Math.abs(p![f] - g[f]) / Math.max(1, Math.abs(g[f]))).toBeLessThan(1e-12);
+      }
+    }
+  });
+
   it("never mixes real data with the simulated vital signs", () => {
     for (const sc of Object.values(SCENARIOS)) {
       expect(sc.simulated).toBe(true);

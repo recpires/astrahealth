@@ -12,7 +12,7 @@
   <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white" />
   <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white" />
   <img alt="Recharts 3" src="https://img.shields.io/badge/Recharts-3-22D3EE" />
-  <img alt="Vitest: 71 tests" src="https://img.shields.io/badge/Vitest-71_tests_passing-6E9F18?logo=vitest&logoColor=white" />
+  <img alt="Vitest: 72 tests" src="https://img.shields.io/badge/Vitest-72_tests_passing-6E9F18?logo=vitest&logoColor=white" />
   <img alt="Vercel ready" src="https://img.shields.io/badge/Vercel-ready-000000?logo=vercel&logoColor=white" />
   <br/>
   <img alt="NASA Space Apps Challenge 2026" src="https://img.shields.io/badge/NASA_Space_Apps-2026-0B3D91" />
@@ -79,7 +79,7 @@
 - 📡 Earth–Mars link simulator with 3–22 min one-way delay, transmission queue, outage simulation and message states.
 - 🧾 Structured incident report (text + JSON) generated from the live state.
 - 📚 **Science & Limits**: verified NASA Human Research Program evidence (cardiovascular, hypoxia, medical capability) and a real NASA OSDR dataset, always kept apart from simulated data and demonstration rules.
-- 🧪 71 automated tests, including end-to-end flows of all three scenarios.
+- 🧪 72 automated tests, including end-to-end flows of all three scenarios.
 
 ---
 
@@ -450,10 +450,11 @@ astrahealth/
 │   ├── config/
 │   │   ├── reference-ranges.ts   # PROVISIONAL thresholds
 │   │   ├── scientific-sources.ts # NASA registry for a threshold source (pending)
-│   │   ├── evidence-library.ts   # NASA HRP evidence library (verified links + quotes)
+│   │   ├── evidence-library.ts   # Typed access to the NASA HRP evidence library
 │   │   └── data-provenance.ts    # Simulated / real / demo-rule classification
 │   ├── data/
 │   │   ├── scenarios/*.json      # SIMULATED recordings (180 samples × 10 s)
+│   │   ├── science/nasa-hrp-evidence.json # NASA HRP evidence (verified links + verbatim quotes)
 │   │   ├── osdr/OSD-575.json     # REAL NASA OSDR file, stored verbatim + SHA-256
 │   │   └── procedures.json       # Demonstration checklists
 │   └── assets/astra-emblem.png
@@ -523,6 +524,7 @@ npm run dev
 | `npm run banners` | README banners (EN / PT) → `docs/assets/` ² |
 | `npm run osdr:import -- OSD-575` | Import a public NASA OSDR file into `src/data/osdr/` (`--list`, `--file <name>`) ³ |
 | `npm run science:check-links` | Check every evidence-library and OSDR link against the official servers ³ |
+| `python3 scripts/verify-science-sources.py` | Independent verification of quotes, file integrity, units and statistics (needs `pip install pypdf`) ³ |
 
 ¹ Needs a running server (`BASE_URL`, default `http://localhost:3000`) and Playwright with Chromium.
 ² Needs Playwright with Chromium.
@@ -536,7 +538,7 @@ npm run dev
 npm test
 ```
 
-**71 tests in 8 files**, all deterministic and offline:
+**72 tests in 8 files**, all deterministic and offline:
 
 | File | What it covers |
 |---|---|
@@ -545,7 +547,7 @@ npm test
 | `tests/comms.test.ts` | Delay limits, round trip, light-travel distance, FIFO and priority queue, outage, delay locking and state timeline. |
 | `tests/science.test.ts` | Guards: no NASA threshold source claimed while pending; provisional labels; procedures free of medication and clinical-intervention terms; AI disclosure shown on the Science page. |
 | `tests/evidence.test.ts` | Evidence library: all three topics covered; title, source, date, PDF link and limitations present; official NASA HTTPS hosts only; no threshold derived and no NASA-approval claim; provenance classification. |
-| `tests/osdr.test.ts` | OSDR parser (CSV edge cases, timepoints, summaries, errors); bundled OSD-575 snapshot matches its SHA-256; real data never imported by the simulation modules. |
+| `tests/osdr.test.ts` | OSDR parser (CSV edge cases, timepoints, summaries, errors); bundled OSD-575 snapshot matches its SHA-256; statistics equal an independent Python computation from the OSDR submitted file; real data never imported by the simulation modules. |
 | `tests/ui/science.test.tsx` | Science & Limits page: three categories, evidence cards and topic filter, OSDR source identification, file import (valid, invalid, missing accession). |
 | `tests/ui/modules.test.tsx` | The four modules rendered with Testing Library: incident buttons, findings, confirmation, checklist logging, delay presets, report generation and queuing, unverified sensor values. |
 
@@ -587,7 +589,7 @@ ASTRA Health keeps three kinds of content strictly apart and labels them everywh
 | Category | What | Where in the code | Used for |
 |---|---|---|---|
 | 🟦 **Simulated data** | Vital-sign streams, signal quality, dropouts, confirmation reading, ground acknowledgement | `src/data/scenarios/*.json` (seeded generator) | Monitoring, Analysis, Response, Earth Link |
-| 🟩 **Real scientific data & evidence** | NASA HRP evidence reports; NASA OSDR dataset OSD-575 | `src/config/evidence-library.ts`, `src/data/osdr/` | Science & Limits only — context and display |
+| 🟩 **Real scientific data & evidence** | NASA HRP evidence reports; NASA OSDR dataset OSD-575 | `src/data/science/nasa-hrp-evidence.json`, `src/data/osdr/` | Science & Limits only — context and display |
 | 🟨 **Demonstration rules** | Reference ranges, analysis rules, escalation, checklists, Earth-link timings | `src/config/reference-ranges.ts`, `src/lib/`, `src/data/procedures.json` | Analysis, Response, Earth Link |
 
 #### NASA Human Research Program evidence library
@@ -610,6 +612,21 @@ ASTRA Health keeps three kinds of content strictly apart and labels them everywh
 - **In-app import:** *Science & Limits → Import another OSDR file* reads an OSDR multiplex table selected by the user, requires the OSDR accession, and keeps it **only in the browser** (not saved).
 - **Separation:** OSDR data lives in `src/data/osdr/`, apart from `src/data/scenarios/`; the simulation, analysis and report modules never import it (tested). The page shows **summary statistics only** (n, mean, min, max per timepoint) — no per-person values, no reference ranges and no clinical interpretation.
 - **Why no live download in the browser:** the OSDR API only accepts browser requests from `osdr.nasa.gov` (CORS), so the import runs as a command-line step or from a local file.
+
+#### Verification
+
+Verified on 2026-11-15 against freshly downloaded official files — full report in
+[docs/SCIENCE_VERIFICATION.md](docs/SCIENCE_VERIFICATION.md):
+
+- **Links:** 17/17 answer on the official servers (`npm run science:check-links`).
+- **Texts:** titles, dates and authors (9/9), risk statements (3/3) and key quotes (10/10) found verbatim in the official PDFs and HRR pages.
+- **OSD-575 file:** the stored copy is byte-for-byte identical to a fresh download (SHA-256); all 252 values and the 9 units match the *submitted* results file declared in the study's ISA metadata.
+- **Statistics:** n, mean, min and max for 63 analyte × timepoint groups recomputed independently in Python from the submitted file — identical to the app's results (largest relative difference 2.1 × 10⁻¹⁶); the comparison also runs offline in `npm test`.
+- **Negative control:** deliberately altered copies (a reversed quote, one changed digit, a 0.1 % statistic error) were all detected.
+- Re-run everything with `python3 scripts/verify-science-sources.py` (Python 3 + `pip install pypdf`).
+
+This verification covers the **accuracy of the sources, the file and the calculations**. It does **not** validate the
+analysis engine's thresholds, which remain provisional (next section).
 
 #### Source for analysis thresholds — *pending team confirmation*
 
