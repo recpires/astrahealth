@@ -1,0 +1,555 @@
+{
+  "generatedBy": "scripts/a11y-audit.cjs",
+  "date": "2026-11-15T05:26:19.560Z",
+  "commit": "c87e603",
+  "browser": "Chromium 153.0.8010.12",
+  "axeCore": "4.14.0",
+  "standard": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa",
+    "wcag22aa"
+  ],
+  "durationSec": 103,
+  "axeChecks": 29,
+  "axeViolations": 0,
+  "keyboardProblems": 0,
+  "expected": {
+    "axeChecks": 29,
+    "keyboardPages": 11
+  },
+  "pages": [
+    {
+      "route": "/",
+      "viewport": "desktop",
+      "violations": [],
+      "passes": 27,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 122
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/analysis",
+      "viewport": "desktop",
+      "violations": [],
+      "passes": 26,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 77
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/response",
+      "viewport": "desktop",
+      "violations": [],
+      "passes": 25,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 55
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/comms",
+      "viewport": "desktop",
+      "violations": [],
+      "passes": 28,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 67
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/science",
+      "viewport": "desktop",
+      "violations": [],
+      "passes": 32,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 383
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/future",
+      "viewport": "desktop",
+      "violations": [],
+      "passes": 25,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 103
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 2
+        }
+      ]
+    },
+    {
+      "route": "/future/journal",
+      "viewport": "desktop",
+      "violations": [],
+      "passes": 29,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 274
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/future/assess",
+      "viewport": "desktop",
+      "violations": [],
+      "passes": 26,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 114
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/future/profile",
+      "viewport": "desktop",
+      "violations": [],
+      "passes": 28,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 373
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/future/eva",
+      "viewport": "desktop",
+      "violations": [],
+      "passes": 26,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 98
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/future/readiness",
+      "viewport": "desktop",
+      "violations": [],
+      "passes": 27,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 247
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "viewport": "phone",
+      "violations": [],
+      "passes": 28,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 121
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/analysis",
+      "viewport": "phone",
+      "violations": [],
+      "passes": 27,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 73
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/response",
+      "viewport": "phone",
+      "violations": [],
+      "passes": 26,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 51
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/comms",
+      "viewport": "phone",
+      "violations": [],
+      "passes": 29,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 63
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/science",
+      "viewport": "phone",
+      "violations": [],
+      "passes": 33,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 378
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/future",
+      "viewport": "phone",
+      "violations": [],
+      "passes": 26,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 99
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 2
+        }
+      ]
+    },
+    {
+      "route": "/future/journal",
+      "viewport": "phone",
+      "violations": [],
+      "passes": 30,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 267
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/future/assess",
+      "viewport": "phone",
+      "violations": [],
+      "passes": 27,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 110
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/future/profile",
+      "viewport": "phone",
+      "violations": [],
+      "passes": 29,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 369
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/future/eva",
+      "viewport": "phone",
+      "violations": [],
+      "passes": 27,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 94
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "route": "/future/readiness",
+      "viewport": "phone",
+      "violations": [],
+      "passes": 28,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 243
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    }
+  ],
+  "states": [
+    {
+      "id": "incident-monitoring",
+      "label": "Monitoring during a vital-sign incident",
+      "route": "/",
+      "violations": [],
+      "passes": 27,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 127
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "id": "incident-analysis",
+      "label": "Analysis with active findings",
+      "route": "/analysis",
+      "violations": [],
+      "passes": 26,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 128
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "id": "incident-response",
+      "label": "Response with medical support and checklists",
+      "route": "/response",
+      "violations": [],
+      "passes": 24,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 89
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "id": "report-generated",
+      "label": "Earth Link with a generated and queued report",
+      "route": "/comms",
+      "violations": [],
+      "passes": 29,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 89
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "id": "assessment-result",
+      "label": "FUTURE 02 assessment result with review",
+      "route": "/future/assess",
+      "violations": [],
+      "passes": 26,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 160
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "id": "eva-event",
+      "label": "FUTURE 04 EVA during an event",
+      "route": "/future/eva",
+      "violations": [],
+      "passes": 28,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 140
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "id": "readiness-after-actions",
+      "label": "FUTURE 05 with audit entries and tamper test",
+      "route": "/future/readiness",
+      "violations": [],
+      "passes": 27,
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 304
+        },
+        {
+          "id": "link-in-text-block",
+          "nodes": 1
+        }
+      ]
+    }
+  ],
+  "keyboard": [
+    {
+      "route": "/",
+      "stops": 23,
+      "problems": []
+    },
+    {
+      "route": "/analysis",
+      "stops": 13,
+      "problems": []
+    },
+    {
+      "route": "/response",
+      "stops": 17,
+      "problems": []
+    },
+    {
+      "route": "/comms",
+      "stops": 20,
+      "problems": []
+    },
+    {
+      "route": "/science",
+      "stops": 49,
+      "problems": []
+    },
+    {
+      "route": "/future",
+      "stops": 33,
+      "problems": []
+    },
+    {
+      "route": "/future/journal",
+      "stops": 54,
+      "problems": []
+    },
+    {
+      "route": "/future/assess",
+      "stops": 44,
+      "problems": []
+    },
+    {
+      "route": "/future/profile",
+      "stops": 43,
+      "problems": []
+    },
+    {
+      "route": "/future/eva",
+      "stops": 37,
+      "problems": []
+    },
+    {
+      "route": "/future/readiness",
+      "stops": 31,
+      "problems": []
+    }
+  ],
+  "errors": []
+}

@@ -1,6 +1,6 @@
 # ASTRA Health — relatório de testes dos módulos FUTURE
 
-> Gerado por `scripts/build-future-report.mjs` a partir dos arquivos de resultado brutos. Versão do código: `6b1730c`. Execuções no navegador: Chromium 153.0.8010.12, 2026-11-15.
+> Gerado por `scripts/build-future-report.mjs` a partir dos arquivos de resultado brutos. Versão do código: `c87e603`. Execuções no navegador: Chromium 153.0.8010.12, 2026-11-15.
 
 Todos os dados de tripulação destes testes são simulados ou digitados pelo próprio teste. Regras e protocolos são conteúdo demonstrativo (PROVISIONAL) — testes aprovados mostram que o software se comporta como especificado, não que alguma regra seja clinicamente válida.
 
@@ -8,8 +8,8 @@ Todos os dados de tripulação destes testes são simulados ou digitados pelo pr
 
 | Suíte | Comando | Aprovados |
 |---|---|---|
-| Testes FUTURE unitários, de integração e de interface | `npm run test:future` | **107/107** |
-| Verificações FUTURE ponta a ponta no navegador (incl. offline + recarga) | `npm run test:e2e:future` | **18/18** |
+| Testes FUTURE unitários, de integração e de interface | `npm run test:future` | **110/110** |
+| Verificações FUTURE ponta a ponta no navegador (incl. offline + recarga) | `npm run test:e2e:future` | **19/19** |
 | Regressão — 77 testes originais | `npm run test:regression` | **77/77** |
 | Regressão — 14 verificações no navegador dos três cenários | `npm run test:e2e:regression` | **14/14** |
 
@@ -23,7 +23,7 @@ Erros de página no navegador: 0 · Resultado geral: **TUDO APROVADO**
 | C2 | Os três cenários originais continuam funcionando. | tests/acceptance/scenarios.acceptance.test.ts (17 casos) e a execução no navegador scripts/e2e-scenarios.cjs (14 verificações) contra o build de produção. | ✅ Atendido |
 | C3 | Cada módulo novo tem testes unitários, de integração e ponta a ponta. | Unitários: tests/future/{platform,journal,assess,profile,eva,readiness,references}.test.ts · Integração: tests/future/integration.test.ts · Interface: tests/future/ui.test.tsx · Ponta a ponta no navegador: scripts/e2e-future.cjs (F01–F05). | ✅ Atendido |
 | C4 | Nenhuma orientação clínica é apresentada como validada. | Todo conjunto de regras e protocolo é PROVISIONAL (verificação V-NOT-VALIDATED); os testes rejeitam termos de diagnóstico, medicamento e tratamento em todas as regras e protocolos. | ✅ Atendido |
-| C5 | O sistema funciona com fontes locais durante a perda de comunicação. | Testes de integração executam todos os módulos com o link com a Terra perdido e verificam a sincronização por prioridade ao restabelecer; o teste no navegador corta a rede (modo offline) e continua funcionando, depois recarrega e encontra os registros no dispositivo. | ✅ Atendido |
+| C5 | O sistema funciona com fontes locais durante a perda de comunicação. | Testes de integração executam todos os módulos com o link com a Terra perdido e verificam a sincronização por prioridade ao restabelecer; no navegador a rede é cortada e o app continua funcionando, e um service worker permite recarregar as 11 páginas com o servidor web desligado e o navegador offline (E2E-OFF-05). | ✅ Atendido |
 | C6 | Toda decisão, evidência e ação é rastreável. | Cada registro entra numa trilha de auditoria encadeada por checksum, com versão do conjunto de regras / protocolo, regras acionadas, ids de evidência e checksum das entradas; os testes verificam a cadeia e detectam adulteração; a trilha pode ser exportada em JSON. | ✅ Atendido |
 
 ## Testes automatizados por arquivo
@@ -34,14 +34,15 @@ Erros de página no navegador: 0 · Resultado geral: **TUDO APROVADO**
 | `tests/future/eva.test.ts` | F04 EVA e resposta | unitário | 14/14 |
 | `tests/future/integration.test.ts` | Integração entre módulos | integração | 5/5 |
 | `tests/future/journal.test.ts` | F01 Diário de saúde | unitário | 16/16 |
+| `tests/future/offline.test.ts` | tests/future/offline.test.ts | — | 3/3 |
 | `tests/future/platform.test.ts` | Núcleo da plataforma | unitário | 18/18 |
 | `tests/future/profile.test.ts` | F03 Perfil de saúde espacial | unitário | 11/11 |
 | `tests/future/readiness.test.ts` | F05 Prontidão | unitário | 10/10 |
 | `tests/future/references.test.ts` | Referências NASA HRR | unitário | 3/3 |
 | `tests/future/ui.test.tsx` | Interface (F01–F05) | interface | 13/13 |
-| **Total** | | | **107/107** |
+| **Total** | | | **110/110** |
 
-<details><summary>Nome de cada teste FUTURE (107)</summary>
+<details><summary>Nome de cada teste FUTURE (110)</summary>
 
 **tests/future/assess.test.ts**
 
@@ -106,6 +107,12 @@ Erros de página no navegador: 0 · Resultado geral: **TUDO APROVADO**
 - ✅ check-in reducer › queues a routine journal summary for Earth
 - ✅ trends › builds a 14-day series with gaps on missing days
 - ✅ trends › keeps only the latest check-in of a day
+
+**tests/future/offline.test.ts**
+
+- ✅ offline service worker › pre-caches exactly the routes of the app
+- ✅ offline service worker › tries the network first for pages and data, so online behaviour is unchanged
+- ✅ offline service worker › is served with no-cache headers
 
 **tests/future/platform.test.ts**
 
@@ -181,7 +188,7 @@ Erros de página no navegador: 0 · Resultado geral: **TUDO APROVADO**
 
 ## Verificações ponta a ponta no navegador (build de produção)
 
-Executado com `next start`, Chromium 153.0.8010.12, janela 1440×900, 26 s. As descrições ficam em inglês, como no código dos testes.
+Executado com `next start`, Chromium 153.0.8010.12, janela 1440×900, 31 s. As descrições ficam em inglês, como no código dos testes.
 
 | ID | Módulo | Verificação | Esperado | Observado | Resultado |
 |---|---|---|---|---|---|
@@ -190,7 +197,7 @@ Executado com `next start`, Chromium 153.0.8010.12, janela 1440×900, 26 s. As d
 | E2E-F01-03 | F01 | A routine is marked done | Body mass (Crew Member D) changes from Overdue to Done today | Body mass measurement Every 7 days · last day 15 · next due day 22 Done today Equipment: Body mass measurement device | ✅ |
 | E2E-F02-01 | F02 | Moderate, worsening headache for Crew Member C | Inform crew medical officer; uncertainty HIGH (no symptom-specific NASA reference); rules ASTRA-SYM@0.1.0-demo | level "Inform crew medical officer" · uncertainty HIGH · reviewed: accepted | ✅ |
 | E2E-F02-02 | F02 | Dizziness with a warning sign for Crew Member B | Medical support now; URGENT report and EVA hold proposed; verified NASA excerpt quoted; report queued as urgent | level "Medical support now" · steps include URGENT report + EVA hold · evidence: verified excerpt + reference-only · queued (urgent) [📷](../test-results/future/e2e/E2E-F02-02.png) | ✅ |
-| E2E-F03-01 | F03 | Nine domains; unavailable exams show 'No data' and are never simulated | 9 domain panels; intracranial pressure, bone density, kidney imaging = No data; heart rate from simulated telemetry for Crew Member A only | 9 domains · ICP / bone density / kidney imaging: No data · HR Crew A 69 bpm (simulated) · Crew B: No data [📷](../test-results/future/e2e/E2E-F03-01.png) | ✅ |
+| E2E-F03-01 | F03 | Nine domains; unavailable exams show 'No data' and are never simulated | 9 domain panels; intracranial pressure, bone density, kidney imaging = No data; heart rate from simulated telemetry for Crew Member A only | 9 domains · ICP / bone density / kidney imaging: No data · HR Crew A 71 bpm (simulated) · Crew B: No data [📷](../test-results/future/e2e/E2E-F03-01.png) | ✅ |
 | E2E-F03-02 | F03 | Typed blood-pressure reading | 400 rejected by the typing check (not a clinical limit); 118 stored as crew-entered (not validated) | 400 → "Value must be between 60 and 250 mmHg (typing check, not a clinical limit)." · 118 → 118 mmHg, crew-entered (not validated) | ✅ |
 | E2E-F04-01 | F04 | Pre-EVA gate for Crew Members A and B | System proposes HOLD: Crew B has no check-in today and is held by the urgent assessment; GO is disabled without a reason | proposal HOLD · PRE-01 "check: No check-in today: Crew Member B." · PRE-02 held · GO disabled [📷](../test-results/future/e2e/E2E-F04-01.png) | ✅ |
 | E2E-F04-02 | F04 | Override, equipment loss and an in-EVA event | Override GO logged with reason; telemetry unavailable → alternative steps; 'feeling unwell' → urgent report queued; commander ends the EVA | GO override logged · DUR-02 + U3 use alternatives · urgent report queued · EVA ended by commander [📷](../test-results/future/e2e/E2E-F04-02.png) | ✅ |
@@ -203,6 +210,7 @@ Executado com `next start`, Chromium 153.0.8010.12, janela 1440×900, 26 s. As d
 | E2E-F05-02 | F05 | Export of the full trace | Downloaded JSON contains the state, the rule-set versions and a verified checksum chain | astra-health-trace-day15.json · 43 entries, chain ok · kinds: action, data, decision, evidence, sync, system · rule sets: ASTRA-JOURNAL@0.1.0-demo, ASTRA-SYM@0.1.0-demo, ASTRA-PROFILE@0.1.0-demo, ASTRA-EVA@0.1.0-demo [📷](../test-results/future/e2e/E2E-F05-02.png) | ✅ |
 | E2E-REG-01 | Regression | The tested demo is unchanged and reachable | Monitoring still shows the three vital cards and scenario buttons; 'Platform preview' is an extra menu entry | vital cards + scenario buttons present · nav: Monitoring, Analysis, Response, Earth Link, Science & Limits, Platform preview [📷](../test-results/future/e2e/E2E-REG-01.png) | ✅ |
 | E2E-RESP-01 | Platform | Responsive layout of every FUTURE page | No horizontal page scroll at phone (390 px) and tablet (820 px) widths; wide tables scroll inside their own panel | 6 pages × 2 widths: no horizontal page scroll | ✅ |
+| E2E-OFF-05 | Platform | Full reload with no server and no network | After the service worker has cached the app, the server is stopped and the browser goes offline: all 11 pages reload, saved records are there, navigation and a new assessment still work | server stopped + browser offline · 11/11 pages reloaded with every image · "Saved for Crew Member D · Day 15 · 08:00 · stored on this device" · new assessment: Monitor · menu navigation to Earth Link OK [📷](../test-results/future/e2e/E2E-OFF-05.png) | ✅ |
 
 Com o navegador offline (E2E-OFF-01), a página tentou **0** requisição(ões) de rede: todas as ações FUTURE rodaram com dados locais.
 
@@ -242,6 +250,6 @@ O relatório congelado da submissão dos três cenários continua em [docs/TEST_
 ## Limites destes testes
 
 - Verificam o comportamento do software em relação à especificação, não validade clínica. Todo limite, regra e checklist é um valor demonstrativo.
-- A operação offline é testada com o modo offline do navegador depois que o app carregou. Uma recarga completa sem nenhuma rede exigiria um service worker ou um servidor a bordo — fora do escopo deste protótipo.
+- A recarga offline é testada depois de uma visita com internet (o service worker precisa ter guardado o app antes): o servidor web é desligado e o navegador fica offline (E2E-OFF-05). Os registros ficam em cada dispositivo; compartilhá-los entre dispositivos exigiria um servidor de bordo.
 - O checksum da trilha de auditoria detecta edições acidentais ou casuais; não é uma assinatura criptográfica.
 - As referências NASA HRR são conferidas título a título com o índice oficial (snapshot em `src/data/future/hrr-risk-index.snapshot.json`; atualize com `npm run future:check-refs`).
