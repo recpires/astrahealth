@@ -1,0 +1,66 @@
+{
+  "simulated": true,
+  "disclaimer": "DEMONSTRATION CONTENT — illustrative safety checklists written by the ASTRA Health development team (AI-assisted). They are NOT approved NASA flight procedures and contain no medication, treatment or clinical-intervention guidance. Real missions follow procedures approved by the mission medical team.",
+  "procedures": [
+    {
+      "id": "PROC-NM-01",
+      "title": "Routine monitoring",
+      "trigger": "nominal",
+      "purpose": "Keep continuous monitoring running while all readings are within the demo reference ranges.",
+      "steps": [
+        { "id": "nm-1", "text": "Keep all sensors attached and powered." },
+        { "id": "nm-2", "text": "Continue normal activities; no action is required." }
+      ]
+    },
+    {
+      "id": "PROC-SC-01",
+      "title": "Sensor reading check",
+      "trigger": "sensor-issue",
+      "purpose": "Find out whether an unusual reading comes from the body or from the sensor before acting on it.",
+      "steps": [
+        { "id": "sc-1", "text": "Stay still for about 30 seconds so the sensor can settle." },
+        { "id": "sc-2", "text": "Check that the sensor is correctly placed, clean and in firm contact with the skin." },
+        { "id": "sc-3", "text": "Check the sensor cable or wireless link indicator." },
+        { "id": "sc-4", "text": "Take a confirmation reading (button below).", "action": "confirm-measurement" },
+        { "id": "sc-5", "text": "If a backup sensor is available, compare its reading." }
+      ]
+    },
+    {
+      "id": "PROC-SR-01",
+      "title": "Sensor artifact — data hygiene",
+      "trigger": "sensor-artifact",
+      "purpose": "The confirmation reading did not reproduce the abnormal values, so the stream is attributed to the sensor.",
+      "steps": [
+        { "id": "sr-1", "text": "Re-seat or replace the affected sensor." },
+        { "id": "sr-2", "text": "Confirm that the excluded readings are labelled as sensor artifact in the log." },
+        { "id": "sr-3", "text": "Send an informational report to Earth so the ground team knows about the sensor event." }
+      ]
+    },
+    {
+      "id": "PROC-VD-01",
+      "title": "Vital-sign deviation — general safety checklist",
+      "trigger": "vital-deviation",
+      "purpose": "Reduce immediate operational risk and gather information while the situation is assessed by qualified people.",
+      "steps": [
+        { "id": "vd-1", "text": "Stop the current physical task or exercise session." },
+        { "id": "vd-2", "text": "Move to a stable, secured position (seat or restraint)." },
+        { "id": "vd-3", "text": "Tell a crewmate and ask them to stay nearby." },
+        { "id": "vd-4", "text": "Check the habitat environment readouts (cabin pressure, O₂, CO₂) on the vehicle display." },
+        { "id": "vd-5", "text": "Keep the sensors attached and continue monitoring." },
+        { "id": "vd-6", "text": "Prepare a structured incident report for Earth (Earth Link module)." }
+      ]
+    },
+    {
+      "id": "PROC-ESC-01",
+      "title": "Medical support request",
+      "trigger": "escalation",
+      "purpose": "Bring qualified people into the loop. ASTRA Health does not provide medical advice.",
+      "steps": [
+        { "id": "esc-1", "text": "Notify the Crew Medical Officer (CMO) on board now." },
+        { "id": "esc-2", "text": "Send the structured incident report to the ground flight surgeon (subject to signal delay)." },
+        { "id": "esc-3", "text": "Follow only procedures approved by the mission medical team." },
+        { "id": "esc-4", "text": "Record every action taken; ASTRA Health logs time-stamped entries automatically." }
+      ]
+    }
+  ]
+}

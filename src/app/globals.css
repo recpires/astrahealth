@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --color-space-950: #030817;
+  --color-space-900: #071226;
+  --color-space-850: #0a1830;
+  --color-space-800: #0d1f3c;
+  --color-space-700: #13294d;
+  --color-line: #1a3159;
+  --color-line-strong: #24427a;
+  --color-ink: #e6f1ff;
+  --color-ink-muted: #93a8c9;
+  --color-ink-faint: #5d7397;
+  --color-accent: #22d3ee;
+  --color-accent-strong: #06b6d4;
+
+  --color-level-nominal: #34d399;
+  --color-level-advisory: #38bdf8;
+  --color-level-caution: #fbbf24;
+  --color-level-warning: #f43f5e;
+  --color-level-sensor: #a78bfa;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: var(--color-space-950);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-image:
+    radial-gradient(1200px 600px at 85% -10%, rgba(34, 211, 238, 0.08), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(56, 189, 248, 0.06), transparent 60%),
+    linear-gradient(rgba(36, 66, 122, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 66, 122, 0.12) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
+  background-attachment: fixed;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  70% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.pulse-ring {
+  animation: pulse-ring 1.6s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-ring {
+    animation: none;
+  }
+}
+
+/* Native range input styled for the dark theme. */
+input[type="range"].astra-range {
+  accent-color: var(--color-accent);
+}
