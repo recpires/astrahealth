@@ -14,6 +14,7 @@
   <img alt="Recharts 3" src="https://img.shields.io/badge/Recharts-3-22D3EE" />
   <img alt="Vitest: 77 tests" src="https://img.shields.io/badge/Vitest-77_tests_passing-6E9F18?logo=vitest&logoColor=white" />
   <img alt="Vercel ready" src="https://img.shields.io/badge/Vercel-ready-000000?logo=vercel&logoColor=white" />
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2EA44F" /></a>
   <br/>
   <img alt="NASA Space Apps Challenge 2026" src="https://img.shields.io/badge/NASA_Space_Apps-2026-0B3D91" />
   <img alt="Status: demonstration prototype" src="https://img.shields.io/badge/status-demonstration_prototype-F59E0B" />
@@ -777,7 +778,12 @@ Details: [AI_DISCLOSURE.md](AI_DISCLOSURE.md).
 
 ## 📄 License
 
-No license has been chosen yet. Until one is added, all rights are reserved by the authors.
+Released under the [MIT License](LICENSE) — Copyright (c) 2026 Team ANGARIS.
+
+The license covers the code and documentation written by the team. Third-party material keeps its own terms:
+
+- **NASA content** — the Human Research Program evidence excerpts and Human Research Roadmap risk titles (`src/data/science/`, `src/data/future/`) and the OSDR OSD-575 data snapshot (`src/data/osdr/`) come from public NASA sources, identified in each record.
+- **Dependencies** — Next.js, React, Recharts, Lucide and the other npm packages are distributed under their own licenses (Lucide icons: ISC, with the icons derived from Feather under MIT).
 
 ## 🙏 Acknowledgements
 
