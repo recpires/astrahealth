@@ -68,6 +68,7 @@ Other scripts:
 | `npm run build && npm run start` | Production build and server. |
 | `npm run generate:data` | Regenerate the simulated scenario JSON (seeded, reproducible). |
 | `npm run screenshots` | Capture 16:9 presentation screenshots into `docs/screenshots/` (needs a running server and Playwright; see the script header). |
+| `npm run screenshots:sequence` | Capture the full 16-frame Scenario 2 sequence into `docs/screenshots/sequence-vital-deviation/`. |
 
 ### Using the app
 
@@ -148,3 +149,7 @@ AI-generated image supplied by the team (labelled as such). No AI model runs ins
 | ![](docs/screenshots/09-response-confirmation-request.png) Confirmation request | ![](docs/screenshots/11-monitoring-sensor-excluded.png) Sensor artifact excluded |
 
 All 12 captures (2880 × 1620 px, 1920 × 1080 layout at 1.5×) are in [`docs/screenshots/`](docs/screenshots/).
+
+A complete 16-frame, step-by-step sequence of Scenario 2 (vital-sign deviation, from baseline to the simulated reply from
+Earth) is in [`docs/screenshots/sequence-vital-deviation/`](docs/screenshots/sequence-vital-deviation/) — regenerate it with
+`npm run screenshots:sequence`.
