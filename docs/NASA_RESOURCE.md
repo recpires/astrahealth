@@ -42,7 +42,7 @@ finalised. The architecture is ready for that step.
    a precise `provenance` (section/table of the resource). Leave unsupported values clearly marked as provisional.
 4. Run `npm test`. `tests/science.test.ts` requires every registry field to be filled once `status` is `confirmed`.
    Adjust the scenario tests if thresholds change the expected detections.
-5. Update `docs/SCIENTIFIC_LIMITATIONS.md` and the README "Scientific status" section.
+5. Update `docs/SCIENTIFIC_LIMITATIONS.md` and the "Scientific basis & limitations" section of both `README.md` and `README.pt-BR.md`.
 
 ## Candidate resources (for the team to evaluate — NOT integrated, NOT verified here)
 

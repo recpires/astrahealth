@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "generate:data": "node scripts/generate-scenarios.mjs",
     "screenshots": "node scripts/screenshots.cjs",
-    "screenshots:sequence": "node scripts/capture-vital-sequence.cjs"
+    "screenshots:sequence": "node scripts/capture-vital-sequence.cjs",
+    "banners": "node scripts/render-banners.cjs"
   },
   "dependencies": {
     "lucide-react": "^1.73.0",

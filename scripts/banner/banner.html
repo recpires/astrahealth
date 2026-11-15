@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>ASTRA Health banner</title>
+<style>
+  :root {
+    --bg: #00031c;
+    --ink: #e6f1ff;
+    --muted: #93a8c9;
+    --faint: #5d7397;
+    --cyan: #22d3ee;
+    --line: #1a3159;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1600px; height: 520px; background: var(--bg); overflow: hidden; }
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    color: var(--ink);
+    position: relative;
+    background:
+      radial-gradient(700px 420px at 30% 50%, rgba(34, 211, 238, 0.10), transparent 70%),
+      radial-gradient(600px 400px at 100% 0%, rgba(56, 189, 248, 0.10), transparent 70%),
+      linear-gradient(rgba(36, 66, 122, 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36, 66, 122, 0.16) 1px, transparent 1px),
+      var(--bg);
+    background-size: auto, auto, 40px 40px, 40px 40px, auto;
+  }
+  .stars span { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #cfe9ff; opacity: .55; }
+  .logo {
+    position: absolute; left: 24px; top: 0; height: 520px; width: 780px;
+    background: url("LOGO_URL") center / contain no-repeat;
+    -webkit-mask-image: radial-gradient(ellipse 72% 78% at 50% 50%, #000 62%, transparent 100%);
+            mask-image: radial-gradient(ellipse 72% 78% at 50% 50%, #000 62%, transparent 100%);
+  }
+  .content { position: absolute; left: 820px; right: 64px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; gap: 22px; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: 15px; letter-spacing: .22em; text-transform: uppercase; color: var(--cyan); }
+  h1 { font-family: "Inter Display", "Inter", sans-serif; font-weight: 700; font-size: 46px; line-height: 1.08; letter-spacing: -0.01em; }
+  h1 em { font-style: normal; color: var(--cyan); }
+  .pipeline { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .chip { font-family: "JetBrains Mono", monospace; font-size: 15px; font-weight: 600; letter-spacing: .08em; padding: 8px 14px; border: 1px solid rgba(34, 211, 238, .45); border-radius: 10px; background: rgba(34, 211, 238, .08); color: var(--ink); }
+  .chip b { color: var(--cyan); margin-right: 6px; font-weight: 600; }
+  .arrow { color: var(--faint); font-size: 18px; }
+  .features { font-size: 18px; color: var(--muted); line-height: 1.5; }
+  .notice { display: inline-flex; align-self: flex-start; gap: 10px; align-items: center; font-family: "JetBrains Mono", monospace; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #fbbf24; border: 1px dashed rgba(251, 191, 36, .55); border-radius: 8px; padding: 7px 12px; }
+  .notice i { width: 7px; height: 7px; border-radius: 50%; background: #fbbf24; display: inline-block; }
+  .rule { position: absolute; left: 820px; right: 64px; bottom: 34px; height: 1px; background: linear-gradient(90deg, rgba(34,211,238,.6), transparent); }
+</style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <div class="logo" role="img" aria-label="ASTRA Health logo (AI-generated)"></div>
+  <div class="content">
+    <p class="eyebrow">EYEBROW</p>
+    <h1>TITLE</h1>
+    <div class="pipeline">PIPELINE</div>
+    <p class="features">FEATURES</p>
+    <p class="notice"><i></i>NOTICE</p>
+  </div>
+  <div class="rule"></div>
+  <script>
+    // Deterministic star field.
+    let s = 7;
+    const rnd = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+    const host = document.getElementById("stars");
+    for (let i = 0; i < 46; i++) {
+      const el = document.createElement("span");
+      el.style.left = 800 + rnd() * 800 + "px";
+      // Keep stars in the top and bottom bands, away from the text block.
+      el.style.top = (rnd() < 0.5 ? rnd() * 90 : 450 + rnd() * 70) + "px";
+      el.style.opacity = (0.2 + rnd() * 0.4).toFixed(2);
+      host.appendChild(el);
+    }
+  </script>
+</body>
+</html>
