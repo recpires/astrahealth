@@ -107,3 +107,12 @@ describe("Earth link (COMMUNICATE)", () => {
     expect(row).toHaveTextContent(/Awaiting transmission/);
   });
 });
+
+describe("Sensor-fault presentation", () => {
+  it("shows out-of-range values from a suspect sensor as unverified", () => {
+    renderWithMission(<MonitorView />, playedState("sensor-fault"));
+    const card = screen.getByTestId("vital-card-spo2");
+    expect(within(card).getByText(/demo range · unverified/)).toBeInTheDocument();
+    expect(within(card).getByText(/Sensor Suspect/i)).toBeInTheDocument();
+  });
+});

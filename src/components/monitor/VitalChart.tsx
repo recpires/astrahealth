@@ -23,12 +23,15 @@ export function VitalChart({
   vital,
   data,
   excluded,
+  suspect,
   height,
   className,
 }: {
   vital: VitalKey;
   data: ChartPoint[];
   excluded?: boolean;
+  /** Sensor is suspect: out-of-range points are drawn in the sensor colour, not as alerts. */
+  suspect?: boolean;
   /** Fixed height in px; omit to fill the parent (which must have a definite height). */
   height?: number;
   className?: string;
@@ -78,7 +81,7 @@ export function VitalChart({
               if (v === null || v === undefined || p.cx === undefined || p.cy === undefined) return <g key={key} />;
               const c = classifyValue(vital, v);
               if (c.level === "NOMINAL") return <g key={key} />;
-              return <circle key={key} cx={p.cx} cy={p.cy} r={2.4} fill={excluded ? "#a78bfa" : LEVEL_HEX[c.level]} />;
+              return <circle key={key} cx={p.cx} cy={p.cy} r={2.4} fill={excluded || suspect ? "#a78bfa" : LEVEL_HEX[c.level]} />;
             }}
           />
         </LineChart>

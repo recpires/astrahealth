@@ -145,6 +145,10 @@ export function ScienceView() {
               The team is responsible for reviewing all AI-assisted content, confirming the scientific statement and NASA resource, and
               validating every rule before any claim is made. See <code>AI_DISCLOSURE.md</code> in the repository.
             </p>
+            <p>
+              The ASTRA Health logo (and the emblem cropped from it for the header and favicon) is an AI-generated image supplied by
+              the team; the original file keeps its &quot;AI-generated&quot; label (<code>public/brand/astra-health-logo.png</code>).
+            </p>
             <p className="flex items-center gap-2 text-xs text-ink-faint">
               <FlaskConical className="h-4 w-4" /> No AI model runs inside the application: all analysis is deterministic.
             </p>

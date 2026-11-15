@@ -14,6 +14,7 @@ prototype from the team's written brief ("Prompt Mestre — ASTRA Health").
 | Interface text (English) | `src/components/**` | Written by the assistant |
 | Tests | `tests/**` | Written by the assistant |
 | Documentation | `README.md`, `docs/**`, this file | Written by the assistant |
+| Logo / brand image | `public/brand/astra-health-logo.png`; derived `src/assets/astra-emblem.png`, `src/app/icon.png`, `src/app/apple-icon.png`, `src/app/opengraph-image.png` | **AI-generated image** supplied by the team (the original carries an "AI-generated" label). The derived files are crops/resizes made by the assistant. |
 | Screenshots | `docs/screenshots/*.png` | Captured automatically from the running app by `scripts/screenshots.cjs` (not AI-generated images) |
 
 Commits created with the assistant carry a `Co-Authored-By: Claude` trailer in the git history.

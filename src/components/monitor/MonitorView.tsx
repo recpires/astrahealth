@@ -82,7 +82,9 @@ function VitalCard({ vital, series }: { vital: VitalKey; series: ChartPoint[] })
   const excluded = view.effective.excludedVitals.includes(vital);
   const value = sensor.lastValue;
   const c = value === null ? null : classifyValue(vital, value);
-  const tone = excluded ? "sensor" : value === null ? "neutral" : LEVEL_TONE[c!.level];
+  // Out-of-range values from a suspect sensor are shown as unverified, never as a body change.
+  const unverified = !excluded && sensor.status === "suspect" && c !== null && c.side !== null;
+  const tone = excluded || unverified ? "sensor" : value === null ? "neutral" : LEVEL_TONE[c!.level];
   const t = TONES[tone];
   const Icon = VITAL_ICON[vital];
   const stateText = excluded
@@ -91,7 +93,7 @@ function VitalCard({ vital, series }: { vital: VitalKey; series: ChartPoint[] })
       ? "No reading"
       : c!.side === null
         ? "Within demo range"
-        : `${c!.side === "high" ? "Above" : "Below"} demo range`;
+        : `${c!.side === "high" ? "Above" : "Below"} demo range${unverified ? " · unverified" : ""}`;
 
   return (
     <section
@@ -122,7 +124,7 @@ function VitalCard({ vital, series }: { vital: VitalKey; series: ChartPoint[] })
         <Badge tone={SENSOR_TONE[sensor.status]}>Sensor {SENSOR_TEXT[sensor.status]}</Badge>
       </div>
       <div className="-mx-1 mt-3 h-40 min-h-40 flex-1">
-        <VitalChart vital={vital} data={series} excluded={excluded} />
+        <VitalChart vital={vital} data={series} excluded={excluded} suspect={unverified} />
       </div>
       <div className="mt-2">
         <div className="mb-1 flex justify-between text-[11px] text-ink-faint">

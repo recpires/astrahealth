@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/brand/astra-health-logo.png" alt="ASTRA Health logo (AI-generated image)" width="520" />
+</p>
+
 # ASTRA Health — Autonomous Space Health Response Assistant
 
 **Team ANGARIS · NASA Space Apps Challenge 2026**
@@ -109,7 +113,7 @@ flow is tested without a browser. Details: [docs/ARCHITECTURE.md](docs/ARCHITECT
 
 ## Testing
 
-`npm test` runs 51 tests in 5 files:
+`npm test` runs 52 tests in 5 files:
 
 - `tests/scenarios.test.ts` — end-to-end flow of each of the three scenarios through the mission reducer
   (detection, escalation, procedures, confirmation, report, queue states).
@@ -131,8 +135,9 @@ flow is tested without a browser. Details: [docs/ARCHITECTURE.md](docs/ARCHITECT
 ## AI assistance
 
 Code, simulated-data generator, demonstration procedures, UI copy and documentation were produced with the help of an AI
-coding assistant (Claude Code, by Anthropic) from the Team ANGARIS brief, and must be reviewed by the team. No AI model
-runs inside the application. See [AI_DISCLOSURE.md](AI_DISCLOSURE.md).
+coding assistant (Claude Code, by Anthropic) from the Team ANGARIS brief, and must be reviewed by the team. The logo is an
+AI-generated image supplied by the team (labelled as such). No AI model runs inside the application. See
+[AI_DISCLOSURE.md](AI_DISCLOSURE.md).
 
 ## Screenshots (16:9)
 
@@ -142,4 +147,4 @@ runs inside the application. See [AI_DISCLOSURE.md](AI_DISCLOSURE.md).
 | ![](docs/screenshots/04-response-vital-deviation.png) Response — medical support | ![](docs/screenshots/05-earth-link-queue.png) Earth link — queue states |
 | ![](docs/screenshots/09-response-confirmation-request.png) Confirmation request | ![](docs/screenshots/11-monitoring-sensor-excluded.png) Sensor artifact excluded |
 
-All 12 captures (3200 × 1800 px) are in [`docs/screenshots/`](docs/screenshots/).
+All 12 captures (2880 × 1620 px, 1920 × 1080 layout at 1.5×) are in [`docs/screenshots/`](docs/screenshots/).

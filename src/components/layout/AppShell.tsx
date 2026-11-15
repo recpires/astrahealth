@@ -52,7 +52,7 @@ function Header() {
     <header className="sticky top-0 z-30 border-b border-line bg-space-950/90 backdrop-blur">
       <div className="flex flex-wrap items-center gap-x-6 gap-y-2 px-4 py-2.5 lg:px-6">
         <Link href="/" className="flex items-center gap-3" aria-label="ASTRA Health home">
-          <AstraLogo className="h-9 w-9" />
+          <AstraLogo size={44} />
           <div className="leading-tight">
             <p className="text-base font-bold tracking-[0.2em] text-ink">
               ASTRA <span className="text-accent">HEALTH</span>

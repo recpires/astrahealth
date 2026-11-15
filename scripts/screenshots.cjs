@@ -23,7 +23,7 @@ const BASE = process.env.BASE_URL || "http://localhost:3000";
 const OUT = path.join(__dirname, "..", "docs", "screenshots");
 const WIDTH = Number(process.env.SHOT_WIDTH || 1920);
 const HEIGHT = Math.round((WIDTH * 9) / 16);
-const SCALE = Number(process.env.SHOT_SCALE || 1);
+const SCALE = Number(process.env.SHOT_SCALE || 1.5);
 
 async function main() {
   fs.mkdirSync(OUT, { recursive: true });
