@@ -6,7 +6,8 @@
  *   npm run build
  *   npm run test:e2e                 # starts `next start` on a free port, or uses BASE_URL if set
  *
- * Output:
+ * Output (default folder docs/test-results; `--out <dir>` writes the same files to another folder,
+ * e.g. for the regression run of the FUTURE modules):
  *   docs/test-results/e2e-results.json   — every check with expected / observed / status
  *   docs/test-results/e2e/*.png          — screenshot evidence (1440 × 810)
  * Exit code 1 if any check fails. Requires Playwright with Chromium.
@@ -25,7 +26,8 @@ try {
 }
 
 const ROOT = path.join(__dirname, "..");
-const OUT = path.join(ROOT, "docs", "test-results");
+const outArg = process.argv.indexOf("--out");
+const OUT = outArg > 0 && process.argv[outArg + 1] ? path.resolve(ROOT, process.argv[outArg + 1]) : path.join(ROOT, "docs", "test-results");
 const SHOTS = path.join(OUT, "e2e");
 const VIEWPORT = { width: 1440, height: 810 };
 

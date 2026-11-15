@@ -1,0 +1,30 @@
+{
+  "url": "https://humanresearchroadmap.nasa.gov/Risks/",
+  "retrievedOn": "2026-11-15",
+  "sha256": "66a89e50dad13866def9598615cd8f13938a33690ff6eadd90ded307a07e5194",
+  "note": "Risk id → title pairs extracted verbatim (HTML entities decoded, whitespace collapsed) from the official HRR risk index.",
+  "risks": {
+    "77": "Risk of Bone Fracture due to Spaceflight-induced Changes to Bone",
+    "78": "Concern of Intervertebral Disc Damage upon and immediately after re-exposure to Gravity [inactive]",
+    "80": "Risk of Adverse In-Mission and Long-Term Health Effects and Performance Effects Due to Host-Microorganism Interactions",
+    "81": "Risk of Renal Stone Formation",
+    "82": "Risk of Adverse In-Mission Health and Performance Effects and Long-Term Health Effects Due to Celestial Dust Exposure",
+    "84": "Risk of Mission Impacting Injury and Compromised Performance and Long-Term Health Effects due to EVA Operations",
+    "85": "Risk of In Mission Impacts, Adverse Health Events or Long-Term Health Impacts due to Altered Immune Response",
+    "88": "Risk of Altered Sensorimotor/Vestibular Function Impacting Critical Mission Tasks, Human Health, and Long-Term Health",
+    "95": "Risk of Adverse Health Outcomes and Decrements in Performance Due to Medical Conditions that occur in Mission, as well as Long Term Health Outcomes Due to Mission Exposures",
+    "96": "Risk of Radiation Carcinogenesis",
+    "99": "Risk of Adverse Cognitive or Behavioral Changes and Psychiatric Disorders Leading to In-mission Health and Performance and Long-term Health Effects",
+    "100": "Risk of Performance Decrements and Adverse Health Outcomes Resulting from Sleep Loss, Circadian Desynchronization, and Work Overload",
+    "101": "Risk of In-Mission Performance and Behavioral Health Decrements Due to Inadequate Cooperation, Coordination, Communication, and Psychosocial Adaptation within a Team",
+    "105": "Risk of Spaceflight Associated Neuro-ocular Syndrome (SANS)",
+    "167": "Risk of In-Mission Injury and Performance Decrements and Long-term Health Effects due to Dynamic Loads",
+    "168": "Risk of Mission Impacts and Long-Term Health Issues due to Decompression Sickness",
+    "173": "Risk of Reduced Crew Health and Performance Due to Hypoxia",
+    "175": "Risk of Adverse Mission Outcomes Due to Earth Independent Human-Systems Operations",
+    "176": "Risk of Performance Decrement and Crew Illness Due to Inadequate Food and Nutrition",
+    "177": "Risk of Ineffective or Toxic Medications During Long-Duration Exploration Spaceflight",
+    "179": "Risk of Cardiovascular Adaptations Contributing to Adverse Mission Performance and Health Outcomes",
+    "180": "Risk of Mission Performance Decrements and Adverse Health Outcomes Resulting from Reduced Cardiorespiratory and Musculoskeletal Fitness"
+  }
+}

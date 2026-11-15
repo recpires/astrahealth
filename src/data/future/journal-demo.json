@@ -1,0 +1,1138 @@
+{
+  "generatedBy": "scripts/generate-future-demo.mjs",
+  "seed": 20261115,
+  "simulated": true,
+  "disclaimer": "Demonstration data generated for the ASTRA Health prototype. Not real crew data.",
+  "schemaVersion": 1,
+  "checkIns": [
+    {
+      "id": "SEED-CI-001",
+      "crewId": "crew-a",
+      "at": {
+        "day": 1,
+        "minute": 509
+      },
+      "sleepHours": 6.9,
+      "sleepQuality": 5,
+      "mood": 3,
+      "fatigue": 1,
+      "hydration": 4,
+      "fluidIntakeL": 2.1,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-002",
+      "crewId": "crew-b",
+      "at": {
+        "day": 1,
+        "minute": 505
+      },
+      "sleepHours": 7.7,
+      "sleepQuality": 5,
+      "mood": 3,
+      "fatigue": 3,
+      "hydration": 5,
+      "fluidIntakeL": 2.4,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-003",
+      "crewId": "crew-c",
+      "at": {
+        "day": 1,
+        "minute": 504
+      },
+      "sleepHours": 6.8,
+      "sleepQuality": 5,
+      "mood": 4,
+      "fatigue": 2,
+      "hydration": 4,
+      "fluidIntakeL": 2.4,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-004",
+      "crewId": "crew-d",
+      "at": {
+        "day": 1,
+        "minute": 464
+      },
+      "sleepHours": 6.6,
+      "sleepQuality": 3,
+      "mood": 5,
+      "fatigue": 1,
+      "hydration": 3,
+      "fluidIntakeL": 2,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-005",
+      "crewId": "crew-a",
+      "at": {
+        "day": 2,
+        "minute": 471
+      },
+      "sleepHours": 7.2,
+      "sleepQuality": 4,
+      "mood": 5,
+      "fatigue": 2,
+      "hydration": 4,
+      "fluidIntakeL": 2,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-006",
+      "crewId": "crew-b",
+      "at": {
+        "day": 2,
+        "minute": 508
+      },
+      "sleepHours": 7.7,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 3,
+      "hydration": 4,
+      "fluidIntakeL": 2.2,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-007",
+      "crewId": "crew-c",
+      "at": {
+        "day": 2,
+        "minute": 473
+      },
+      "sleepHours": 7.1,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 3,
+      "hydration": 5,
+      "fluidIntakeL": 2.1,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-008",
+      "crewId": "crew-d",
+      "at": {
+        "day": 2,
+        "minute": 468
+      },
+      "sleepHours": 7.2,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 1,
+      "hydration": 4,
+      "fluidIntakeL": 2.6,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-009",
+      "crewId": "crew-a",
+      "at": {
+        "day": 3,
+        "minute": 481
+      },
+      "sleepHours": 7.6,
+      "sleepQuality": 5,
+      "mood": 4,
+      "fatigue": 2,
+      "hydration": 5,
+      "fluidIntakeL": 2.7,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-010",
+      "crewId": "crew-b",
+      "at": {
+        "day": 3,
+        "minute": 496
+      },
+      "sleepHours": 7.5,
+      "sleepQuality": 5,
+      "mood": 4,
+      "fatigue": 1,
+      "hydration": 5,
+      "fluidIntakeL": 2.6,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-011",
+      "crewId": "crew-c",
+      "at": {
+        "day": 3,
+        "minute": 455
+      },
+      "sleepHours": 7.7,
+      "sleepQuality": 4,
+      "mood": 5,
+      "fatigue": 2,
+      "hydration": 3,
+      "fluidIntakeL": 2.4,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-012",
+      "crewId": "crew-d",
+      "at": {
+        "day": 3,
+        "minute": 500
+      },
+      "sleepHours": 7.6,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 3,
+      "hydration": 3,
+      "fluidIntakeL": 2.3,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-013",
+      "crewId": "crew-a",
+      "at": {
+        "day": 4,
+        "minute": 487
+      },
+      "sleepHours": 6.9,
+      "sleepQuality": 5,
+      "mood": 4,
+      "fatigue": 2,
+      "hydration": 4,
+      "fluidIntakeL": 2.6,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-014",
+      "crewId": "crew-b",
+      "at": {
+        "day": 4,
+        "minute": 458
+      },
+      "sleepHours": 6.8,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 3,
+      "hydration": 4,
+      "fluidIntakeL": 2.7,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-015",
+      "crewId": "crew-c",
+      "at": {
+        "day": 4,
+        "minute": 465
+      },
+      "sleepHours": 7.2,
+      "sleepQuality": 4,
+      "mood": 5,
+      "fatigue": 2,
+      "hydration": 3,
+      "fluidIntakeL": 2.8,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-016",
+      "crewId": "crew-d",
+      "at": {
+        "day": 4,
+        "minute": 460
+      },
+      "sleepHours": 7.3,
+      "sleepQuality": 3,
+      "mood": 5,
+      "fatigue": 3,
+      "hydration": 3,
+      "fluidIntakeL": 2.4,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-017",
+      "crewId": "crew-a",
+      "at": {
+        "day": 5,
+        "minute": 472
+      },
+      "sleepHours": 6.8,
+      "sleepQuality": 3,
+      "mood": 4,
+      "fatigue": 1,
+      "hydration": 5,
+      "fluidIntakeL": 2.4,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-018",
+      "crewId": "crew-b",
+      "at": {
+        "day": 5,
+        "minute": 459
+      },
+      "sleepHours": 7.1,
+      "sleepQuality": 5,
+      "mood": 4,
+      "fatigue": 1,
+      "hydration": 4,
+      "fluidIntakeL": 2.8,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-019",
+      "crewId": "crew-c",
+      "at": {
+        "day": 5,
+        "minute": 459
+      },
+      "sleepHours": 6.9,
+      "sleepQuality": 5,
+      "mood": 4,
+      "fatigue": 1,
+      "hydration": 4,
+      "fluidIntakeL": 2.2,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-020",
+      "crewId": "crew-d",
+      "at": {
+        "day": 5,
+        "minute": 493
+      },
+      "sleepHours": 7.2,
+      "sleepQuality": 4,
+      "mood": 5,
+      "fatigue": 1,
+      "hydration": 3,
+      "fluidIntakeL": 2.1,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-021",
+      "crewId": "crew-a",
+      "at": {
+        "day": 6,
+        "minute": 489
+      },
+      "sleepHours": 6.8,
+      "sleepQuality": 3,
+      "mood": 5,
+      "fatigue": 1,
+      "hydration": 4,
+      "fluidIntakeL": 2.5,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-022",
+      "crewId": "crew-b",
+      "at": {
+        "day": 6,
+        "minute": 458
+      },
+      "sleepHours": 7.7,
+      "sleepQuality": 3,
+      "mood": 5,
+      "fatigue": 3,
+      "hydration": 3,
+      "fluidIntakeL": 2.5,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-023",
+      "crewId": "crew-c",
+      "at": {
+        "day": 6,
+        "minute": 497
+      },
+      "sleepHours": 7.7,
+      "sleepQuality": 4,
+      "mood": 3,
+      "fatigue": 2,
+      "hydration": 4,
+      "fluidIntakeL": 2.3,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-024",
+      "crewId": "crew-d",
+      "at": {
+        "day": 6,
+        "minute": 497
+      },
+      "sleepHours": 6.8,
+      "sleepQuality": 4,
+      "mood": 3,
+      "fatigue": 1,
+      "hydration": 5,
+      "fluidIntakeL": 2.1,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-025",
+      "crewId": "crew-a",
+      "at": {
+        "day": 7,
+        "minute": 482
+      },
+      "sleepHours": 7.2,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 3,
+      "hydration": 3,
+      "fluidIntakeL": 2.2,
+      "symptoms": [
+        "back-pain"
+      ],
+      "notes": "Mild back ache after exercise session.",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-026",
+      "crewId": "crew-b",
+      "at": {
+        "day": 7,
+        "minute": 493
+      },
+      "sleepHours": 7,
+      "sleepQuality": 3,
+      "mood": 3,
+      "fatigue": 1,
+      "hydration": 3,
+      "fluidIntakeL": 2.2,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-027",
+      "crewId": "crew-c",
+      "at": {
+        "day": 7,
+        "minute": 482
+      },
+      "sleepHours": 7.2,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 1,
+      "hydration": 3,
+      "fluidIntakeL": 2.5,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-028",
+      "crewId": "crew-d",
+      "at": {
+        "day": 7,
+        "minute": 506
+      },
+      "sleepHours": 7.2,
+      "sleepQuality": 4,
+      "mood": 5,
+      "fatigue": 2,
+      "hydration": 4,
+      "fluidIntakeL": 2,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-029",
+      "crewId": "crew-a",
+      "at": {
+        "day": 8,
+        "minute": 461
+      },
+      "sleepHours": 6.9,
+      "sleepQuality": 5,
+      "mood": 4,
+      "fatigue": 2,
+      "hydration": 4,
+      "fluidIntakeL": 2.3,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-030",
+      "crewId": "crew-b",
+      "at": {
+        "day": 8,
+        "minute": 500
+      },
+      "sleepHours": 6.8,
+      "sleepQuality": 4,
+      "mood": 5,
+      "fatigue": 3,
+      "hydration": 5,
+      "fluidIntakeL": 2.1,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-031",
+      "crewId": "crew-c",
+      "at": {
+        "day": 8,
+        "minute": 499
+      },
+      "sleepHours": 6.9,
+      "sleepQuality": 4,
+      "mood": 3,
+      "fatigue": 2,
+      "hydration": 4,
+      "fluidIntakeL": 2.4,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-032",
+      "crewId": "crew-d",
+      "at": {
+        "day": 8,
+        "minute": 493
+      },
+      "sleepHours": 6.7,
+      "sleepQuality": 4,
+      "mood": 5,
+      "fatigue": 2,
+      "hydration": 5,
+      "fluidIntakeL": 2,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-033",
+      "crewId": "crew-a",
+      "at": {
+        "day": 9,
+        "minute": 487
+      },
+      "sleepHours": 6.6,
+      "sleepQuality": 3,
+      "mood": 4,
+      "fatigue": 2,
+      "hydration": 3,
+      "fluidIntakeL": 2.1,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-034",
+      "crewId": "crew-b",
+      "at": {
+        "day": 9,
+        "minute": 453
+      },
+      "sleepHours": 7.1,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 1,
+      "hydration": 4,
+      "fluidIntakeL": 2.6,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-035",
+      "crewId": "crew-c",
+      "at": {
+        "day": 9,
+        "minute": 489
+      },
+      "sleepHours": 7.3,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 1,
+      "hydration": 5,
+      "fluidIntakeL": 2.5,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-036",
+      "crewId": "crew-d",
+      "at": {
+        "day": 9,
+        "minute": 488
+      },
+      "sleepHours": 7.6,
+      "sleepQuality": 3,
+      "mood": 3,
+      "fatigue": 1,
+      "hydration": 4,
+      "fluidIntakeL": 2.1,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-037",
+      "crewId": "crew-a",
+      "at": {
+        "day": 10,
+        "minute": 480
+      },
+      "sleepHours": 7.3,
+      "sleepQuality": 4,
+      "mood": 3,
+      "fatigue": 3,
+      "hydration": 5,
+      "fluidIntakeL": 2.7,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-038",
+      "crewId": "crew-b",
+      "at": {
+        "day": 10,
+        "minute": 450
+      },
+      "sleepHours": 5,
+      "sleepQuality": 2,
+      "mood": 3,
+      "fatigue": 4,
+      "hydration": 4,
+      "fluidIntakeL": 2,
+      "symptoms": [],
+      "notes": "Late payload operations.",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-039",
+      "crewId": "crew-c",
+      "at": {
+        "day": 10,
+        "minute": 461
+      },
+      "sleepHours": 7.7,
+      "sleepQuality": 3,
+      "mood": 5,
+      "fatigue": 2,
+      "hydration": 4,
+      "fluidIntakeL": 2.6,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-040",
+      "crewId": "crew-d",
+      "at": {
+        "day": 10,
+        "minute": 470
+      },
+      "sleepHours": 7.2,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 3,
+      "hydration": 4,
+      "fluidIntakeL": 2.3,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-041",
+      "crewId": "crew-a",
+      "at": {
+        "day": 11,
+        "minute": 466
+      },
+      "sleepHours": 6.9,
+      "sleepQuality": 3,
+      "mood": 4,
+      "fatigue": 2,
+      "hydration": 4,
+      "fluidIntakeL": 2.7,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-042",
+      "crewId": "crew-b",
+      "at": {
+        "day": 11,
+        "minute": 450
+      },
+      "sleepHours": 5.4,
+      "sleepQuality": 2,
+      "mood": 3,
+      "fatigue": 4,
+      "hydration": 4,
+      "fluidIntakeL": 2.4,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-043",
+      "crewId": "crew-c",
+      "at": {
+        "day": 11,
+        "minute": 462
+      },
+      "sleepHours": 7.3,
+      "sleepQuality": 3,
+      "mood": 4,
+      "fatigue": 2,
+      "hydration": 3,
+      "fluidIntakeL": 2.3,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-044",
+      "crewId": "crew-d",
+      "at": {
+        "day": 11,
+        "minute": 494
+      },
+      "sleepHours": 6.7,
+      "sleepQuality": 3,
+      "mood": 5,
+      "fatigue": 3,
+      "hydration": 3,
+      "fluidIntakeL": 2.1,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-045",
+      "crewId": "crew-a",
+      "at": {
+        "day": 12,
+        "minute": 480
+      },
+      "sleepHours": 7.6,
+      "sleepQuality": 4,
+      "mood": 3,
+      "fatigue": 3,
+      "hydration": 3,
+      "fluidIntakeL": 2.1,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-046",
+      "crewId": "crew-b",
+      "at": {
+        "day": 12,
+        "minute": 481
+      },
+      "sleepHours": 5.2,
+      "sleepQuality": 2,
+      "mood": 3,
+      "fatigue": 5,
+      "hydration": 5,
+      "fluidIntakeL": 2.2,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-047",
+      "crewId": "crew-c",
+      "at": {
+        "day": 12,
+        "minute": 500
+      },
+      "sleepHours": 7.4,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 3,
+      "hydration": 5,
+      "fluidIntakeL": 2.4,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-048",
+      "crewId": "crew-a",
+      "at": {
+        "day": 13,
+        "minute": 454
+      },
+      "sleepHours": 7.2,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 2,
+      "hydration": 4,
+      "fluidIntakeL": 2.4,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-049",
+      "crewId": "crew-b",
+      "at": {
+        "day": 13,
+        "minute": 479
+      },
+      "sleepHours": 5.3,
+      "sleepQuality": 2,
+      "mood": 3,
+      "fatigue": 5,
+      "hydration": 4,
+      "fluidIntakeL": 2.1,
+      "symptoms": [
+        "trouble-sleeping"
+      ],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-050",
+      "crewId": "crew-c",
+      "at": {
+        "day": 13,
+        "minute": 466
+      },
+      "sleepHours": 7.6,
+      "sleepQuality": 3,
+      "mood": 5,
+      "fatigue": 2,
+      "hydration": 2,
+      "fluidIntakeL": 1.5,
+      "symptoms": [
+        "headache"
+      ],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-051",
+      "crewId": "crew-d",
+      "at": {
+        "day": 13,
+        "minute": 465
+      },
+      "sleepHours": 7.2,
+      "sleepQuality": 5,
+      "mood": 5,
+      "fatigue": 3,
+      "hydration": 3,
+      "fluidIntakeL": 2.6,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-052",
+      "crewId": "crew-a",
+      "at": {
+        "day": 14,
+        "minute": 509
+      },
+      "sleepHours": 7.1,
+      "sleepQuality": 3,
+      "mood": 3,
+      "fatigue": 2,
+      "hydration": 4,
+      "fluidIntakeL": 2.4,
+      "symptoms": [],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-053",
+      "crewId": "crew-b",
+      "at": {
+        "day": 14,
+        "minute": 474
+      },
+      "sleepHours": 5.4,
+      "sleepQuality": 2,
+      "mood": 3,
+      "fatigue": 5,
+      "hydration": 4,
+      "fluidIntakeL": 2.3,
+      "symptoms": [
+        "trouble-sleeping"
+      ],
+      "notes": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-CI-054",
+      "crewId": "crew-c",
+      "at": {
+        "day": 14,
+        "minute": 481
+      },
+      "sleepHours": 7.5,
+      "sleepQuality": 4,
+      "mood": 4,
+      "fatigue": 2,
+      "hydration": 2,
+      "fluidIntakeL": 1.2,
+      "symptoms": [
+        "headache",
+        "congestion"
+      ],
+      "notes": "Headache in the morning.",
+      "source": "demo-seed"
+    }
+  ],
+  "completions": [
+    {
+      "id": "SEED-RC-001",
+      "routineId": "body-mass",
+      "crewId": "crew-a",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-002",
+      "routineId": "body-mass",
+      "crewId": "crew-a",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-003",
+      "routineId": "body-mass",
+      "crewId": "crew-b",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-004",
+      "routineId": "body-mass",
+      "crewId": "crew-b",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-005",
+      "routineId": "body-mass",
+      "crewId": "crew-c",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-006",
+      "routineId": "body-mass",
+      "crewId": "crew-c",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-007",
+      "routineId": "body-mass",
+      "crewId": "crew-d",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-008",
+      "routineId": "blood-pressure",
+      "crewId": "crew-a",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-009",
+      "routineId": "blood-pressure",
+      "crewId": "crew-a",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-010",
+      "routineId": "blood-pressure",
+      "crewId": "crew-b",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-011",
+      "routineId": "blood-pressure",
+      "crewId": "crew-b",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-012",
+      "routineId": "blood-pressure",
+      "crewId": "crew-c",
+      "at": {
+        "day": 3,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-013",
+      "routineId": "blood-pressure",
+      "crewId": "crew-d",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-014",
+      "routineId": "blood-pressure",
+      "crewId": "crew-d",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-015",
+      "routineId": "vision-check",
+      "crewId": "crew-a",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-016",
+      "routineId": "vision-check",
+      "crewId": "crew-b",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-017",
+      "routineId": "vision-check",
+      "crewId": "crew-c",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-RC-018",
+      "routineId": "vision-check",
+      "crewId": "crew-d",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "note": "Value recorded in the Space Health Profile (FUTURE 03).",
+      "source": "demo-seed"
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "generatedBy": "scripts/generate-future-demo.mjs",
+  "seed": 20261115,
+  "simulated": true,
+  "disclaimer": "Demonstration data generated for the ASTRA Health prototype. Not real crew data.",
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "SEED-ME-001",
+      "metricId": "body-mass",
+      "crewId": "crew-a",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 78.4,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-002",
+      "metricId": "body-mass",
+      "crewId": "crew-a",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "value": 77.9,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-003",
+      "metricId": "bp-systolic",
+      "crewId": "crew-a",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 118,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-004",
+      "metricId": "bp-diastolic",
+      "crewId": "crew-a",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 76,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-005",
+      "metricId": "bp-systolic",
+      "crewId": "crew-a",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "value": 116,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-006",
+      "metricId": "bp-diastolic",
+      "crewId": "crew-a",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "value": 75,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-007",
+      "metricId": "visual-acuity",
+      "crewId": "crew-a",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 1,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-008",
+      "metricId": "body-mass",
+      "crewId": "crew-b",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 64.2,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-009",
+      "metricId": "body-mass",
+      "crewId": "crew-b",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "value": 63.8,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-010",
+      "metricId": "bp-systolic",
+      "crewId": "crew-b",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 112,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-011",
+      "metricId": "bp-diastolic",
+      "crewId": "crew-b",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 72,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-012",
+      "metricId": "bp-systolic",
+      "crewId": "crew-b",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "value": 110,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-013",
+      "metricId": "bp-diastolic",
+      "crewId": "crew-b",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "value": 71,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-014",
+      "metricId": "visual-acuity",
+      "crewId": "crew-b",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 1,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-015",
+      "metricId": "body-mass",
+      "crewId": "crew-c",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 71,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-016",
+      "metricId": "body-mass",
+      "crewId": "crew-c",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "value": 70.8,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-017",
+      "metricId": "bp-systolic",
+      "crewId": "crew-c",
+      "at": {
+        "day": 3,
+        "minute": 540
+      },
+      "value": 121,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-018",
+      "metricId": "bp-diastolic",
+      "crewId": "crew-c",
+      "at": {
+        "day": 3,
+        "minute": 540
+      },
+      "value": 80,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-019",
+      "metricId": "visual-acuity",
+      "crewId": "crew-c",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 1,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-020",
+      "metricId": "body-mass",
+      "crewId": "crew-d",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 85.3,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-021",
+      "metricId": "bp-systolic",
+      "crewId": "crew-d",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 124,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-022",
+      "metricId": "bp-diastolic",
+      "crewId": "crew-d",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 80,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-023",
+      "metricId": "bp-systolic",
+      "crewId": "crew-d",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "value": 123,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-024",
+      "metricId": "bp-diastolic",
+      "crewId": "crew-d",
+      "at": {
+        "day": 8,
+        "minute": 540
+      },
+      "value": 81,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    },
+    {
+      "id": "SEED-ME-025",
+      "metricId": "visual-acuity",
+      "crewId": "crew-d",
+      "at": {
+        "day": 1,
+        "minute": 540
+      },
+      "value": 1,
+      "quality": "good",
+      "note": "",
+      "source": "demo-seed"
+    }
+  ]
+}

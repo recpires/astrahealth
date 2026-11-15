@@ -1,0 +1,84 @@
+{
+  "id": "ASTRA-EVA",
+  "version": "0.1.0-demo",
+  "status": "PROVISIONAL",
+  "provenance": "Demonstration checklists and response steps written by Team ANGARIS for the prototype. They are not NASA EVA procedures and are not validated. Every interval is a demonstration value. The system only proposes; the commander decides and every decision is logged.",
+  "refIds": ["hrr-84", "hrr-168", "hrr-173"],
+  "equipment": [
+    { "id": "suit-telemetry", "label": "Suit biomedical telemetry" },
+    { "id": "voice-loop", "label": "EVA voice loop" },
+    { "id": "pulse-oximeter", "label": "Handheld pulse oximeter" },
+    { "id": "suit-pressure", "label": "Suit pressure readout" }
+  ],
+  "checklists": {
+    "pre": [
+      { "id": "PRE-01", "text": "Daily check-in completed today by every EVA crew member (FUTURE 01).", "auto": "checkin-today" },
+      { "id": "PRE-02", "text": "No symptom assessment is holding EVA participation for an EVA crew member (FUTURE 02).", "auto": "no-eva-hold" },
+      { "id": "PRE-03", "text": "Vital-sign check taken and reviewed for each EVA crew member." },
+      { "id": "PRE-04", "text": "Suit biomedical telemetry link tested with the intravehicular (IV) crew member.", "requires": "suit-telemetry", "alternative": "Telemetry unavailable: agree verbal status calls every 10 minutes (demonstration interval)." },
+      { "id": "PRE-05", "text": "Voice loop check with the IV crew member.", "requires": "voice-loop", "alternative": "Voice loop unavailable: agree hand signals and buddy checks; the commander decides whether the EVA can proceed." },
+      { "id": "PRE-06", "text": "Suit pressure readout checked.", "requires": "suit-pressure", "alternative": "Pressure readout unavailable: record that this check could not be done; the commander decides." },
+      { "id": "PRE-07", "text": "Earth Link status noted. If the link is lost, the EVA runs under the autonomous protocol and every decision is logged on board.", "auto": "link-noted" }
+    ],
+    "during": [
+      { "id": "DUR-01", "text": "Status call at each task milestone." },
+      { "id": "DUR-02", "text": "IV crew member watches suit biomedical telemetry.", "requires": "suit-telemetry", "alternative": "Telemetry unavailable: verbal status call every 10 minutes (demonstration interval)." },
+      { "id": "DUR-03", "text": "Any symptom reported by an EVA crew member is logged with the event buttons below." }
+    ],
+    "post": [
+      { "id": "POST-01", "text": "Post-EVA symptom check for each EVA crew member (journal check-in or symptom assessment)." },
+      { "id": "POST-02", "text": "Vital-sign check after suit removal.", "requires": "pulse-oximeter", "alternative": "Pulse oximeter unavailable: ask the symptom questions and record that vital signs were not measured." },
+      { "id": "POST-03", "text": "EVA log queued to Earth (sent automatically when the link is available).", "auto": "log-queued" }
+    ]
+  },
+  "events": [
+    {
+      "id": "EV-UNWELL",
+      "label": "EVA crew member reports feeling unwell",
+      "priority": "urgent",
+      "proposal": "terminate",
+      "steps": [
+        { "id": "U1", "text": "Pause the current task and secure position (crew judgement)." },
+        { "id": "U2", "text": "Ask the crew member to describe the symptoms; the IV crew member logs the answers." },
+        { "id": "U3", "text": "IV crew member reviews suit biomedical telemetry.", "requires": "suit-telemetry", "alternative": "Telemetry unavailable: verbal status every 2 minutes (demonstration interval)." },
+        { "id": "U4", "text": "Commander decides: continue, or end the EVA and return to the airlock." },
+        { "id": "U5", "text": "Urgent report queued to the ground medical team (sent when the link is available). Do not wait for the reply to act." }
+      ]
+    },
+    {
+      "id": "EV-TELEMETRY-LOST",
+      "label": "Suit biomedical telemetry lost",
+      "priority": "priority",
+      "proposal": "continue",
+      "sets": { "suit-telemetry": false },
+      "steps": [
+        { "id": "T1", "text": "Switch to verbal status checks every 5 minutes (demonstration interval)." },
+        { "id": "T2", "text": "Record the time telemetry was lost." },
+        { "id": "T3", "text": "Commander decides whether the EVA continues." }
+      ]
+    },
+    {
+      "id": "EV-VOICE-LOST",
+      "label": "Voice loop lost",
+      "priority": "priority",
+      "proposal": "terminate",
+      "sets": { "voice-loop": false },
+      "steps": [
+        { "id": "V1", "text": "Use the agreed hand signals and buddy checks." },
+        { "id": "V2", "text": "Both EVA crew members move to a safe position in sight of each other." },
+        { "id": "V3", "text": "Commander decides whether to end the EVA." }
+      ]
+    },
+    {
+      "id": "EV-LINK-LOST",
+      "label": "Earth link lost during EVA",
+      "priority": "routine",
+      "proposal": "continue",
+      "link": false,
+      "steps": [
+        { "id": "L1", "text": "Continue under the autonomous protocol: decisions are taken on board and logged." },
+        { "id": "L2", "text": "Reports stay queued and are sent in priority order when the link returns." }
+      ]
+    }
+  ]
+}

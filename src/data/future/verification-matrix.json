@@ -1,0 +1,48 @@
+{
+  "description": "How each completion criterion of the FUTURE roadmap is verified. Commands are run before every merge; results are written to docs/test-results/future/.",
+  "criteria": [
+    {
+      "id": "C1",
+      "criterion": "The existing 77 tests still pass.",
+      "how": "npm test runs the original suites unchanged (tests/acceptance, tests/*.test.ts, tests/ui/*) together with the new tests/future suites.",
+      "criterion_pt": "Os 77 testes existentes continuam passando.",
+      "how_pt": "npm test executa as suítes originais sem alteração (tests/acceptance, tests/*.test.ts, tests/ui/*) junto com as novas suítes tests/future."
+    },
+    {
+      "id": "C2",
+      "criterion": "The three original scenarios still work.",
+      "how": "tests/acceptance/scenarios.acceptance.test.ts (17 cases) and the browser run scripts/e2e-scenarios.cjs (14 checks) against the production build.",
+      "criterion_pt": "Os três cenários originais continuam funcionando.",
+      "how_pt": "tests/acceptance/scenarios.acceptance.test.ts (17 casos) e a execução no navegador scripts/e2e-scenarios.cjs (14 verificações) contra o build de produção."
+    },
+    {
+      "id": "C3",
+      "criterion": "Each new module has unit, integration and end-to-end tests.",
+      "how": "Unit: tests/future/{platform,journal,assess,profile,eva,readiness,references}.test.ts · Integration: tests/future/integration.test.ts · Interface: tests/future/ui.test.tsx · End-to-end in the browser: scripts/e2e-future.cjs (F01–F05).",
+      "criterion_pt": "Cada módulo novo tem testes unitários, de integração e ponta a ponta.",
+      "how_pt": "Unitários: tests/future/{platform,journal,assess,profile,eva,readiness,references}.test.ts · Integração: tests/future/integration.test.ts · Interface: tests/future/ui.test.tsx · Ponta a ponta no navegador: scripts/e2e-future.cjs (F01–F05)."
+    },
+    {
+      "id": "C4",
+      "criterion": "No clinical guidance is presented as validated.",
+      "how": "Every rule set and protocol is PROVISIONAL (check V-NOT-VALIDATED); tests reject diagnostic, medication and treatment wording in all rule sets and protocols.",
+      "criterion_pt": "Nenhuma orientação clínica é apresentada como validada.",
+      "how_pt": "Todo conjunto de regras e protocolo é PROVISIONAL (verificação V-NOT-VALIDATED); os testes rejeitam termos de diagnóstico, medicamento e tratamento em todas as regras e protocolos."
+    },
+    {
+      "id": "C5",
+      "criterion": "The system works with local sources during a communication loss.",
+      "how": "Integration tests run every module with the Earth link lost and check priority-ordered sync on restore; the browser test cuts the network (offline mode) and keeps working, then reloads and finds the records on the device.",
+      "criterion_pt": "O sistema funciona com fontes locais durante a perda de comunicação.",
+      "how_pt": "Testes de integração executam todos os módulos com o link com a Terra perdido e verificam a sincronização por prioridade ao restabelecer; o teste no navegador corta a rede (modo offline) e continua funcionando, depois recarrega e encontra os registros no dispositivo."
+    },
+    {
+      "id": "C6",
+      "criterion": "Every decision, piece of evidence and action is traceable.",
+      "how": "Each record is written to a checksum-chained audit trail with rule set / protocol version, matched rules, evidence ids and input checksum; tests verify the chain and detect tampering; the trail can be exported as JSON.",
+      "criterion_pt": "Toda decisão, evidência e ação é rastreável.",
+      "how_pt": "Cada registro entra numa trilha de auditoria encadeada por checksum, com versão do conjunto de regras / protocolo, regras acionadas, ids de evidência e checksum das entradas; os testes verificam a cadeia e detectam adulteração; a trilha pode ser exportada em JSON."
+    }
+  ],
+  "description_pt": "Como cada critério de conclusão do roteiro FUTURE é verificado. Os comandos são executados antes de cada merge; os resultados ficam em docs/test-results/future/."
+}

@@ -72,3 +72,11 @@ ASTRA Health is a **hackathon demonstration prototype**. Read this before presen
 3. Thresholds and rules are updated from the resource, `REFERENCE_CONFIG.status` is set to `CONFIRMED` with a precise
    `provenance`, and the tests are updated accordingly.
 4. Any remaining value not supported by the resource stays labelled as provisional.
+
+## FUTURE modules (platform preview)
+
+- The journal rules (`ASTRA-JOURNAL@0.1.0-demo`), symptom rule set (`ASTRA-SYM@0.1.0-demo`), health-profile definitions and EVA protocol (`ASTRA-EVA@0.1.0-demo`) are demonstration content written by the team. They are marked PROVISIONAL, are not NASA procedures and are not clinically validated. Every threshold and interval in them is a demonstration value.
+- The symptom engine proposes next steps and when to contact medical support; it never names a condition, a medication or a treatment, always states its uncertainty, and every proposal needs a human decision.
+- The Space Health Profile never simulates or estimates values that need equipment the demo does not have (e.g. intracranial pressure, bone mineral density, kidney imaging); it shows the exam required and "no data". Equipment availability is a demonstration assumption.
+- 15 official NASA Human Research Roadmap risks are referenced by title and link (checked against the official index). Only the three covered by the verified evidence library are quoted; the others are reference-only. Which risk is shown for a symptom, domain or EVA step was chosen by the team and is not a NASA statement.
+- All crew data in these modules are simulated (demo seed) or typed in during the demo. Details: [docs/future/README.md](future/README.md).

@@ -1,0 +1,62 @@
+{
+  "id": "ASTRA-SYM",
+  "version": "0.1.0-demo",
+  "status": "PROVISIONAL",
+  "provenance": "Demonstration rules written by Team ANGARIS for the ASTRA Health prototype. They are not clinical criteria, not a NASA protocol and not validated. They only decide which predefined next steps are proposed and when contact with medical support is suggested. They never name a condition, a medication or a treatment.",
+  "levels": [
+    { "id": "monitor", "rank": 0, "label": "Monitor", "text": "Log the symptom and keep monitoring." },
+    { "id": "inform-cmo", "rank": 1, "label": "Inform crew medical officer", "text": "The crew medical officer should review this." },
+    { "id": "support-recommended", "rank": 2, "label": "Medical support recommended", "text": "Contact with the ground medical team is recommended." },
+    { "id": "support-now", "rank": 3, "label": "Medical support now", "text": "Contact the ground medical team now." }
+  ],
+  "warningSigns": [
+    { "id": "fainting", "label": "Fainted or nearly fainted" },
+    { "id": "chest-discomfort", "label": "Chest pain or pressure" },
+    { "id": "breathing", "label": "Hard to breathe at rest" },
+    { "id": "confusion", "label": "Confusion, trouble speaking or unusual drowsiness" },
+    { "id": "one-side-weakness", "label": "Sudden weakness or numbness on one side of the body" },
+    { "id": "sudden-vision-loss", "label": "Sudden loss of vision" },
+    { "id": "worst-headache", "label": "Sudden, very severe headache" }
+  ],
+  "steps": [
+    { "id": "LOG", "text": "Record the symptom in today's journal check-in (FUTURE 01)." },
+    { "id": "REASSESS", "text": "Repeat this assessment within 12 hours (demonstration interval), or sooner if anything changes." },
+    { "id": "REASSESS-SOON", "text": "Repeat this assessment within 2 hours (demonstration interval)." },
+    { "id": "VITALS", "text": "Take a vital-sign check (heart rate, SpO₂, temperature) and review it on the Monitoring screen." },
+    { "id": "CMO", "text": "Inform the crew medical officer." },
+    { "id": "OBSERVE", "text": "Keep the crew member accompanied until the crew medical officer has reviewed the situation." },
+    { "id": "EARTH-PRIORITY", "text": "Queue a PRIORITY report to the ground medical team (Earth Link)." },
+    { "id": "EARTH-URGENT", "text": "Queue an URGENT report to the ground medical team now. The crew medical officer reviews without waiting for the reply." },
+    { "id": "NO-EVA", "text": "Hold EVA participation for this crew member until reviewed (checked by FUTURE 04)." },
+    { "id": "VISION-CHECK", "text": "Do the visual acuity self-check and record the result (FUTURE 03)." },
+    { "id": "TREND-REVIEW", "text": "Review the journal trend for this symptom with the crew medical officer." }
+  ],
+  "rules": [
+    { "id": "SYM-R00", "description": "Every reported symptom is logged and reassessed.", "all": [], "level": "monitor", "steps": ["LOG", "REASSESS"] },
+    { "id": "SYM-R01", "description": "At least one warning sign is present.", "all": [{ "field": "warningSigns", "nonEmpty": true }], "level": "support-now", "steps": ["CMO", "OBSERVE", "EARTH-URGENT", "NO-EVA", "VITALS"] },
+    { "id": "SYM-R02", "description": "The crew member rates the symptom as severe.", "all": [{ "field": "severity", "in": ["severe"] }], "level": "support-recommended", "steps": ["CMO", "VITALS", "EARTH-PRIORITY", "NO-EVA", "REASSESS-SOON"] },
+    { "id": "SYM-R03", "description": "The crew member cannot perform their duties.", "all": [{ "field": "canPerformDuties", "equals": false }], "level": "support-recommended", "steps": ["CMO", "EARTH-PRIORITY", "NO-EVA"] },
+    { "id": "SYM-R04", "description": "Any change in vision is reported.", "all": [{ "field": "symptom", "in": ["vision-change"] }], "level": "support-recommended", "steps": ["VISION-CHECK", "CMO", "EARTH-PRIORITY"] },
+    { "id": "SYM-R05", "description": "The symptom is getting worse.", "all": [{ "field": "trend", "in": ["worsening"] }], "level": "inform-cmo", "steps": ["CMO", "VITALS", "REASSESS-SOON"] },
+    { "id": "SYM-R06", "description": "The symptom is rated moderate.", "all": [{ "field": "severity", "in": ["moderate"] }], "level": "inform-cmo", "steps": ["CMO", "VITALS"] },
+    { "id": "SYM-R07", "description": "The symptom has lasted 48 hours or more (demonstration threshold).", "all": [{ "field": "durationHours", "gte": 48 }], "level": "inform-cmo", "steps": ["CMO", "TREND-REVIEW"] },
+    { "id": "SYM-R08", "description": "The same symptom appears in the journal on 3 or more of the last 7 days (demonstration threshold).", "all": [{ "field": "journalDays", "gte": 3 }], "level": "inform-cmo", "steps": ["CMO", "TREND-REVIEW"] },
+    { "id": "SYM-R09", "description": "Dizziness or nausea is reported.", "all": [{ "field": "symptom", "in": ["dizziness", "nausea"] }], "level": "monitor", "steps": ["VITALS"] }
+  ],
+  "evidenceMap": {
+    "note": "Which official HRP risks are shown as scientific context for each symptom. The association was chosen by Team ANGARIS; it is not a NASA statement and not a diagnosis.",
+    "always": ["hrr-95", "hrr-175"],
+    "bySymptom": {
+      "headache": [],
+      "nausea": ["hrr-88"],
+      "back-pain": ["hrr-180"],
+      "congestion": ["hrr-85"],
+      "vision-change": ["hrr-105"],
+      "dizziness": ["hrr-179", "hrr-88"],
+      "skin-irritation": ["hrr-85"],
+      "muscle-soreness": ["hrr-180"],
+      "trouble-sleeping": ["hrr-100"],
+      "other": []
+    }
+  }
+}

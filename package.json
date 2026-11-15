@@ -11,14 +11,21 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "generate:data": "node scripts/generate-scenarios.mjs",
+    "generate:future": "node scripts/generate-future-demo.mjs",
     "screenshots": "node scripts/screenshots.cjs",
     "screenshots:sequence": "node scripts/capture-vital-sequence.cjs",
     "banners": "node scripts/render-banners.cjs",
     "osdr:import": "node scripts/import-osdr.mjs",
     "science:check-links": "node scripts/check-evidence-links.mjs",
+    "future:check-refs": "node scripts/check-hrr-references.mjs",
     "test:evidence": "vitest run --config vitest.evidence.config.mts",
     "test:e2e": "node scripts/e2e-scenarios.cjs",
-    "test:report": "node scripts/build-test-report.mjs"
+    "test:report": "node scripts/build-test-report.mjs",
+    "test:future": "vitest run tests/future --reporter=default --reporter=json --outputFile.json=docs/test-results/future/vitest-future-results.json",
+    "test:regression": "vitest run --exclude \"tests/future/**\" --reporter=default --reporter=json --outputFile.json=docs/test-results/future/regression/vitest-results.json",
+    "test:e2e:future": "node scripts/e2e-future.cjs",
+    "test:e2e:regression": "node scripts/e2e-scenarios.cjs --out docs/test-results/future/regression",
+    "test:report:future": "node scripts/build-future-report.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.73.0",

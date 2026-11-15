@@ -1,0 +1,212 @@
+#!/usr/bin/env node
+/**
+ * Builds the bilingual test report of the FUTURE modules from the raw results:
+ *
+ *   docs/test-results/future/vitest-future-results.json      npm run test:future
+ *   docs/test-results/future/regression/vitest-results.json  npm run test:regression      (the original 77 tests)
+ *   docs/test-results/future/regression/e2e-results.json     npm run test:e2e:regression  (the 14 scenario browser checks)
+ *   docs/test-results/future/e2e-future-results.json         npm run test:e2e:future
+ *   src/data/future/verification-matrix.json                 completion criteria
+ *
+ * Output: docs/future/TEST_REPORT.md and docs/future/TEST_REPORT.pt-BR.md
+ * Nothing is typed by hand: every number comes from the files above.
+ */
+import { execSync } from "node:child_process";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, join, relative } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const read = (p) => JSON.parse(readFileSync(join(ROOT, p), "utf8"));
+const need = (p) => {
+  if (!existsSync(join(ROOT, p))) {
+    console.error(`Missing ${p} — run the commands listed at the top of scripts/build-future-report.mjs first.`);
+    process.exit(1);
+  }
+  return read(p);
+};
+
+const future = need("docs/test-results/future/vitest-future-results.json");
+const regression = need("docs/test-results/future/regression/vitest-results.json");
+const regE2E = need("docs/test-results/future/regression/e2e-results.json");
+const e2e = need("docs/test-results/future/e2e-future-results.json");
+const matrix = read("src/data/future/verification-matrix.json");
+
+let commit = "unknown";
+let dirty = false;
+try {
+  commit = execSync("git rev-parse --short HEAD", { cwd: ROOT }).toString().trim();
+  dirty = execSync("git status --porcelain -- src tests scripts package.json", { cwd: ROOT }).toString().trim().length > 0;
+} catch {}
+
+const files = (v) =>
+  v.testResults.map((f) => {
+    const rel = relative(ROOT, f.name).replaceAll("\\", "/");
+    const passed = f.assertionResults.filter((a) => a.status === "passed").length;
+    return { file: rel, total: f.assertionResults.length, passed, failed: f.assertionResults.length - passed };
+  });
+const futureFiles = files(future);
+const regFiles = files(regression);
+const sum = (arr, k) => arr.reduce((n, x) => n + x[k], 0);
+
+const totals = {
+  futureUnit: { total: future.numTotalTests, passed: future.numPassedTests },
+  regressionUnit: { total: regression.numTotalTests, passed: regression.numPassedTests },
+  regressionE2E: { total: regE2E.results.length, passed: regE2E.passed },
+  futureE2E: { total: e2e.results.length, passed: e2e.passed },
+};
+const allPassed = Object.values(totals).every((t) => t.total === t.passed) && !e2e.pageErrors.length && !regE2E.pageErrors.length;
+
+const KIND = {
+  "tests/future/platform.test.ts": ["Platform core", "Núcleo da plataforma", "unit"],
+  "tests/future/journal.test.ts": ["F01 Health Journal", "F01 Diário de saúde", "unit"],
+  "tests/future/assess.test.ts": ["F02 Symptom Assessment", "F02 Avaliação de sintomas", "unit"],
+  "tests/future/profile.test.ts": ["F03 Space Health Profile", "F03 Perfil de saúde espacial", "unit"],
+  "tests/future/eva.test.ts": ["F04 EVA & Response", "F04 EVA e resposta", "unit"],
+  "tests/future/readiness.test.ts": ["F05 Readiness", "F05 Prontidão", "unit"],
+  "tests/future/references.test.ts": ["NASA HRR references", "Referências NASA HRR", "unit"],
+  "tests/future/integration.test.ts": ["Cross-module integration", "Integração entre módulos", "integration"],
+  "tests/future/ui.test.tsx": ["Interface (F01–F05)", "Interface (F01–F05)", "interface"],
+};
+
+const C5_E2E = e2e.results.filter((r) => r.id.startsWith("E2E-OFF"));
+const criterionStatus = {
+  C1: totals.regressionUnit.total === 77 && totals.regressionUnit.passed === 77,
+  C2: totals.regressionE2E.passed === totals.regressionE2E.total && regFiles.find((f) => f.file.includes("acceptance"))?.failed === 0,
+  C3: futureFiles.every((f) => f.failed === 0) && totals.futureE2E.passed === totals.futureE2E.total,
+  C4: futureFiles.filter((f) => /assess|eva|journal|readiness/.test(f.file)).every((f) => f.failed === 0),
+  C5: C5_E2E.every((r) => r.status === "passed") && futureFiles.find((f) => f.file.includes("integration"))?.failed === 0,
+  C6: futureFiles.filter((f) => /platform|readiness|integration/.test(f.file)).every((f) => f.failed === 0) && e2e.results.filter((r) => r.module === "F05").every((r) => r.status === "passed"),
+};
+
+const esc = (s) => String(s).replaceAll("|", "\\|").replaceAll("\n", " ");
+const yes = (ok, en) => (ok ? (en ? "✅ Met" : "✅ Atendido") : en ? "❌ Not met" : "❌ Não atendido");
+
+function build(en) {
+  const L = (a, b) => (en ? a : b);
+  const out = [];
+  out.push(`# ${L("ASTRA Health — FUTURE modules test report", "ASTRA Health — relatório de testes dos módulos FUTURE")}`);
+  out.push("");
+  out.push(
+    L(
+      `> Generated by \`scripts/build-future-report.mjs\` from raw result files. Code version: \`${commit}\`${dirty ? " (with uncommitted changes when generated)" : ""}. Browser runs: ${e2e.browser}, ${e2e.date.slice(0, 10)}.`,
+      `> Gerado por \`scripts/build-future-report.mjs\` a partir dos arquivos de resultado brutos. Versão do código: \`${commit}\`${dirty ? " (com alterações não commitadas no momento da geração)" : ""}. Execuções no navegador: ${e2e.browser}, ${e2e.date.slice(0, 10)}.`,
+    ),
+  );
+  out.push("");
+  out.push(
+    L(
+      "All crew data in these tests are simulated or typed in by the test. Rule sets and protocols are demonstration content (PROVISIONAL) — passing tests show the software behaves as specified, not that any rule is clinically valid.",
+      "Todos os dados de tripulação destes testes são simulados ou digitados pelo próprio teste. Regras e protocolos são conteúdo demonstrativo (PROVISIONAL) — testes aprovados mostram que o software se comporta como especificado, não que alguma regra seja clinicamente válida.",
+    ),
+  );
+  out.push("");
+  out.push(`## ${L("Summary", "Resumo")}`);
+  out.push("");
+  out.push(`| ${L("Suite", "Suíte")} | ${L("Command", "Comando")} | ${L("Passed", "Aprovados")} |`);
+  out.push("|---|---|---|");
+  out.push(`| ${L("FUTURE unit, integration and interface tests", "Testes FUTURE unitários, de integração e de interface")} | \`npm run test:future\` | **${totals.futureUnit.passed}/${totals.futureUnit.total}** |`);
+  out.push(`| ${L("FUTURE browser end-to-end checks (incl. offline + reload)", "Verificações FUTURE ponta a ponta no navegador (incl. offline + recarga)")} | \`npm run test:e2e:future\` | **${totals.futureE2E.passed}/${totals.futureE2E.total}** |`);
+  out.push(`| ${L("Regression — original 77 tests", "Regressão — 77 testes originais")} | \`npm run test:regression\` | **${totals.regressionUnit.passed}/${totals.regressionUnit.total}** |`);
+  out.push(`| ${L("Regression — 14 browser checks of the three scenarios", "Regressão — 14 verificações no navegador dos três cenários")} | \`npm run test:e2e:regression\` | **${totals.regressionE2E.passed}/${totals.regressionE2E.total}** |`);
+  out.push("");
+  out.push(
+    `${L("Page errors in the browser", "Erros de página no navegador")}: ${e2e.pageErrors.length + regE2E.pageErrors.length} · ${L("Overall", "Resultado geral")}: **${allPassed ? L("ALL PASSED", "TUDO APROVADO") : L("FAILURES — see below", "FALHAS — ver abaixo")}**`,
+  );
+  out.push("");
+
+  out.push(`## ${L("Completion criteria", "Critérios de conclusão")}`);
+  out.push("");
+  out.push(`| ID | ${L("Criterion", "Critério")} | ${L("How it is verified", "Como é verificado")} | ${L("Status", "Situação")} |`);
+  out.push("|---|---|---|---|");
+  for (const c of matrix.criteria) out.push(`| ${c.id} | ${esc(en ? c.criterion : c.criterion_pt)} | ${esc(en ? c.how : c.how_pt)} | ${yes(criterionStatus[c.id], en)} |`);
+  out.push("");
+
+  out.push(`## ${L("Automated tests by file", "Testes automatizados por arquivo")}`);
+  out.push("");
+  out.push(`| ${L("File", "Arquivo")} | ${L("Covers", "Cobre")} | ${L("Type", "Tipo")} | ${L("Passed", "Aprovados")} |`);
+  out.push("|---|---|---|---|");
+  for (const f of futureFiles) {
+    const k = KIND[f.file] ?? [f.file, f.file, "—"];
+    const type = { unit: L("unit", "unitário"), integration: L("integration", "integração"), interface: L("interface", "interface") }[k[2]] ?? k[2];
+    out.push(`| \`${f.file}\` | ${en ? k[0] : k[1]} | ${type} | ${f.passed}/${f.total} |`);
+  }
+  out.push(`| **${L("Total", "Total")}** | | | **${sum(futureFiles, "passed")}/${sum(futureFiles, "total")}** |`);
+  out.push("");
+  out.push(`<details><summary>${L("Every FUTURE test name", "Nome de cada teste FUTURE")} (${totals.futureUnit.total})</summary>`);
+  out.push("");
+  for (const f of future.testResults) {
+    out.push(`**${relative(ROOT, f.name).replaceAll("\\", "/")}**`);
+    out.push("");
+    for (const a of f.assertionResults) out.push(`- ${a.status === "passed" ? "✅" : "❌"} ${[...a.ancestorTitles, a.title].join(" › ")}`);
+    out.push("");
+  }
+  out.push("</details>");
+  out.push("");
+
+  out.push(`## ${L("Browser end-to-end checks (production build)", "Verificações ponta a ponta no navegador (build de produção)")}`);
+  out.push("");
+  out.push(L(`Run with \`next start\`, ${e2e.browser}, viewport ${e2e.viewport}, ${e2e.durationSec} s. Descriptions are kept in English, as in the test code.`, `Executado com \`next start\`, ${e2e.browser}, janela ${e2e.viewport}, ${e2e.durationSec} s. As descrições ficam em inglês, como no código dos testes.`));
+  out.push("");
+  out.push(`| ID | ${L("Module", "Módulo")} | ${L("Check", "Verificação")} | ${L("Expected", "Esperado")} | ${L("Observed", "Observado")} | ${L("Result", "Resultado")} |`);
+  out.push("|---|---|---|---|---|---|");
+  for (const r of e2e.results) {
+    const shot = r.screenshot ? ` [📷](../test-results/future/${r.screenshot})` : "";
+    out.push(`| ${r.id} | ${r.module} | ${esc(r.description)} | ${esc(r.expected)} | ${esc(r.observed)}${shot} | ${r.status === "passed" ? "✅" : "❌"} |`);
+  }
+  out.push("");
+  const off = e2e.results.find((r) => r.id === "E2E-OFF-01");
+  if (off && typeof off.networkRequestsWhileOffline === "number") {
+    out.push(
+      L(
+        `While the browser was offline (E2E-OFF-01), the page attempted **${off.networkRequestsWhileOffline}** network request(s): every FUTURE action ran on local data.`,
+        `Com o navegador offline (E2E-OFF-01), a página tentou **${off.networkRequestsWhileOffline}** requisição(ões) de rede: todas as ações FUTURE rodaram com dados locais.`,
+      ),
+    );
+    out.push("");
+  }
+
+  out.push(`## ${L("Regression of the tested demo", "Regressão da demonstração testada")}`);
+  out.push("");
+  out.push(`| ${L("File", "Arquivo")} | ${L("Passed", "Aprovados")} |`);
+  out.push("|---|---|");
+  for (const f of regFiles) out.push(`| \`${f.file}\` | ${f.passed}/${f.total} |`);
+  out.push(`| **${L("Total", "Total")}** | **${sum(regFiles, "passed")}/${sum(regFiles, "total")}** |`);
+  out.push("");
+  out.push(`| ID | ${L("Scenario check", "Verificação do cenário")} | ${L("Result", "Resultado")} |`);
+  out.push("|---|---|---|");
+  for (const r of regE2E.results) out.push(`| ${r.id} | ${esc(r.description)} | ${r.status === "passed" ? "✅" : "❌"} |`);
+  out.push("");
+  out.push(
+    L(
+      "The frozen submission report of the three scenarios stays in [docs/TEST_REPORT.md](../TEST_REPORT.md); this regression run repeats the same checks on the current code and writes its results to `docs/test-results/future/regression/`.",
+      "O relatório congelado da submissão dos três cenários continua em [docs/TEST_REPORT.pt-BR.md](../TEST_REPORT.pt-BR.md); esta regressão repete as mesmas verificações no código atual e grava os resultados em `docs/test-results/future/regression/`.",
+    ),
+  );
+  out.push("");
+  out.push(`## ${L("Limits of these tests", "Limites destes testes")}`);
+  out.push("");
+  for (const line of en
+    ? [
+        "They verify software behaviour against the specification, not clinical validity. Every threshold, rule and checklist is a demonstration value.",
+        "Offline operation is tested with the browser's offline mode after the app has loaded. A full reload without any network would need a service worker or an onboard server — not part of this prototype.",
+        "The audit-trail checksum detects accidental or casual edits; it is not a cryptographic signature.",
+        "NASA HRR references are checked title-for-title against the official index (snapshot in `src/data/future/hrr-risk-index.snapshot.json`; refresh with `npm run future:check-refs`).",
+      ]
+    : [
+        "Verificam o comportamento do software em relação à especificação, não validade clínica. Todo limite, regra e checklist é um valor demonstrativo.",
+        "A operação offline é testada com o modo offline do navegador depois que o app carregou. Uma recarga completa sem nenhuma rede exigiria um service worker ou um servidor a bordo — fora do escopo deste protótipo.",
+        "O checksum da trilha de auditoria detecta edições acidentais ou casuais; não é uma assinatura criptográfica.",
+        "As referências NASA HRR são conferidas título a título com o índice oficial (snapshot em `src/data/future/hrr-risk-index.snapshot.json`; atualize com `npm run future:check-refs`).",
+      ])
+    out.push(`- ${line}`);
+  out.push("");
+  return out.join("\n");
+}
+
+writeFileSync(join(ROOT, "docs/future/TEST_REPORT.md"), build(true));
+writeFileSync(join(ROOT, "docs/future/TEST_REPORT.pt-BR.md"), build(false));
+console.log(
+  `FUTURE ${totals.futureUnit.passed}/${totals.futureUnit.total} · FUTURE E2E ${totals.futureE2E.passed}/${totals.futureE2E.total} · regression ${totals.regressionUnit.passed}/${totals.regressionUnit.total} · regression E2E ${totals.regressionE2E.passed}/${totals.regressionE2E.total} → docs/future/TEST_REPORT(.pt-BR).md`,
+);
+process.exitCode = allPassed && Object.values(criterionStatus).every(Boolean) ? 0 : 1;

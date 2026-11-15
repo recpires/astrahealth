@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { Activity, BookOpen, Brain, ClipboardCheck, Pause, Play, RadioTower, type LucideIcon } from "lucide-react";
+import { Activity, BookOpen, Brain, ClipboardCheck, Pause, Play, RadioTower, Rocket, type LucideIcon } from "lucide-react";
 import { useMission } from "@/state/MissionProvider";
 import { Badge, DemoTag, cx } from "@/components/ui/primitives";
 import { LEVEL_TEXT, LEVEL_TONE, URGENCY_TONE, type ToneName } from "@/components/ui/levels";
@@ -27,6 +27,7 @@ const NAV: NavItem[] = [
   { href: "/response", step: "03", verb: "Act", label: "Response", icon: ClipboardCheck },
   { href: "/comms", step: "04", verb: "Communicate", label: "Earth Link", icon: RadioTower },
   { href: "/science", label: "Science & Limits", icon: BookOpen },
+  { href: "/future", label: "Platform preview", icon: Rocket },
 ];
 
 function useNavStatus(): Record<string, { tone: ToneName; text: string } | null> {
@@ -43,6 +44,7 @@ function useNavStatus(): Record<string, { tone: ToneName; text: string } | null>
         : null,
     "/comms": inFlight ? { tone: "accent", text: `${inFlight} in flight` } : null,
     "/science": { tone: "nominal", text: `${EVIDENCE_LIBRARY.length} NASA refs` },
+    "/future": { tone: "neutral", text: "F01–F05" },
   };
 }
 
@@ -123,11 +125,11 @@ function Nav() {
     <nav aria-label="Modules" className="border-b border-line bg-space-950/60 md:border-b-0 md:border-r">
       <ul className="flex gap-1 overflow-x-auto p-2 md:flex-col md:overflow-visible md:p-3">
         {NAV.map((item) => {
-          const active = pathname === item.href;
+          const active = pathname === item.href || (item.href === "/future" && pathname.startsWith("/future/"));
           const st = status[item.href];
           const Icon = item.icon;
           return (
-            <li key={item.href} className={cx(!item.step && "md:mt-4 md:border-t md:border-line md:pt-4")}>
+            <li key={item.href} className={cx(item.href === "/science" && "md:mt-4 md:border-t md:border-line md:pt-4")}>
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}

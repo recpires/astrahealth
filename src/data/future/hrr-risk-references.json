@@ -1,0 +1,23 @@
+{
+  "description": "Official NASA Human Research Program risks referenced by the FUTURE modules (Space Health Profile domains, symptom assessment, EVA). Titles are copied verbatim from the Human Research Roadmap risk index and checked by scripts/check-hrr-references.mjs. The association between a risk and an ASTRA Health domain, symptom or EVA step was chosen by Team ANGARIS; it is not a NASA statement. Entries marked 'reference-only' have only their official title and link in the local library: ASTRA Health has not reviewed their content and shows no excerpt from them.",
+  "source": "NASA Human Research Program — Human Research Roadmap (HRR), risk index",
+  "indexUrl": "https://humanresearchroadmap.nasa.gov/Risks/",
+  "verifiedOn": "2026-11-15",
+  "entries": [
+    { "id": "hrr-105", "hrrId": 105, "title": "Risk of Spaceflight Associated Neuro-ocular Syndrome (SANS)", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=105", "libraryId": null },
+    { "id": "hrr-179", "hrrId": 179, "title": "Risk of Cardiovascular Adaptations Contributing to Adverse Mission Performance and Health Outcomes", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=179", "libraryId": "hrp-cardiovascular-2022" },
+    { "id": "hrr-81", "hrrId": 81, "title": "Risk of Renal Stone Formation", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=81", "libraryId": null },
+    { "id": "hrr-96", "hrrId": 96, "title": "Risk of Radiation Carcinogenesis", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=96", "libraryId": null },
+    { "id": "hrr-77", "hrrId": 77, "title": "Risk of Bone Fracture due to Spaceflight-induced Changes to Bone", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=77", "libraryId": null },
+    { "id": "hrr-85", "hrrId": 85, "title": "Risk of In Mission Impacts, Adverse Health Events or Long-Term Health Impacts due to Altered Immune Response", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=85", "libraryId": null },
+    { "id": "hrr-99", "hrrId": 99, "title": "Risk of Adverse Cognitive or Behavioral Changes and Psychiatric Disorders Leading to In-mission Health and Performance and Long-term Health Effects", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=99", "libraryId": null },
+    { "id": "hrr-100", "hrrId": 100, "title": "Risk of Performance Decrements and Adverse Health Outcomes Resulting from Sleep Loss, Circadian Desynchronization, and Work Overload", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=100", "libraryId": null },
+    { "id": "hrr-84", "hrrId": 84, "title": "Risk of Mission Impacting Injury and Compromised Performance and Long-Term Health Effects due to EVA Operations", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=84", "libraryId": null },
+    { "id": "hrr-168", "hrrId": 168, "title": "Risk of Mission Impacts and Long-Term Health Issues due to Decompression Sickness", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=168", "libraryId": null },
+    { "id": "hrr-173", "hrrId": 173, "title": "Risk of Reduced Crew Health and Performance Due to Hypoxia", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=173", "libraryId": "hrp-dcs-hypoxia-2023" },
+    { "id": "hrr-95", "hrrId": 95, "title": "Risk of Adverse Health Outcomes and Decrements in Performance Due to Medical Conditions that occur in Mission, as well as Long Term Health Outcomes Due to Mission Exposures", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=95", "libraryId": "hrp-medical-conditions-2017" },
+    { "id": "hrr-88", "hrrId": 88, "title": "Risk of Altered Sensorimotor/Vestibular Function Impacting Critical Mission Tasks, Human Health, and Long-Term Health", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=88", "libraryId": null },
+    { "id": "hrr-180", "hrrId": 180, "title": "Risk of Mission Performance Decrements and Adverse Health Outcomes Resulting from Reduced Cardiorespiratory and Musculoskeletal Fitness", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=180", "libraryId": null },
+    { "id": "hrr-175", "hrrId": 175, "title": "Risk of Adverse Mission Outcomes Due to Earth Independent Human-Systems Operations", "url": "https://humanresearchroadmap.nasa.gov/Risks/?i=175", "libraryId": null }
+  ]
+}

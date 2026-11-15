@@ -40,21 +40,22 @@
 2. [The problem](#-the-problem)
 3. [How it works](#-how-it-works)
 4. [Modules](#-modules)
-5. [Demonstration scenarios](#-demonstration-scenarios)
-6. [Full walkthrough — Scenario 2](#-full-walkthrough--scenario-2-vital-sign-deviation)
-7. [Analysis engine](#-analysis-engine)
-8. [Earth–Mars communication](#-earthmars-communication-simulator)
-9. [Incident report (ASTRA-IR/0.1)](#-incident-report-astra-ir01)
-10. [Architecture](#-architecture)
-11. [Tech stack](#-tech-stack)
-12. [Getting started](#-getting-started)
-13. [Testing](#-testing)
-14. [Screenshots & banners](#-screenshots--banners)
-15. [Deployment (Vercel)](#-deployment-vercel)
-16. [Scientific basis & limitations](#-scientific-basis--limitations)
-17. [Roadmap](#-roadmap)
-18. [AI Tools & Usage Disclosure](#-ai-tools--usage-disclosure)
-19. [Team, license & acknowledgements](#-team)
+5. [Platform preview — FUTURE modules](#-platform-preview--future-modules)
+6. [Demonstration scenarios](#-demonstration-scenarios)
+7. [Full walkthrough — Scenario 2](#-full-walkthrough--scenario-2-vital-sign-deviation)
+8. [Analysis engine](#-analysis-engine)
+9. [Earth–Mars communication](#-earthmars-communication-simulator)
+10. [Incident report (ASTRA-IR/0.1)](#-incident-report-astra-ir01)
+11. [Architecture](#-architecture)
+12. [Tech stack](#-tech-stack)
+13. [Getting started](#-getting-started)
+14. [Testing](#-testing)
+15. [Screenshots & banners](#-screenshots--banners)
+16. [Deployment (Vercel)](#-deployment-vercel)
+17. [Scientific basis & limitations](#-scientific-basis--limitations)
+18. [Roadmap](#-roadmap)
+19. [AI Tools & Usage Disclosure](#-ai-tools--usage-disclosure)
+20. [Team, license & acknowledgements](#-team)
 
 ---
 
@@ -171,6 +172,26 @@ the analysis engine, the action log and the Earth-link queue. The header lets yo
 See [How scientific resources are used](#how-scientific-resources-are-used).
 
 <p align="center"><img src="docs/screenshots/13-science-evidence-library.png" alt="Science & Limits — NASA HRP evidence library" width="90%" /></p>
+
+---
+
+## 🚀 Platform preview — FUTURE modules
+
+Beside the tested demo, **Platform preview** (`/future`) shows how ASTRA Health can grow into an **autonomous space health decision-support system**: offline-first, evidence-based, human-in-the-loop and fully traceable. The five modules have their own state and on-device storage; they only *read* the simulated vital signs of the tested demo, which stays unchanged (its 77 tests and 14 browser checks are re-run on every change).
+
+| Module | What it does |
+|---|---|
+| **F01 · Health Journal & Daily Check** (`/future/journal`) | Daily self-report (sleep, mood, fatigue, hydration, symptoms), routines with overdue / due status, 14-day trends, attention flags from versioned demonstration rules. |
+| **F02 · Symptom Assessment & Evidence Engine** (`/future/assess`) | Structured questions → versioned rule set `ASTRA-SYM@0.1.0-demo` → attention level and next steps, with the journal facts and official NASA HRR references behind them, stated uncertainty and a mandatory human review. |
+| **F03 · Space Health Profile** (`/future/profile`) | 9 domains (neuro-ocular, cardiovascular, renal, radiation, bone, vascular, immunological, emotional, sleep), 28 metrics with value, unit, time, origin, quality, trend and validation status. Exams that need unavailable equipment (e.g. intracranial pressure, bone density) show **no data** — never simulated. |
+| **F04 · EVA & Autonomous Response** (`/future/eva`) | Pre / during / post-EVA checklists, equipment-conditioned steps, GO / HOLD proposal using F01 and F02, in-EVA events, commander decisions with mandatory reasons for overrides, prioritised Earth Link reports. |
+| **F05 · Verification & Mission Readiness** (`/future/readiness`) | Crew data readiness (not a medical clearance), system checks, versioned rule sets with checksums, checksum-chained audit trail with tamper test and JSON export. |
+
+Everything works with the Earth link lost: reports wait in a store-and-forward queue and leave in priority order (urgent → priority → routine) when it returns. All rules and protocols are **PROVISIONAL demonstration content**, not NASA procedures and not clinically validated.
+
+📘 [FUTURE modules documentation](docs/future/README.md) · 🧪 [FUTURE test report](docs/future/TEST_REPORT.md) — 107 automated tests + 17 browser checks (incl. network cut and reload) + full regression.
+
+<p align="center"><img src="docs/test-results/future/e2e/E2E-F02-02.png" alt="FUTURE 02 — symptom assessment with evidence, uncertainty and human review" width="90%" /></p>
 
 ---
 
@@ -529,6 +550,12 @@ npm run dev
 | `npm run test:evidence` | Full test suite + machine-readable results and acceptance evidence → `docs/test-results/` |
 | `npm run test:e2e` | Browser checks of the three scenarios against the production build, with screenshots (run `npm run build` first) ² |
 | `npm run test:report` | Regenerates the scenario test report (`docs/TEST_REPORT.md`, `docs/TEST_REPORT.pt-BR.md`) from the results |
+| `npm run generate:future` | Regenerate the FUTURE demo seed (journal, device readings) |
+| `npm run future:check-refs` | Check the NASA HRR risk references of the FUTURE modules against the official index (`-- --write-snapshot` refreshes the offline snapshot) ³ |
+| `npm run test:future` | FUTURE unit, integration and interface tests + JSON results → `docs/test-results/future/` |
+| `npm run test:e2e:future` | FUTURE browser checks (F01–F05, network cut, reload, export) against the production build ² |
+| `npm run test:regression` / `npm run test:e2e:regression` | The original 77 tests / 14 scenario browser checks, results → `docs/test-results/future/regression/` |
+| `npm run test:report:future` | Regenerates `docs/future/TEST_REPORT.md` and `.pt-BR.md` from the results |
 
 ¹ Needs a running server (`BASE_URL`, default `http://localhost:3000`) and Playwright with Chromium.
 ² Needs Playwright with Chromium.
@@ -571,6 +598,8 @@ npm test
 | `tests/osdr.test.ts` | OSDR parser (CSV edge cases, timepoints, summaries, errors); bundled OSD-575 snapshot matches its SHA-256; statistics equal an independent Python computation from the OSDR submitted file; real data never imported by the simulation modules. |
 | `tests/ui/science.test.tsx` | Science & Limits page: three categories, evidence cards and topic filter, OSDR source identification, file import (valid, invalid, missing accession). |
 | `tests/ui/modules.test.tsx` | The four modules rendered with Testing Library: incident buttons, findings, confirmation, checklist logging, delay presets, report generation and queuing, unverified sensor values. |
+
+Since the FUTURE modules were added, `npm test` runs **184 tests in 17 files**: the 77 above, unchanged, plus 107 in `tests/future/` (see the [FUTURE test report](docs/future/TEST_REPORT.md)).
 
 Quality gates run before each commit: `npm test`, `npm run lint`, `npm run typecheck`, `npm run build`.
 
@@ -688,9 +717,10 @@ Possible next steps (not commitments):
 - [ ] Confirm the challenge statement and, if a NASA source of numeric limits applies, register it and derive thresholds from it.
 - [ ] Expert review of the rules, escalation logic and checklist wording.
 - [ ] Sensor adapter interface for real wearables (replacing the JSON playback).
-- [ ] Persistent, exportable incident log and reports.
+- [x] Persistent, exportable decision log — FUTURE 05 audit trail (preview).
 - [ ] Ephemeris-based Earth–Mars delay and conjunction blackout windows; bandwidth model.
-- [ ] Multi-crew view and Crew Medical Officer console.
+- [x] Multi-crew view — FUTURE 01 / FUTURE 05 (preview); Crew Medical Officer console still open.
+- [ ] Expert review of the FUTURE rule sets and protocols, with change control.
 - [ ] Fully bilingual interface (EN / PT-BR) and accessibility audit.
 
 ---

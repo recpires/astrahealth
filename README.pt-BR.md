@@ -40,21 +40,22 @@
 2. [O problema](#-o-problema)
 3. [Como funciona](#-como-funciona)
 4. [Módulos](#-módulos)
-5. [Cenários de demonstração](#-cenários-de-demonstração)
-6. [Sequência completa — Cenário 2](#-sequência-completa--cenário-2-alteração-dos-sinais-vitais)
-7. [Motor de análise](#-motor-de-análise)
-8. [Comunicação Terra–Marte](#-simulador-de-comunicação-terramarte)
-9. [Relatório de incidente (ASTRA-IR/0.1)](#-relatório-de-incidente-astra-ir01)
-10. [Arquitetura](#-arquitetura)
-11. [Tecnologias](#-tecnologias)
-12. [Como executar](#-como-executar)
-13. [Testes](#-testes)
-14. [Capturas de tela e banners](#-capturas-de-tela-e-banners)
-15. [Publicação (Vercel)](#-publicação-vercel)
-16. [Base científica e limitações](#-base-científica-e-limitações)
-17. [Roadmap](#-roadmap)
-18. [Declaração de uso de ferramentas de IA](#-declaração-de-uso-de-ferramentas-de-ia)
-19. [Equipe, licença e agradecimentos](#-equipe)
+5. [Prévia da plataforma — módulos FUTURE](#-prévia-da-plataforma--módulos-future)
+6. [Cenários de demonstração](#-cenários-de-demonstração)
+7. [Sequência completa — Cenário 2](#-sequência-completa--cenário-2-alteração-dos-sinais-vitais)
+8. [Motor de análise](#-motor-de-análise)
+9. [Comunicação Terra–Marte](#-simulador-de-comunicação-terramarte)
+10. [Relatório de incidente (ASTRA-IR/0.1)](#-relatório-de-incidente-astra-ir01)
+11. [Arquitetura](#-arquitetura)
+12. [Tecnologias](#-tecnologias)
+13. [Como executar](#-como-executar)
+14. [Testes](#-testes)
+15. [Capturas de tela e banners](#-capturas-de-tela-e-banners)
+16. [Publicação (Vercel)](#-publicação-vercel)
+17. [Base científica e limitações](#-base-científica-e-limitações)
+18. [Roadmap](#-roadmap)
+19. [Declaração de uso de ferramentas de IA](#-declaração-de-uso-de-ferramentas-de-ia)
+20. [Equipe, licença e agradecimentos](#-equipe)
 
 ---
 
@@ -175,6 +176,26 @@ velocidade (**1×, 10× por padrão, 30×, 60×**), e o estado é compartilhado 
 Veja [Como os recursos científicos são utilizados](#como-os-recursos-científicos-são-utilizados).
 
 <p align="center"><img src="docs/screenshots/13-science-evidence-library.png" alt="Science & Limits — biblioteca de evidências do HRP" width="90%" /></p>
+
+---
+
+## 🚀 Prévia da plataforma — módulos FUTURE
+
+Ao lado da demo testada, **Platform preview** (`/future`) mostra como o ASTRA Health pode evoluir para um **sistema autônomo de apoio à decisão em saúde espacial**: offline-first, baseado em evidências, com humano no circuito e totalmente rastreável. Os cinco módulos têm estado e armazenamento próprios no dispositivo; apenas *leem* os sinais vitais simulados da demo testada, que permanece inalterada (seus 77 testes e 14 verificações de navegador são executados novamente a cada mudança).
+
+| Módulo | O que faz |
+|---|---|
+| **F01 · Diário de saúde e check diário** (`/future/journal`) | Autorrelato diário (sono, humor, fadiga, hidratação, sintomas), rotinas com status atrasada / para hoje, tendências de 14 dias, alertas de atenção por regras demonstrativas versionadas. |
+| **F02 · Avaliação de sintomas e motor de evidências** (`/future/assess`) | Perguntas estruturadas → conjunto de regras versionado `ASTRA-SYM@0.1.0-demo` → nível de atenção e próximos passos, com os fatos do diário e as referências oficiais NASA HRR por trás deles, incerteza declarada e revisão humana obrigatória. |
+| **F03 · Perfil de Saúde Espacial** (`/future/profile`) | 9 domínios (neuro-ocular, cardiovascular, renal, radiação, ósseo, vascular, imunológico, emocional, sono), 28 métricas com valor, unidade, horário, origem, qualidade, tendência e status de validação. Exames que exigem equipamento indisponível (ex.: pressão intracraniana, densidade óssea) mostram **sem dado** — nunca simulados. |
+| **F04 · EVA e resposta autônoma** (`/future/eva`) | Checklists pré / durante / pós-EVA, passos condicionados a equipamentos, proposta GO / HOLD usando F01 e F02, eventos durante a EVA, decisões do comandante com motivo obrigatório para sobrepor, relatórios priorizados para o Earth Link. |
+| **F05 · Verificação e prontidão da missão** (`/future/readiness`) | Prontidão de dados da tripulação (não é liberação médica), verificações do sistema, conjuntos de regras versionados com checksum, trilha de auditoria encadeada com teste de adulteração e exportação JSON. |
+
+Tudo funciona com o link com a Terra perdido: os relatórios aguardam numa fila store-and-forward e saem por ordem de prioridade (urgente → prioritário → rotina) quando ele volta. Todas as regras e protocolos são **conteúdo demonstrativo PROVISIONAL**, não são procedimentos da NASA e não são clinicamente validados.
+
+📘 [Documentação dos módulos FUTURE](docs/future/README.pt-BR.md) · 🧪 [Relatório de testes FUTURE](docs/future/TEST_REPORT.pt-BR.md) — 107 testes automatizados + 17 verificações no navegador (incl. rede cortada e recarga) + regressão completa.
+
+<p align="center"><img src="docs/test-results/future/e2e/E2E-F02-02.png" alt="FUTURE 02 — avaliação de sintomas com evidências, incerteza e revisão humana" width="90%" /></p>
 
 ---
 
@@ -534,6 +555,12 @@ npm run dev
 | `npm run test:evidence` | Suíte completa + resultados legíveis por máquina e evidências de aceitação → `docs/test-results/` |
 | `npm run test:e2e` | Verificações no navegador dos três cenários com o build de produção, com capturas (rode `npm run build` antes) ² |
 | `npm run test:report` | Regenera o relatório de testes dos cenários (`docs/TEST_REPORT.md`, `docs/TEST_REPORT.pt-BR.md`) a partir dos resultados |
+| `npm run generate:future` | Regenera o seed de demonstração FUTURE (diário, leituras de equipamentos) |
+| `npm run future:check-refs` | Confere as referências de riscos NASA HRR dos módulos FUTURE com o índice oficial (`-- --write-snapshot` atualiza o snapshot offline) ³ |
+| `npm run test:future` | Testes FUTURE unitários, de integração e de interface + resultados JSON → `docs/test-results/future/` |
+| `npm run test:e2e:future` | Verificações FUTURE no navegador (F01–F05, rede cortada, recarga, exportação) contra o build de produção ² |
+| `npm run test:regression` / `npm run test:e2e:regression` | Os 77 testes originais / 14 verificações de navegador dos cenários, resultados → `docs/test-results/future/regression/` |
+| `npm run test:report:future` | Regenera `docs/future/TEST_REPORT.md` e `.pt-BR.md` a partir dos resultados |
 
 ¹ Requer o servidor em execução (`BASE_URL`, padrão `http://localhost:3000`) e o Playwright com Chromium.
 ² Requer o Playwright com Chromium.
@@ -576,6 +603,8 @@ npm test
 | `tests/osdr.test.ts` | Leitor do OSDR (casos de CSV, momentos, resumos, erros); a cópia do OSD-575 confere com o SHA-256; estatísticas iguais às de um cálculo independente em Python a partir do arquivo enviado ao OSDR; dados reais nunca importados pelos módulos da simulação. |
 | `tests/ui/science.test.tsx` | Página Science & Limits: três categorias, cartões de evidência e filtro por tema, identificação da fonte do OSDR, importação de arquivo (válido, inválido, sem accession). |
 | `tests/ui/modules.test.tsx` | Os quatro módulos renderizados com Testing Library: botões de incidente, achados, confirmação, registro de checklist, atalhos de atraso, geração e envio do relatório, valores não verificados de sensor suspeito. |
+
+Com os módulos FUTURE, `npm test` executa **184 testes em 17 arquivos**: os 77 acima, sem alteração, mais 107 em `tests/future/` (veja o [relatório de testes FUTURE](docs/future/TEST_REPORT.pt-BR.md)).
 
 Verificações executadas antes de cada commit: `npm test`, `npm run lint`, `npm run typecheck`, `npm run build`.
 
@@ -693,9 +722,10 @@ Próximos passos possíveis (não são compromissos):
 - [ ] Confirmar o enunciado do desafio e, se houver uma fonte da NASA para limites numéricos, registrá-la e derivar dela os limites.
 - [ ] Revisão por especialistas das regras, do escalonamento e do texto dos checklists.
 - [ ] Interface de adaptadores para sensores vestíveis reais (substituindo a reprodução dos JSON).
-- [ ] Registro de incidentes e relatórios persistentes e exportáveis.
+- [x] Registro de decisões persistente e exportável — trilha de auditoria do FUTURE 05 (prévia).
 - [ ] Atraso Terra–Marte baseado em efemérides e janelas de bloqueio por conjunção solar; modelo de largura de banda.
-- [ ] Visão para múltiplos tripulantes e console do Oficial Médico da Tripulação.
+- [x] Visão para múltiplos tripulantes — FUTURE 01 / FUTURE 05 (prévia); console do Oficial Médico ainda em aberto.
+- [ ] Revisão por especialistas dos conjuntos de regras e protocolos FUTURE, com controle de mudanças.
 - [ ] Interface totalmente bilíngue (EN / PT-BR) e auditoria de acessibilidade.
 
 ---

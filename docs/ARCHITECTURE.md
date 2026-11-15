@@ -98,3 +98,7 @@ other); overall = weakest vital. Labels: High ≥ 80, Medium ≥ 55, Low otherwi
 client view (`MonitorView`, `AnalysisView`, `ResponseView`, `CommsView`) and the static `ScienceView`. Next.js Cache
 Components keeps recently visited routes mounted (React `<Activity>`), while the simulation keeps running in the provider.
 All routes prerender as static content, which makes Vercel deployment configuration-free.
+
+## FUTURE modules (platform preview)
+
+The FUTURE modules (F01–F05) live in `src/features/` and `src/app/future/`, with their own pure reducer (`src/features/platform/store.ts`), mission-day clock, on-device storage and checksum-chained audit trail. They never write to `src/lib/mission`; FUTURE 03 only reads the latest simulated vital signs through `useMission()`. The tested code changed in two places only: one menu entry in `AppShell` and an optional `--out` folder in `scripts/e2e-scenarios.cjs`. Full description: [docs/future/README.md](future/README.md).
