@@ -52,7 +52,7 @@
 15. [Deployment (Vercel)](#-deployment-vercel)
 16. [Scientific basis & limitations](#-scientific-basis--limitations)
 17. [Roadmap](#-roadmap)
-18. [AI assistance disclosure](#-ai-assistance-disclosure)
+18. [AI Tools & Usage Disclosure](#-ai-tools--usage-disclosure)
 19. [Team, license & acknowledgements](#-team)
 
 ---
@@ -608,11 +608,18 @@ Possible next steps (not commitments):
 
 ---
 
-## 🤖 AI assistance disclosure
+## 🤖 AI Tools & Usage Disclosure
 
-- **Logo** — the ASTRA Health logo is an **AI-generated image** supplied by the team. The original file keeps its *AI-generated* label (`public/brand/astra-health-logo.png`) and is shown with it in the banners; the header emblem, favicon and share image are crops of it.
-- **Code and content** — source code, simulated-data generator, demonstration procedures, interface text, tests and documentation were produced with the help of an AI coding assistant (**Claude Code, by Anthropic**) from the team brief, and are reviewed by the team.
-- **Inside the app** — no AI model runs in the application; all analysis is deterministic.
+Team ANGARIS used AI-assisted tools, including Claude Code, Codex, and ChatGPT, as applicable, to support software development, code review, documentation, and presentation preparation.
+
+The project’s concept, technical decisions, testing, and final validation are the responsibility of Team ANGARIS.
+
+All physiological data presented in the prototype are simulated. ASTRA Health is an experimental demonstration and is not a clinically validated medical device.
+
+Additional notes:
+
+- **Logo** — the ASTRA Health logo is an AI-generated image. The original file keeps its *AI-generated* label (`public/brand/astra-health-logo.png`) and is shown with it in the banners; the header emblem, favicon and share image are crops of it.
+- **Inside the app** — no AI model runs in the application; all analysis is deterministic and rule-based.
 
 Details: [AI_DISCLOSURE.md](AI_DISCLOSURE.md).
 

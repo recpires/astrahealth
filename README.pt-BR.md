@@ -52,7 +52,7 @@
 15. [Publicação (Vercel)](#-publicação-vercel)
 16. [Base científica e limitações](#-base-científica-e-limitações)
 17. [Roadmap](#-roadmap)
-18. [Declaração de uso de IA](#-declaração-de-uso-de-ia)
+18. [Declaração de uso de ferramentas de IA](#-declaração-de-uso-de-ferramentas-de-ia)
 19. [Equipe, licença e agradecimentos](#-equipe)
 
 ---
@@ -613,11 +613,20 @@ Próximos passos possíveis (não são compromissos):
 
 ---
 
-## 🤖 Declaração de uso de IA
+## 🤖 Declaração de uso de ferramentas de IA
 
-- **Logo** — a logo do ASTRA Health é uma **imagem gerada por IA** fornecida pela equipe. O arquivo original mantém a identificação *AI-generated* (`public/brand/astra-health-logo.png`) e aparece com ela nos banners; o emblema do cabeçalho, o ícone da aba e a imagem de compartilhamento são recortes dela.
-- **Código e conteúdo** — o código-fonte, o gerador de dados simulados, os procedimentos demonstrativos, os textos da interface, os testes e a documentação foram produzidos com a ajuda de um assistente de programação com IA (**Claude Code, da Anthropic**) a partir do briefing da equipe, e são revisados pela equipe.
-- **Dentro do aplicativo** — nenhum modelo de IA roda na aplicação; toda a análise é determinística.
+> *AI Tools & Usage Disclosure* — versão original em inglês no [README.md](README.md#-ai-tools--usage-disclosure).
+
+A Equipe ANGARIS utilizou ferramentas assistidas por IA, incluindo Claude Code, Codex e ChatGPT, conforme aplicável, para apoiar o desenvolvimento de software, a revisão de código, a documentação e a preparação da apresentação.
+
+O conceito do projeto, as decisões técnicas, os testes e a validação final são de responsabilidade da Equipe ANGARIS.
+
+Todos os dados fisiológicos apresentados no protótipo são simulados. O ASTRA Health é uma demonstração experimental e não é um dispositivo médico clinicamente validado.
+
+Observações adicionais:
+
+- **Logo** — a logo do ASTRA Health é uma imagem gerada por IA. O arquivo original mantém a identificação *AI-generated* (`public/brand/astra-health-logo.png`) e aparece com ela nos banners; o emblema do cabeçalho, o ícone da aba e a imagem de compartilhamento são recortes dela.
+- **Dentro do aplicativo** — nenhum modelo de IA roda na aplicação; toda a análise é determinística e baseada em regras.
 
 Detalhes: [AI_DISCLOSURE.md](AI_DISCLOSURE.md) (em inglês).
 
