@@ -373,7 +373,7 @@ export function CommsView() {
           are automatic placeholders.
         </p>
       </div>
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
+      <div className="grid grid-cols-1 items-start gap-4 xl:grid-cols-3">
         <DelayPanel />
         <div className="flex flex-col gap-4 xl:col-span-2">
           <LinkDiagram />

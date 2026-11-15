@@ -55,11 +55,11 @@ export function VitalChart({
             type="number"
             domain={["dataMin", "dataMax"]}
             tickFormatter={formatClock}
-            tick={{ fill: "#5d7397", fontSize: 10 }}
+            tick={{ fill: "#7a8fb3", fontSize: 10 }}
             stroke="#1a3159"
             tickCount={5}
           />
-          <YAxis domain={vc.chartDomain} ticks={Y_TICKS[vital]} tick={{ fill: "#5d7397", fontSize: 10 }} stroke="#1a3159" width={44} allowDataOverflow />
+          <YAxis domain={vc.chartDomain} ticks={Y_TICKS[vital]} tick={{ fill: "#7a8fb3", fontSize: 10 }} stroke="#1a3159" width={44} allowDataOverflow />
           <Tooltip
             contentStyle={{ background: "#071226", border: "1px solid #24427a", borderRadius: 8, fontSize: 12 }}
             labelStyle={{ color: "#93a8c9" }}
