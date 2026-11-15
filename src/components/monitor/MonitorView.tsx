@@ -114,7 +114,7 @@ function VitalCard({ vital, series }: { vital: VitalKey; series: ChartPoint[] })
         <DemoTag label="Sim" className="shrink-0" />
       </div>
       <div className="mt-3 flex items-end gap-2">
-        <span className={cx("tabular font-mono text-5xl font-semibold leading-none", excluded ? "text-level-sensor line-through decoration-2" : "text-ink")}>
+        <span data-testid={`vital-value-${vital}`} className={cx("tabular font-mono text-5xl font-semibold leading-none", excluded ? "text-level-sensor line-through decoration-2" : "text-ink")}>
           {formatVital(vital, value)}
         </span>
         <span className="pb-1 text-sm text-ink-muted">{vc.unit}</span>

@@ -12,12 +12,13 @@
   <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white" />
   <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white" />
   <img alt="Recharts 3" src="https://img.shields.io/badge/Recharts-3-22D3EE" />
-  <img alt="Vitest: 72 tests" src="https://img.shields.io/badge/Vitest-72_tests_passing-6E9F18?logo=vitest&logoColor=white" />
+  <img alt="Vitest: 77 tests" src="https://img.shields.io/badge/Vitest-77_tests_passing-6E9F18?logo=vitest&logoColor=white" />
   <img alt="Vercel ready" src="https://img.shields.io/badge/Vercel-ready-000000?logo=vercel&logoColor=white" />
   <br/>
   <img alt="NASA Space Apps Challenge 2026" src="https://img.shields.io/badge/NASA_Space_Apps-2026-0B3D91" />
   <img alt="Status: demonstration prototype" src="https://img.shields.io/badge/status-demonstration_prototype-F59E0B" />
   <img alt="Data: simulated" src="https://img.shields.io/badge/data-simulated-A78BFA" />
+  <a href="docs/TEST_REPORT.md"><img alt="Scenario test report: passed" src="https://img.shields.io/badge/scenario_tests-17%2F17_acceptance_·_14%2F14_browser-2EA44F" /></a>
 </p>
 
 <p align="center">
@@ -79,7 +80,7 @@
 - 📡 Earth–Mars link simulator with 3–22 min one-way delay, transmission queue, outage simulation and message states.
 - 🧾 Structured incident report (text + JSON) generated from the live state.
 - 📚 **Science & Limits**: verified NASA Human Research Program evidence (cardiovascular, hypoxia, medical capability) and a real NASA OSDR dataset, always kept apart from simulated data and demonstration rules.
-- 🧪 72 automated tests, including end-to-end flows of all three scenarios.
+- 🧪 77 automated tests, including **17 acceptance cases and 14 browser checks** of the three scenarios — see the [test report](docs/TEST_REPORT.md).
 
 ---
 
@@ -458,7 +459,7 @@ astrahealth/
 │   │   ├── osdr/OSD-575.json     # REAL NASA OSDR file, stored verbatim + SHA-256
 │   │   └── procedures.json       # Demonstration checklists
 │   └── assets/astra-emblem.png
-├── tests/                        # Vitest: engine, comms, scenarios, science guards, UI
+├── tests/                        # Vitest: acceptance (test plan), engine, comms, science, UI
 ├── scripts/                      # Data generator, OSDR import, link check, screenshots, banners
 ├── docs/                         # Architecture, limitations, NASA guide, demo script, images
 ├── public/brand/astra-health-logo.png
@@ -525,6 +526,9 @@ npm run dev
 | `npm run osdr:import -- OSD-575` | Import a public NASA OSDR file into `src/data/osdr/` (`--list`, `--file <name>`) ³ |
 | `npm run science:check-links` | Check every evidence-library and OSDR link against the official servers ³ |
 | `python3 scripts/verify-science-sources.py` | Independent verification of quotes, file integrity, units and statistics (needs `pip install pypdf`) ³ |
+| `npm run test:evidence` | Full test suite + machine-readable results and acceptance evidence → `docs/test-results/` |
+| `npm run test:e2e` | Browser checks of the three scenarios against the production build, with screenshots (run `npm run build` first) ² |
+| `npm run test:report` | Regenerates the scenario test report (`docs/TEST_REPORT.md`, `docs/TEST_REPORT.pt-BR.md`) from the results |
 
 ¹ Needs a running server (`BASE_URL`, default `http://localhost:3000`) and Playwright with Chromium.
 ² Needs Playwright with Chromium.
@@ -534,15 +538,32 @@ npm run dev
 
 ## 🧪 Testing
 
+### Scenario test report
+
+The three demonstration scenarios are tested against a written test plan and the results are published in
+**[docs/TEST_REPORT.md](docs/TEST_REPORT.md)** ([Português](docs/TEST_REPORT.pt-BR.md)), generated from machine-readable results:
+
+| Layer | What runs | Evidence |
+|---|---|---|
+| Test plan | 17 cases (S1-01 … S3-06), each linked to a step of the brief (MEASURE · UNDERSTAND · ACT · COMMUNICATE) and an expected result | [`tests/acceptance/test-plan.json`](tests/acceptance/test-plan.json) |
+| Acceptance tests | Each case played end to end on the deterministic mission engine; observed values recorded (detection times, levels, message timelines…) | [`acceptance-evidence.json`](docs/test-results/acceptance-evidence.json) |
+| Browser checks | 14 checks clicking through the three scenarios in Chromium against the production build | [`e2e-results.json`](docs/test-results/e2e-results.json) + [screenshots](docs/test-results/e2e/) |
+
+```bash
+npm run test:evidence && npm run build && npm run test:e2e && npm run test:report
+```
+
+### Unit and integration tests
+
 ```bash
 npm test
 ```
 
-**72 tests in 8 files**, all deterministic and offline:
+**77 tests in 8 files**, all deterministic and offline:
 
 | File | What it covers |
 |---|---|
-| `tests/scenarios.test.ts` | End-to-end MEASURE → UNDERSTAND → ACT → COMMUNICATE flow of each scenario through the mission reducer: detections, escalation, procedures, confirmation, report and every message state. |
+| `tests/acceptance/scenarios.acceptance.test.ts` | The 17 test-plan cases: end-to-end MEASURE → UNDERSTAND → ACT → COMMUNICATE flow of each scenario (detections and their timing, escalation, procedures, confirmation, action log, report contents, queue priority and every message state). |
 | `tests/analysis.test.ts` | Each rule (persistence/hysteresis, dropout, plausibility, rate of change, quality, frozen value, cross-check), reliability, events, confirmation outcomes and absence of diagnostic wording. |
 | `tests/comms.test.ts` | Delay limits, round trip, light-travel distance, FIFO and priority queue, outage, delay locking and state timeline. |
 | `tests/science.test.ts` | Guards: no NASA threshold source claimed while pending; provisional labels; procedures free of medication and clinical-intervention terms; AI disclosure shown on the Science page. |

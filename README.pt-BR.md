@@ -12,12 +12,13 @@
   <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white" />
   <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white" />
   <img alt="Recharts 3" src="https://img.shields.io/badge/Recharts-3-22D3EE" />
-  <img alt="Vitest: 72 testes" src="https://img.shields.io/badge/Vitest-72_testes_passando-6E9F18?logo=vitest&logoColor=white" />
+  <img alt="Vitest: 77 testes" src="https://img.shields.io/badge/Vitest-77_testes_passando-6E9F18?logo=vitest&logoColor=white" />
   <img alt="Pronto para Vercel" src="https://img.shields.io/badge/Vercel-pronto-000000?logo=vercel&logoColor=white" />
   <br/>
   <img alt="NASA Space Apps Challenge 2026" src="https://img.shields.io/badge/NASA_Space_Apps-2026-0B3D91" />
   <img alt="Status: protótipo demonstrativo" src="https://img.shields.io/badge/status-protótipo_demonstrativo-F59E0B" />
   <img alt="Dados: simulados" src="https://img.shields.io/badge/dados-simulados-A78BFA" />
+  <a href="docs/TEST_REPORT.pt-BR.md"><img alt="Relatório de testes dos cenários: aprovado" src="https://img.shields.io/badge/testes_dos_cenários-17%2F17_aceitação_·_14%2F14_navegador-2EA44F" /></a>
 </p>
 
 <p align="center">
@@ -80,7 +81,7 @@ de quatro etapas:
 - 📡 Simulador do link Terra–Marte com atraso de 3 a 22 min por sentido, fila de transmissão, simulação de queda do link e estados de mensagem.
 - 🧾 Relatório de incidente estruturado (texto + JSON) gerado a partir do estado atual.
 - 📚 **Science & Limits**: evidências verificadas do NASA Human Research Program (riscos cardiovasculares, hipóxia e capacidade médica) e um conjunto de dados real do NASA OSDR, sempre separados dos dados simulados e das regras demonstrativas.
-- 🧪 72 testes automatizados, incluindo o fluxo completo dos três cenários.
+- 🧪 77 testes automatizados, incluindo **17 casos de aceitação e 14 verificações no navegador** dos três cenários — veja o [relatório de testes](docs/TEST_REPORT.pt-BR.md).
 
 ---
 
@@ -463,7 +464,7 @@ astrahealth/
 │   │   ├── osdr/OSD-575.json     # Arquivo REAL do NASA OSDR, salvo na íntegra + SHA-256
 │   │   └── procedures.json       # Checklists demonstrativos
 │   └── assets/astra-emblem.png
-├── tests/                        # Vitest: motor, comunicação, cenários, salvaguardas, interface
+├── tests/                        # Vitest: aceitação (plano de testes), motor, comunicação, ciência, interface
 ├── scripts/                      # Gerador de dados, importação OSDR, checagem de links, capturas, banners
 ├── docs/                         # Arquitetura, limitações, guia NASA, roteiro, imagens
 ├── public/brand/astra-health-logo.png
@@ -530,6 +531,9 @@ npm run dev
 | `npm run osdr:import -- OSD-575` | Importa um arquivo público do NASA OSDR para `src/data/osdr/` (`--list`, `--file <nome>`) ³ |
 | `npm run science:check-links` | Confere todos os links da biblioteca de evidências e do OSDR nos servidores oficiais ³ |
 | `python3 scripts/verify-science-sources.py` | Verificação independente de citações, integridade do arquivo, unidades e estatísticas (requer `pip install pypdf`) ³ |
+| `npm run test:evidence` | Suíte completa + resultados legíveis por máquina e evidências de aceitação → `docs/test-results/` |
+| `npm run test:e2e` | Verificações no navegador dos três cenários com o build de produção, com capturas (rode `npm run build` antes) ² |
+| `npm run test:report` | Regenera o relatório de testes dos cenários (`docs/TEST_REPORT.md`, `docs/TEST_REPORT.pt-BR.md`) a partir dos resultados |
 
 ¹ Requer o servidor em execução (`BASE_URL`, padrão `http://localhost:3000`) e o Playwright com Chromium.
 ² Requer o Playwright com Chromium.
@@ -539,15 +543,32 @@ npm run dev
 
 ## 🧪 Testes
 
+### Relatório de testes dos cenários
+
+Os três cenários de demonstração são testados contra um plano de testes escrito, e os resultados estão publicados em
+**[docs/TEST_REPORT.pt-BR.md](docs/TEST_REPORT.pt-BR.md)** ([English](docs/TEST_REPORT.md)), gerado a partir de resultados legíveis por máquina:
+
+| Camada | O que é executado | Evidência |
+|---|---|---|
+| Plano de testes | 17 casos (S1-01 … S3-06), cada um ligado a uma etapa do enunciado (MEDIR · ENTENDER · AGIR · COMUNICAR) e a um resultado esperado | [`tests/acceptance/test-plan.json`](tests/acceptance/test-plan.json) |
+| Testes de aceitação | Cada caso executado de ponta a ponta no motor determinístico da missão; valores observados registrados (horários das detecções, níveis, linha do tempo das mensagens…) | [`acceptance-evidence.json`](docs/test-results/acceptance-evidence.json) |
+| Verificações no navegador | 14 verificações percorrendo os três cenários no Chromium com o build de produção | [`e2e-results.json`](docs/test-results/e2e-results.json) + [capturas](docs/test-results/e2e/) |
+
+```bash
+npm run test:evidence && npm run build && npm run test:e2e && npm run test:report
+```
+
+### Testes de unidade e integração
+
 ```bash
 npm test
 ```
 
-**72 testes em 8 arquivos**, todos determinísticos e sem acesso à rede:
+**77 testes em 8 arquivos**, todos determinísticos e sem acesso à rede:
 
 | Arquivo | O que cobre |
 |---|---|
-| `tests/scenarios.test.ts` | Fluxo completo MEDIR → ENTENDER → AGIR → COMUNICAR de cada cenário no reducer da missão: detecções, escalonamento, procedimentos, confirmação, relatório e todos os estados da mensagem. |
+| `tests/acceptance/scenarios.acceptance.test.ts` | Os 17 casos do plano de testes: fluxo completo MEDIR → ENTENDER → AGIR → COMUNICAR de cada cenário (detecções e seus horários, escalonamento, procedimentos, confirmação, registro de ações, conteúdo do relatório, prioridade na fila e todos os estados da mensagem). |
 | `tests/analysis.test.ts` | Cada regra (persistência/histerese, perda de leitura, plausibilidade, taxa de variação, qualidade, valor congelado, verificação cruzada), confiabilidade, eventos, resultados da confirmação e ausência de termos diagnósticos. |
 | `tests/comms.test.ts` | Limites do atraso, ida e volta, distância percorrida pela luz, fila por ordem de chegada e por prioridade, queda do link, fixação do atraso e linha do tempo dos estados. |
 | `tests/science.test.ts` | Salvaguardas: nenhuma fonte NASA de limites declarada enquanto pendente; rótulos de provisório; procedimentos sem termos de medicamento ou intervenção clínica; declaração de uso de IA exibida na página de ciência. |

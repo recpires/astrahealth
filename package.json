@@ -15,7 +15,10 @@
     "screenshots:sequence": "node scripts/capture-vital-sequence.cjs",
     "banners": "node scripts/render-banners.cjs",
     "osdr:import": "node scripts/import-osdr.mjs",
-    "science:check-links": "node scripts/check-evidence-links.mjs"
+    "science:check-links": "node scripts/check-evidence-links.mjs",
+    "test:evidence": "vitest run --config vitest.evidence.config.mts",
+    "test:e2e": "node scripts/e2e-scenarios.cjs",
+    "test:report": "node scripts/build-test-report.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.73.0",

@@ -1,0 +1,179 @@
+{
+  "title": "ASTRA Health — acceptance test plan for the three demonstration scenarios",
+  "scenarios": [
+    {
+      "id": "S1",
+      "scenarioId": "nominal",
+      "name": "Scenario 1 — Nominal monitoring",
+      "name_pt": "Cenário 1 — Monitoramento normal"
+    },
+    {
+      "id": "S2",
+      "scenarioId": "vital-deviation",
+      "name": "Scenario 2 — Simulated vital-sign deviation",
+      "name_pt": "Cenário 2 — Alteração simulada dos sinais vitais"
+    },
+    {
+      "id": "S3",
+      "scenarioId": "sensor-fault",
+      "name": "Scenario 3 — Sensor fault / inconsistent reading",
+      "name_pt": "Cenário 3 — Falha de sensor / leitura inconsistente"
+    }
+  ],
+  "cases": [
+    {
+      "id": "S1-01",
+      "scenario": "S1",
+      "step": "MEASURE",
+      "requirement": "Heart rate, SpO₂ and body temperature; sensor status; normality indicators; data identified as demonstration",
+      "expected": "All samples inside the demo reference ranges for 400 samples (including the loop seam); every sensor online; scenario flagged as simulated",
+      "requirement_pt": "Frequência cardíaca, SpO₂ e temperatura; estado dos sensores; indicadores de normalidade; dados identificados como demonstração",
+      "expected_pt": "Todas as amostras dentro das faixas demonstrativas em 400 amostras (incluindo a emenda da repetição); todos os sensores online; cenário marcado como simulado"
+    },
+    {
+      "id": "S1-02",
+      "scenario": "S1",
+      "step": "UNDERSTAND",
+      "requirement": "Deterministic rules; attention level and reliability; event history",
+      "expected": "Attention level NOMINAL at every sample; no finding; only the system start event; data reliability High",
+      "requirement_pt": "Regras determinísticas; nível de atenção e confiabilidade; histórico de eventos",
+      "expected_pt": "Nível NOMINAL em todas as amostras; nenhum achado; apenas o evento de início; confiabilidade dos dados High"
+    },
+    {
+      "id": "S1-03",
+      "scenario": "S1",
+      "step": "ACT",
+      "requirement": "Predefined procedures; indicate when medical support is needed",
+      "expected": "Medical support not required; only the routine-monitoring procedure (PROC-NM-01)",
+      "requirement_pt": "Procedimentos predefinidos; indicar quando é necessário suporte médico",
+      "expected_pt": "Suporte médico não necessário; apenas o procedimento de monitoramento de rotina (PROC-NM-01)"
+    },
+    {
+      "id": "S1-04",
+      "scenario": "S1",
+      "step": "COMMUNICATE",
+      "requirement": "3–22 min delay; round-trip estimate; structured report; queue; states awaiting send, sent, received, response pending",
+      "expected": "Routine report goes queued → sent (+30 s) → received (+12 min 30 s) → response pending (+14 min 30 s) → response received (+26 min 30 s) with a 12-min one-way delay",
+      "requirement_pt": "Atraso de 3–22 min; estimativa de ida e volta; relatório estruturado; fila; estados aguardando envio, enviado, recebido, resposta pendente",
+      "expected_pt": "Relatório de rotina: na fila → enviado (+30 s) → recebido (+12 min 30 s) → resposta pendente (+14 min 30 s) → resposta recebida (+26 min 30 s) com atraso de 12 min por sentido"
+    },
+    {
+      "id": "S2-01",
+      "scenario": "S2",
+      "step": "MEASURE",
+      "requirement": "Vital-sign charts and normality indicators",
+      "expected": "Heart rate rises, SpO₂ falls and temperature rises after the onset while all three sensors stay online",
+      "requirement_pt": "Gráficos e indicadores de normalidade dos sinais vitais",
+      "expected_pt": "Frequência cardíaca sobe, SpO₂ cai e temperatura sobe após o início, com os três sensores online"
+    },
+    {
+      "id": "S2-02",
+      "scenario": "S2",
+      "step": "UNDERSTAND",
+      "requirement": "Detect changes with deterministic rules; event history",
+      "expected": "No detection before the onset; SpO₂, heart rate and temperature deviations detected; heart rate and SpO₂ escalate to WARNING; events in chronological order",
+      "requirement_pt": "Detectar alterações por regras determinísticas; histórico de eventos",
+      "expected_pt": "Nenhuma detecção antes do início; alterações de SpO₂, frequência cardíaca e temperatura detectadas; frequência cardíaca e SpO₂ escalam para WARNING; eventos em ordem cronológica"
+    },
+    {
+      "id": "S2-03",
+      "scenario": "S2",
+      "step": "UNDERSTAND",
+      "requirement": "Plain-language explanation; attention level and reliability; no diagnosis",
+      "expected": "Final level WARNING, status vital-deviation, reliability High (corroborated); explanations say 'not a diagnosis' and use no diagnostic terms",
+      "requirement_pt": "Explicação em linguagem simples; nível de atenção e confiabilidade; sem diagnóstico",
+      "expected_pt": "Nível final WARNING, status alteração de sinal vital, confiabilidade High (sinais concordantes); explicações dizem 'not a diagnosis' e não usam termos diagnósticos"
+    },
+    {
+      "id": "S2-04",
+      "scenario": "S2",
+      "step": "ACT",
+      "requirement": "Show the identified event; predefined safety procedures; indicate medical support",
+      "expected": "'Request medical support now' (urgent); procedures PROC-ESC-01 and PROC-VD-01; no medication or treatment in any procedure",
+      "requirement_pt": "Exibir o evento identificado; procedimentos de segurança predefinidos; indicar suporte médico",
+      "expected_pt": "'Request medical support now' (urgente); procedimentos PROC-ESC-01 e PROC-VD-01; nenhum medicamento ou tratamento em nenhum procedimento"
+    },
+    {
+      "id": "S2-05",
+      "scenario": "S2",
+      "step": "ACT",
+      "requirement": "Record actions performed",
+      "expected": "Each completed checklist step is logged with its mission time",
+      "requirement_pt": "Registrar as ações realizadas",
+      "expected_pt": "Cada passo concluído do checklist é registrado com o horário da missão"
+    },
+    {
+      "id": "S2-06",
+      "scenario": "S2",
+      "step": "COMMUNICATE",
+      "requirement": "Structured incident report",
+      "expected": "Report flagged simulated, attention WARNING, 3 active findings, urgency urgent, PRIORITY request, logged actions included",
+      "requirement_pt": "Relatório estruturado do incidente",
+      "expected_pt": "Relatório marcado como simulado, atenção WARNING, 3 achados ativos, urgência urgent, pedido PRIORITY, ações registradas incluídas"
+    },
+    {
+      "id": "S2-07",
+      "scenario": "S2",
+      "step": "COMMUNICATE",
+      "requirement": "Transmission queue; message states; history",
+      "expected": "With the link down both messages wait; when restored the urgent report is transmitted before the earlier routine note; the urgent report reaches every state",
+      "requirement_pt": "Fila de transmissão; estados das mensagens; histórico",
+      "expected_pt": "Com o link fora do ar, as duas mensagens aguardam; ao restabelecer, o relatório urgente é transmitido antes da nota de rotina anterior; o relatório urgente passa por todos os estados"
+    },
+    {
+      "id": "S3-01",
+      "scenario": "S3",
+      "step": "MEASURE",
+      "requirement": "Sensor status",
+      "expected": "SpO₂ sensor shows poor signal quality and dropouts (not online) while heart-rate and temperature sensors stay online",
+      "requirement_pt": "Estado dos sensores",
+      "expected_pt": "Sensor de SpO₂ com qualidade de sinal ruim e perdas de leitura (não online), enquanto os sensores de frequência cardíaca e temperatura continuam online"
+    },
+    {
+      "id": "S3-02",
+      "scenario": "S3",
+      "step": "UNDERSTAND",
+      "requirement": "Identify possible sensor failures; reliability",
+      "expected": "Sensor-issue findings (abrupt change, low quality, dropout, inconsistent reading); no vital-sign deviation; level CAUTION; reliability Low",
+      "requirement_pt": "Identificar possíveis falhas de sensores; confiabilidade",
+      "expected_pt": "Achados de sensor (salto brusco, baixa qualidade, perda de leitura, leitura inconsistente); nenhuma alteração de sinal vital; nível CAUTION; confiabilidade Low"
+    },
+    {
+      "id": "S3-03",
+      "scenario": "S3",
+      "step": "ACT",
+      "requirement": "Request confirmation of inconsistent measurements",
+      "expected": "Confirmation requested for SpO₂; sensor-check procedure PROC-SC-01; medical support not yet required (monitor)",
+      "requirement_pt": "Solicitar confirmação de medições inconsistentes",
+      "expected_pt": "Confirmação solicitada para SpO₂; procedimento de verificação do sensor PROC-SC-01; suporte médico ainda não necessário (monitorar)"
+    },
+    {
+      "id": "S3-04",
+      "scenario": "S3",
+      "step": "ACT",
+      "requirement": "Request confirmation; record actions",
+      "expected": "Confirmation reading 98 % → sensor artifact: SpO₂ excluded, level ADVISORY, reliability High, medical support not required, PROC-SR-01, action logged",
+      "requirement_pt": "Solicitar confirmação; registrar ações",
+      "expected_pt": "Leitura de confirmação de 98 % → artefato do sensor: SpO₂ excluída, nível ADVISORY, confiabilidade High, suporte médico não necessário, PROC-SR-01, ação registrada"
+    },
+    {
+      "id": "S3-05",
+      "scenario": "S3",
+      "step": "ACT",
+      "requirement": "Indicate when medical support is needed",
+      "expected": "If the crew cannot re-measure, medical support is recommended and PROC-ESC-01 is added",
+      "requirement_pt": "Indicar quando é necessário suporte médico",
+      "expected_pt": "Se não for possível medir novamente, o suporte médico é recomendado e o PROC-ESC-01 é adicionado"
+    },
+    {
+      "id": "S3-06",
+      "scenario": "S3",
+      "step": "COMMUNICATE",
+      "requirement": "Structured incident report",
+      "expected": "Informational report: resolved findings and the confirmation result included, no medical support requested",
+      "requirement_pt": "Relatório estruturado do incidente",
+      "expected_pt": "Relatório informativo: achados resolvidos e resultado da confirmação incluídos, sem pedido de suporte médico"
+    }
+  ],
+  "title_pt": "ASTRA Health — plano de testes de aceitação dos três cenários de demonstração"
+}
