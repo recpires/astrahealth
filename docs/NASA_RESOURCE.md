@@ -1,59 +1,57 @@
-# NASA scientific resource — integration guide
+# NASA scientific resources — integration guide
 
-**Status: PENDING TEAM CONFIRMATION.** No NASA resource is integrated yet and none is claimed anywhere in the app,
-the report or the documentation.
+ASTRA Health integrates real NASA science in **two clearly separated ways**, and keeps a third slot reserved:
 
-The project brief requires integrating one real NASA scientific resource and forbids inventing data, sources or
-results. Team ANGARIS will confirm the official NASA Space Apps 2026 challenge statement before the analysis rules are
-finalised. The architecture is ready for that step.
+| Resource | Status | Where | Role in the app |
+|---|---|---|---|
+| NASA Human Research Program (HRP) evidence library | **Integrated** (verified 2026-11-15) | `src/config/evidence-library.ts` | Scientific context in *Science & Limits*; no threshold derived |
+| NASA OSDR dataset OSD-575 | **Integrated** (imported 2026-11-15) | `src/data/osdr/OSD-575.json` | Real data shown in *Science & Limits*; never mixed with simulated vital signs |
+| NASA source for the analysis thresholds | **Pending team confirmation** | `src/config/scientific-sources.ts` | Empty — all thresholds remain provisional demonstration values |
 
-## Where the resource plugs in
+## 1. HRP evidence library
 
-| File | Role | Current content |
-|------|------|-----------------|
-| `src/config/scientific-sources.ts` | Registry: name, origin, URL/DOI, version, access date, effective use, integration points, verifier | All fields `null`, `status: "pending-confirmation"` |
-| `src/config/reference-ranges.ts` | Thresholds used by the rule engine | `status: "PROVISIONAL"` placeholder values |
-| `src/data/procedures.json` | Demonstration safety checklists | Team-written, labelled as not approved procedures |
-| `src/lib/comms/delay.ts` | Earth–Mars delay range | 3–22 min from the team brief |
-| `src/lib/report/incident-report.ts` | `scientificBasis` section of every report | Reads the registry automatically |
-| `src/components/science/ScienceView.tsx` | `/science` page | Reads the registry automatically |
-| `tests/science.test.ts` | Guards against unconfirmed claims | Passes while the registry is empty |
+Each entry records title, document type, source (programme · element · center), authors, date as printed on the
+document, primary link (PDF on the Human Research Roadmap), the HRR risk page, related official records (NTRS), the
+**verbatim** risk statement from the HRR risk page, **verbatim** key quotes, how ASTRA Health uses it, its limitations
+and the verification date.
 
-## How to register the confirmed resource
+| Topic | Evidence report | Date on document |
+|---|---|---|
+| Cardiovascular | Evidence Report: Risk of Cardiovascular Adaptations Contributing to Adverse Mission Performance and Health Outcomes | Approved for public release: December 15, 2022 |
+| Hypoxia | Evidence Report: Risk of Reduced Crew Health and Performance Due to Decompression Sickness and Hypoxia | Approved for public release: October 31, 2023 |
+| Medical capability | Evidence Report: Risk of Adverse Health Outcomes and Decrements in Performance due to In-Flight Medical Conditions | Approved for public release: May 8, 2017 |
 
-1. Verify the resource yourself on the official NASA page (name, publisher/programme, URL or DOI, version/revision).
-2. Fill `NASA_RESOURCE` in `src/config/scientific-sources.ts`:
+Rules enforced by `tests/evidence.test.ts`:
 
-   ```ts
-   export const NASA_RESOURCE: NasaResourceRecord = {
-     status: "confirmed",
-     name: "<official name>",
-     origin: "<NASA programme / center / publisher>",
-     url: "<canonical URL or DOI>",
-     version: "<revision or publication date>",
-     accessedOn: "<YYYY-MM-DD>",
-     effectiveUse: "<exactly what the app takes from it, e.g. which values feed reference-ranges.ts>",
-     integrationPoints: ["src/config/reference-ranges.ts — …"],
-     verifiedBy: "<team member>",
-   };
-   ```
+- links use HTTPS on official hosts only (`humanresearchroadmap.nasa.gov`, `ntrs.nasa.gov`, `www.nasa.gov`);
+- every entry has a PDF link, a risk statement, key quotes and at least three limitations;
+- `derivesThresholds` is `false` for every entry and no text claims NASA approval;
+- the reference ranges stay `PROVISIONAL`.
 
-3. Update the values in `src/config/reference-ranges.ts` that the resource supports, set `status: "CONFIRMED"` and write
-   a precise `provenance` (section/table of the resource). Leave unsupported values clearly marked as provisional.
-4. Run `npm test`. `tests/science.test.ts` requires every registry field to be filled once `status` is `confirmed`.
-   Adjust the scenario tests if thresholds change the expected detections.
-5. Update `docs/SCIENTIFIC_LIMITATIONS.md` and the "Scientific basis & limitations" section of both `README.md` and `README.pt-BR.md`.
+To add or update an entry:
 
-## Candidate resources (for the team to evaluate — NOT integrated, NOT verified here)
+1. Open the official document (HRR evidence page or NTRS) and copy title, date and authors exactly.
+2. Copy the risk statement from the HRR risk page and any quote **verbatim** (mark omissions with "…" and original typos with "[sic]").
+3. Write how ASTRA Health uses it and its limitations; keep `derivesThresholds: false`.
+4. Update `verifiedOn`, then run `npm run science:check-links` and `npm test`.
 
-The following are well-known NASA resources in the space-health domain that the team may consider. Their names are
-listed only as starting points: this repository has not verified their current URLs, content or licensing (network
-access to nasa.gov was not available during development), and none of their data is used.
+## 2. NASA OSDR dataset
 
-- NASA-STD-3001 — NASA Space Flight Human-System Standard (Volume 1: Crew Health; Volume 2: Human Factors, Habitability
-  and Environmental Health).
-- NASA Human Research Program (HRP) — Human Research Roadmap (risks and gaps for exploration missions).
-- NASA Open Science Data Repository (OSDR), which includes GeneLab and ALSDA.
-- NASA Life Sciences Data Archive (LSDA).
+- **Study:** OSD-575 — *SpaceX Inspiration4 Blood Serum Metabolic Panel and Immune/Cardiac Cytokine Arrays (Comprehensive Metabolic Panel and Multiplex)* — public release 14 May 2024 — <https://osdr.nasa.gov/bio/repo/data/studies/OSD-575>.
+- **File:** `LSDS-8_Multiplex_serum_cardiovascular_EvePanel_TRANSFORMED.csv` (ALSDA Transformed Files).
+- **Import:** `npm run osdr:import -- OSD-575` (use `--list` to list the files, `--file <name>` to choose another). The script calls the official OSDR API (`/osdr/data/osd/meta/<n>`, `/osdr/data/osd/files/<n>`), downloads the file and stores it **verbatim** with accession, title, study/API/download URLs, public-release date, mission, publications, retrieval date, size and SHA-256. Behind an HTTP proxy, prefix the command with `NODE_USE_ENV_PROXY=1`.
+- **Display:** only per-timepoint summary statistics (n, mean, min, max). No per-person values, reference ranges or clinical interpretation. `_percent` columns are not displayed because their meaning is not described in the study metadata.
+- **Separation:** `src/data/osdr/` is never imported by the simulation, analysis or report modules (`tests/osdr.test.ts`).
+- **In-app import:** users can load another OSDR multiplex table from a local file; the accession is required and the data stays in the browser only.
+- **Browser limitation:** the OSDR API answers browser requests only for the `osdr.nasa.gov` origin (CORS), so live download from the deployed app is not possible.
 
-Whatever is chosen must be recorded with its **name, origin and effective use** exactly as described above.
+## 3. Source for analysis thresholds (pending)
+
+`NASA_RESOURCE` in `src/config/scientific-sources.ts` is reserved for a NASA source of **numeric limits**. It stays empty
+until Team ANGARIS confirms the official challenge statement. Neither the evidence library nor OSD-575 is used for that
+purpose. When a source is confirmed:
+
+1. Fill every field of `NASA_RESOURCE` (name, origin, URL/DOI, version, access date, effective use, verifier) and set `status: "confirmed"`.
+2. Update only the values in `src/config/reference-ranges.ts` that the source supports, set `status: "CONFIRMED"` and write a precise `provenance` (section/table). Leave unsupported values marked as provisional.
+3. Run `npm test` — `tests/science.test.ts` requires every registry field once `status` is `confirmed`; adjust scenario tests if detections change.
+4. Update `docs/SCIENTIFIC_LIMITATIONS.md` and the *Scientific basis & limitations* section of `README.md` and `README.pt-BR.md`.

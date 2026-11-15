@@ -6,6 +6,7 @@
  */
 import { REFERENCE_CONFIG, formatVital } from "@/config/reference-ranges";
 import { NASA_RESOURCE, isResourceConfirmed } from "@/config/scientific-sources";
+import { EVIDENCE_LIBRARY, TOPIC_LABEL } from "@/config/evidence-library";
 import type { SupportAssessment } from "@/lib/response/escalation";
 import { formatMET } from "@/lib/time";
 import {
@@ -60,7 +61,7 @@ export interface IncidentReport {
   actionsTaken: { at: string; text: string }[];
   medicalSupport: { urgency: string; headline: string; reasons: string[] };
   requestToGround: string;
-  scientificBasis: { referenceRanges: string; nasaResource: string };
+  scientificBasis: { referenceRanges: string; nasaResource: string; evidenceContext: string };
 }
 
 export interface ReportInput {
@@ -139,7 +140,8 @@ export function buildIncidentReport(input: ReportInput): IncidentReport {
       referenceRanges: `${cfg.status}: ${cfg.provenance}`,
       nasaResource: isResourceConfirmed()
         ? `${NASA_RESOURCE.name} (${NASA_RESOURCE.origin}) — ${NASA_RESOURCE.effectiveUse}`
-        : "Pending team confirmation — no NASA resource integrated yet.",
+        : "Pending team confirmation — no NASA source for thresholds integrated yet.",
+      evidenceContext: `Context only, no threshold derived: ${EVIDENCE_LIBRARY.length} NASA HRP evidence reports (${EVIDENCE_LIBRARY.map((e) => TOPIC_LABEL[e.topic].toLowerCase()).join(", ")}) listed in Science & Limits.`,
     },
   };
 }
@@ -179,6 +181,7 @@ export function reportToText(r: IncidentReport): string {
   lines.push(`REQUEST: ${r.requestToGround}`);
   lines.push("");
   lines.push(`REFERENCE RANGES: ${r.scientificBasis.referenceRanges}`);
-  lines.push(`NASA RESOURCE: ${r.scientificBasis.nasaResource}`);
+  lines.push(`NASA SOURCE FOR THRESHOLDS: ${r.scientificBasis.nasaResource}`);
+  lines.push(`SCIENTIFIC CONTEXT: ${r.scientificBasis.evidenceContext}`);
   return lines.join("\n");
 }

@@ -12,9 +12,21 @@ ASTRA Health is a **hackathon demonstration prototype**. Read this before presen
 
 - All vital-sign values are **synthetic**, produced by `scripts/generate-scenarios.mjs` from smooth curves plus seeded
   pseudo-random noise (seeds 1101, 2202, 3303). They do not come from any person, mission or NASA dataset.
+- The only real measurements in the app are the **NASA OSDR OSD-575** summaries shown in *Science & Limits*: serum
+  cardiovascular biomarkers from four private astronauts of a 3-day low-Earth-orbit mission (Inspiration4). They are
+  displayed as per-timepoint summary statistics only, are not used by the analysis engine and are not representative of
+  long-duration Mars missions.
 - Signal-quality indices, dropouts and the confirmation reading are scripted parts of the scenarios.
 - Only three scenarios exist. Real physiology and real sensor artifacts are far more varied (motion, sweat, microgravity
   fluid shifts, electromagnetic interference, calibration drift…).
+
+## Scientific evidence
+
+- The NASA Human Research Program evidence reports listed in *Science & Limits* are cited as **context only**. Quotes are
+  verbatim and linked; the official documents remain the authoritative source and may be updated by NASA.
+- No threshold, rule or checklist is derived from them (`derivesThresholds: false`, enforced by tests), and no checklist
+  is presented as NASA-approved.
+- Evidence reports summarise research up to their approval date (2017, 2022 and 2023 for the three reports used).
 
 ## Analysis rules
 

@@ -11,6 +11,7 @@ import { TIME_SCALES, isPlaybackComplete } from "@/lib/mission/reducer";
 import { messageStatus } from "@/lib/comms/queue";
 import { formatMET } from "@/lib/time";
 import { AstraLogo } from "@/components/layout/AstraLogo";
+import { EVIDENCE_LIBRARY } from "@/config/evidence-library";
 
 interface NavItem {
   href: string;
@@ -25,7 +26,7 @@ const NAV: NavItem[] = [
   { href: "/analysis", step: "02", verb: "Understand", label: "Analysis", icon: Brain },
   { href: "/response", step: "03", verb: "Act", label: "Response", icon: ClipboardCheck },
   { href: "/comms", step: "04", verb: "Communicate", label: "Earth Link", icon: RadioTower },
-  { href: "/science", label: "Science & limits", icon: BookOpen },
+  { href: "/science", label: "Science & Limits", icon: BookOpen },
 ];
 
 function useNavStatus(): Record<string, { tone: ToneName; text: string } | null> {
@@ -41,7 +42,7 @@ function useNavStatus(): Record<string, { tone: ToneName; text: string } | null>
         ? { tone: "advisory", text: "Open" }
         : null,
     "/comms": inFlight ? { tone: "accent", text: `${inFlight} in flight` } : null,
-    "/science": { tone: "caution", text: "Pending" },
+    "/science": { tone: "nominal", text: `${EVIDENCE_LIBRARY.length} NASA refs` },
   };
 }
 
@@ -180,7 +181,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           ASTRA Health · Team ANGARIS · NASA Space Apps Challenge 2026 · Demonstration prototype — not a medical device, not
           clinically validated, simulated data only. Code and content developed with AI assistance (see{" "}
           <Link href="/science" className="text-accent hover:underline">
-            Science &amp; limits
+            Science &amp; Limits
           </Link>
           ).
         </p>

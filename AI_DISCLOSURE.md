@@ -20,6 +20,7 @@ The sections below give more detail on how AI-assisted tools were used in this r
 | Tests | `tests/**` | Drafted with AI-assisted tools |
 | Documentation | `README.md`, `README.pt-BR.md`, `docs/**`, this file | Drafted with AI-assisted tools |
 | Logo / brand image | `public/brand/astra-health-logo.png`; derived `src/assets/astra-emblem.png`, `src/app/icon.png`, `src/app/apple-icon.png`, `src/app/opengraph-image.png`, README banners `docs/assets/banner-*.png` | **AI-generated image** supplied by the team (the original carries an "AI-generated" label). The derived files are crops/resizes of it; the README banners show the full logo with its label. |
+| Science & Limits content | `src/config/evidence-library.ts`, `src/config/data-provenance.ts`, `scripts/import-osdr.mjs` | Structured with AI-assisted tools; titles, dates, risk statements and quotes are copied verbatim from official NASA sources and checked against them; OSD-575 data is the unmodified NASA OSDR file |
 | Screenshots | `docs/screenshots/*.png` | Captured automatically from the running app by `scripts/screenshots.cjs` (not AI-generated images) |
 
 ## What AI tools did NOT do

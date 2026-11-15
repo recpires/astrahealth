@@ -15,6 +15,7 @@ describe("scientific provenance", () => {
       expect(NASA_RESOURCE.url).toBeNull();
       expect(NASA_RESOURCE.effectiveUse).toBeNull();
       expect(buildReportFromState(createInitialState()).scientificBasis.nasaResource).toMatch(/Pending team confirmation/);
+      expect(buildReportFromState(createInitialState()).scientificBasis.evidenceContext).toMatch(/no threshold derived/);
     } else {
       // Once confirmed, every provenance field must be filled in.
       expect(isResourceConfirmed()).toBe(true);

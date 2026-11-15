@@ -12,7 +12,7 @@
   <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white" />
   <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white" />
   <img alt="Recharts 3" src="https://img.shields.io/badge/Recharts-3-22D3EE" />
-  <img alt="Vitest: 53 tests" src="https://img.shields.io/badge/Vitest-53_tests_passing-6E9F18?logo=vitest&logoColor=white" />
+  <img alt="Vitest: 71 tests" src="https://img.shields.io/badge/Vitest-71_tests_passing-6E9F18?logo=vitest&logoColor=white" />
   <img alt="Vercel ready" src="https://img.shields.io/badge/Vercel-ready-000000?logo=vercel&logoColor=white" />
   <br/>
   <img alt="NASA Space Apps Challenge 2026" src="https://img.shields.io/badge/NASA_Space_Apps-2026-0B3D91" />
@@ -78,7 +78,8 @@
 - 🚨 Clear indication of **when** to request medical support — without ever recommending treatment.
 - 📡 Earth–Mars link simulator with 3–22 min one-way delay, transmission queue, outage simulation and message states.
 - 🧾 Structured incident report (text + JSON) generated from the live state.
-- 🧪 53 automated tests, including end-to-end flows of all three scenarios.
+- 📚 **Science & Limits**: verified NASA Human Research Program evidence (cardiovascular, hypoxia, medical capability) and a real NASA OSDR dataset, always kept apart from simulated data and demonstration rules.
+- 🧪 71 automated tests, including end-to-end flows of all three scenarios.
 
 ---
 
@@ -159,10 +160,16 @@ the analysis engine, the action log and the Earth-link queue. The header lets yo
 
 <p align="center"><img src="docs/screenshots/sequence-vital-deviation/12-earth-link-2-sent-in-transit.png" alt="Earth link module" width="90%" /></p>
 
-### Science & limits (`/science`)
+### Science & Limits (`/science`)
 
-NASA resource registry (pending confirmation), provisional thresholds, scientific limitations, provenance of the simulated
-data and the AI-assistance disclosure — all inside the app.
+- **Three content categories**, labelled everywhere: *Simulated data*, *Real scientific data & evidence* and *Demonstration rules*.
+- **NASA Human Research Program evidence library** — official evidence reports on cardiovascular risk, hypoxia and medical capability, each with title, source, authors, date, links, the verbatim HRR risk statement, verbatim key quotes, how ASTRA Health uses it and its limitations; filterable by topic.
+- **NASA OSDR dataset OSD-575** (Inspiration4 serum cardiovascular biomarker panel) with full source identification, per-timepoint summary chart and table, and an in-browser import for other OSDR files — never mixed with the simulated vital signs.
+- Provenance table, provisional thresholds, scientific limitations and the AI tools & usage disclosure.
+
+See [How scientific resources are used](#how-scientific-resources-are-used).
+
+<p align="center"><img src="docs/screenshots/13-science-evidence-library.png" alt="Science & Limits — NASA HRP evidence library" width="90%" /></p>
 
 ---
 
@@ -362,7 +369,8 @@ by the code for Scenario 2 (all values simulated):
   "requestToGround": "PRIORITY: Request flight surgeon review of the attached simulated data and guidance through approved procedures.",
   "scientificBasis": {
     "referenceRanges": "PROVISIONAL: Demonstration placeholder values chosen by the development team. Not clinically validated. …",
-    "nasaResource": "Pending team confirmation — no NASA resource integrated yet."
+    "nasaResource": "Pending team confirmation — no NASA source for thresholds integrated yet.",
+    "evidenceContext": "Context only, no threshold derived: 3 NASA HRP evidence reports (cardiovascular, hypoxia, medical capability) listed in Science & Limits."
   }
 }
 ```
@@ -438,15 +446,19 @@ astrahealth/
 │   │   ├── comms/                # Delay maths + transmission queue
 │   │   ├── report/               # ASTRA-IR/0.1 incident report
 │   │   └── scenarios.ts · time.ts · types.ts
+│   │   └── science/              # Evidence & OSDR types, OSDR parser/summariser
 │   ├── config/
 │   │   ├── reference-ranges.ts   # PROVISIONAL thresholds
-│   │   └── scientific-sources.ts # NASA resource registry
+│   │   ├── scientific-sources.ts # NASA registry for a threshold source (pending)
+│   │   ├── evidence-library.ts   # NASA HRP evidence library (verified links + quotes)
+│   │   └── data-provenance.ts    # Simulated / real / demo-rule classification
 │   ├── data/
-│   │   ├── scenarios/*.json      # Simulated recordings (180 samples × 10 s)
+│   │   ├── scenarios/*.json      # SIMULATED recordings (180 samples × 10 s)
+│   │   ├── osdr/OSD-575.json     # REAL NASA OSDR file, stored verbatim + SHA-256
 │   │   └── procedures.json       # Demonstration checklists
 │   └── assets/astra-emblem.png
 ├── tests/                        # Vitest: engine, comms, scenarios, science guards, UI
-├── scripts/                      # Data generator, screenshots, sequence capture, banners
+├── scripts/                      # Data generator, OSDR import, link check, screenshots, banners
 ├── docs/                         # Architecture, limitations, NASA guide, demo script, images
 ├── public/brand/astra-health-logo.png
 ├── AI_DISCLOSURE.md
@@ -506,12 +518,15 @@ npm run dev
 | `npm run lint` | ESLint |
 | `npm run typecheck` | Generate route types and run `tsc --noEmit` |
 | `npm run generate:data` | Regenerate the simulated scenarios (seeded, reproducible) |
-| `npm run screenshots` | 12 presentation screenshots → `docs/screenshots/` ¹ |
+| `npm run screenshots` | 15 presentation screenshots → `docs/screenshots/` ¹ |
 | `npm run screenshots:sequence` | 16-frame Scenario 2 walkthrough → `docs/screenshots/sequence-vital-deviation/` ¹ |
 | `npm run banners` | README banners (EN / PT) → `docs/assets/` ² |
+| `npm run osdr:import -- OSD-575` | Import a public NASA OSDR file into `src/data/osdr/` (`--list`, `--file <name>`) ³ |
+| `npm run science:check-links` | Check every evidence-library and OSDR link against the official servers ³ |
 
 ¹ Needs a running server (`BASE_URL`, default `http://localhost:3000`) and Playwright with Chromium.
 ² Needs Playwright with Chromium.
+³ Needs internet access to NASA servers; behind an HTTP proxy prefix with `NODE_USE_ENV_PROXY=1`.
 
 ---
 
@@ -521,14 +536,17 @@ npm run dev
 npm test
 ```
 
-**53 tests in 5 files**, all deterministic:
+**71 tests in 8 files**, all deterministic and offline:
 
 | File | What it covers |
 |---|---|
 | `tests/scenarios.test.ts` | End-to-end MEASURE → UNDERSTAND → ACT → COMMUNICATE flow of each scenario through the mission reducer: detections, escalation, procedures, confirmation, report and every message state. |
 | `tests/analysis.test.ts` | Each rule (persistence/hysteresis, dropout, plausibility, rate of change, quality, frozen value, cross-check), reliability, events, confirmation outcomes and absence of diagnostic wording. |
 | `tests/comms.test.ts` | Delay limits, round trip, light-travel distance, FIFO and priority queue, outage, delay locking and state timeline. |
-| `tests/science.test.ts` | Guards: no NASA resource claimed while pending; provisional labels; procedures free of medication and clinical-intervention terms; AI disclosure shown on the Science page. |
+| `tests/science.test.ts` | Guards: no NASA threshold source claimed while pending; provisional labels; procedures free of medication and clinical-intervention terms; AI disclosure shown on the Science page. |
+| `tests/evidence.test.ts` | Evidence library: all three topics covered; title, source, date, PDF link and limitations present; official NASA HTTPS hosts only; no threshold derived and no NASA-approval claim; provenance classification. |
+| `tests/osdr.test.ts` | OSDR parser (CSV edge cases, timepoints, summaries, errors); bundled OSD-575 snapshot matches its SHA-256; real data never imported by the simulation modules. |
+| `tests/ui/science.test.tsx` | Science & Limits page: three categories, evidence cards and topic filter, OSDR source identification, file import (valid, invalid, missing accession). |
 | `tests/ui/modules.test.tsx` | The four modules rendered with Testing Library: incident buttons, findings, confirmation, checklist logging, delay presets, report generation and queuing, unverified sensor values. |
 
 Quality gates run before each commit: `npm test`, `npm run lint`, `npm run typecheck`, `npm run build`.
@@ -539,7 +557,7 @@ Quality gates run before each commit: `npm test`, `npm run lint`, `npm run typec
 
 All images are captured from the running application (not mock-ups) in **16:9** frames suitable for slides:
 
-- [`docs/screenshots/`](docs/screenshots/) — 12 captures covering the three scenarios and the science page (2880 × 1620 px).
+- [`docs/screenshots/`](docs/screenshots/) — 15 captures covering the three scenarios and the Science & Limits section (2880 × 1620 px).
 - [`docs/screenshots/sequence-vital-deviation/`](docs/screenshots/sequence-vital-deviation/) — the 16-frame walkthrough above, with captions.
 - [`docs/assets/`](docs/assets/) — README banners in English and Portuguese, rendered from `scripts/banner/banner.html`.
 
@@ -562,13 +580,43 @@ From the command line: `npx vercel` (preview) and `npx vercel --prod` (productio
 
 ## 🔬 Scientific basis & limitations
 
-### NASA scientific resource — *pending team confirmation*
+### How scientific resources are used
 
-The architecture is ready to integrate **one real NASA scientific resource**, but none is integrated yet and none is
-claimed anywhere in the app, the reports or this documentation. The registry in `src/config/scientific-sources.ts` stays
-empty until Team ANGARIS confirms the official challenge statement. Once confirmed, it must record the resource's **name,
-origin, URL/DOI, version, access date and effective use** — a test enforces it. Step-by-step guide:
-[docs/NASA_RESOURCE.md](docs/NASA_RESOURCE.md).
+ASTRA Health keeps three kinds of content strictly apart and labels them everywhere in **Science & Limits**:
+
+| Category | What | Where in the code | Used for |
+|---|---|---|---|
+| 🟦 **Simulated data** | Vital-sign streams, signal quality, dropouts, confirmation reading, ground acknowledgement | `src/data/scenarios/*.json` (seeded generator) | Monitoring, Analysis, Response, Earth Link |
+| 🟩 **Real scientific data & evidence** | NASA HRP evidence reports; NASA OSDR dataset OSD-575 | `src/config/evidence-library.ts`, `src/data/osdr/` | Science & Limits only — context and display |
+| 🟨 **Demonstration rules** | Reference ranges, analysis rules, escalation, checklists, Earth-link timings | `src/config/reference-ranges.ts`, `src/lib/`, `src/data/procedures.json` | Analysis, Response, Earth Link |
+
+#### NASA Human Research Program evidence library
+
+| Topic | Evidence report | Source · date | Links |
+|---|---|---|---|
+| Cardiovascular | *Evidence Report: Risk of Cardiovascular Adaptations Contributing to Adverse Mission Performance and Health Outcomes* | NASA HRP, Human Health and Countermeasures Element, JSC · approved for public release Dec 15, 2022 | [PDF](https://humanresearchroadmap.nasa.gov/evidence/reports/Cardio%20Risk%20EB%202022%20FINAL_4-3-2023.pdf) · [HRR risk](https://humanresearchroadmap.nasa.gov/Risks/?i=179) · [NASA overview](https://www.nasa.gov/directorates/esdmd/hhp/cv-risk/) |
+| Hypoxia | *Evidence Report: Risk of Reduced Crew Health and Performance Due to Decompression Sickness and Hypoxia* | NASA HRP, JSC · approved for public release Oct 31, 2023 | [PDF](https://humanresearchroadmap.nasa.gov/evidence/reports/Evidence%20Report%20Hypoxia%20and%20DCS_FINAL_1-8-2024.pdf) · [HRR risk](https://humanresearchroadmap.nasa.gov/Risks/?i=173) · [NASA overview](https://www.nasa.gov/directorates/esdmd/hhp/risk-of-reduced-crew-health-and-performance-due-to-hypoxia/) |
+| Medical capability | *Evidence Report: Risk of Adverse Health Outcomes and Decrements in Performance due to In-Flight Medical Conditions* | NASA HRP, Exploration Medical Capabilities Element, JSC · approved for public release May 8, 2017 | [PDF](https://humanresearchroadmap.nasa.gov/evidence/reports/Medical.pdf) · [HRR risk](https://humanresearchroadmap.nasa.gov/Risks/?i=95) · [NTRS](https://ntrs.nasa.gov/citations/20170004604) |
+
+- Titles, dates and authors were checked against the PDFs on the Human Research Roadmap and the NASA Technical Reports Server; risk statements are copied verbatim from the HRR risk pages and key points are verbatim quotes. Last verified on 2026-11-15 — re-check at any time with `npm run science:check-links`.
+- The evidence is used **as scientific context only**. Every entry has `derivesThresholds: false` (enforced by a test): no threshold, alarm level, rule or checklist in ASTRA Health comes from it, and no checklist is presented as NASA-approved.
+- Each entry shows its **limitations** in the app (for example, the cardiovascular report states that it is inconclusive whether spaceflight causes or increases dysrhythmias).
+
+#### NASA OSDR dataset — OSD-575
+
+- **Study:** *SpaceX Inspiration4 Blood Serum Metabolic Panel and Immune/Cardiac Cytokine Arrays (Comprehensive Metabolic Panel and Multiplex)* — public release 14 May 2024 — [osdr.nasa.gov/bio/repo/data/studies/OSD-575](https://osdr.nasa.gov/bio/repo/data/studies/OSD-575).
+- **File:** `LSDS-8_Multiplex_serum_cardiovascular_EvePanel_TRANSFORMED.csv` (ALSDA Transformed Files): 4 crew members × 7 timepoints (L-92 … R+194) × 9 cardiovascular serum biomarkers.
+- **Import:** `npm run osdr:import -- OSD-575` downloads the file through the official OSDR API and stores it **verbatim** in `src/data/osdr/OSD-575.json` with accession, title, study and download URLs, public-release date, mission, publications (DOIs), retrieval date and **SHA-256** (a test re-checks it). Use `--list` to see a study's files and `--file <name>` to choose another one.
+- **In-app import:** *Science & Limits → Import another OSDR file* reads an OSDR multiplex table selected by the user, requires the OSDR accession, and keeps it **only in the browser** (not saved).
+- **Separation:** OSDR data lives in `src/data/osdr/`, apart from `src/data/scenarios/`; the simulation, analysis and report modules never import it (tested). The page shows **summary statistics only** (n, mean, min, max per timepoint) — no per-person values, no reference ranges and no clinical interpretation.
+- **Why no live download in the browser:** the OSDR API only accepts browser requests from `osdr.nasa.gov` (CORS), so the import runs as a command-line step or from a local file.
+
+#### Source for analysis thresholds — *pending team confirmation*
+
+None of the resources above defines ASTRA Health's numeric limits. The registry in `src/config/scientific-sources.ts`
+remains reserved for a NASA source of thresholds and stays empty until Team ANGARIS confirms the official challenge
+statement; once confirmed it must record the source's **name, origin, URL/DOI, version, access date and effective use**
+— a test enforces it. Step-by-step guide: [docs/NASA_RESOURCE.md](docs/NASA_RESOURCE.md).
 
 ### Provisional demo thresholds
 
@@ -583,7 +631,8 @@ clinically validated, not from a NASA source):
 
 ### Key limitations
 
-- All data is **synthetic**, produced by a seeded generator (`scripts/generate-scenarios.mjs`); it does not come from any person, mission or NASA dataset.
+- All **vital signs** are **synthetic**, produced by a seeded generator (`scripts/generate-scenarios.mjs`). The only real measurements are the NASA OSDR summaries in Science & Limits, which come from four private astronauts on a 3-day low-Earth-orbit mission and are not representative of long-duration Mars missions.
+- The NASA evidence library is cited as context; the official documents remain the authoritative source and may be updated by NASA.
 - Rules, levels, reliability scores and escalation triggers are **demonstration choices** without clinical validation.
 - Procedures are **illustrative** safety checklists, not approved flight procedures, and never include medication or treatment.
 - The Earth–Mars delay range (3–22 min) comes from the team brief; real delay depends on planetary geometry and the link can be unavailable for long periods. Ground replies are automatic placeholders.
@@ -598,7 +647,7 @@ Full list: [docs/SCIENTIFIC_LIMITATIONS.md](docs/SCIENTIFIC_LIMITATIONS.md).
 
 Possible next steps (not commitments):
 
-- [ ] Confirm the challenge statement and register the NASA resource; derive thresholds from it.
+- [ ] Confirm the challenge statement and, if a NASA source of numeric limits applies, register it and derive thresholds from it.
 - [ ] Expert review of the rules, escalation logic and checklist wording.
 - [ ] Sensor adapter interface for real wearables (replacing the JSON playback).
 - [ ] Persistent, exportable incident log and reports.

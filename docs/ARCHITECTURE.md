@@ -85,6 +85,13 @@ other); overall = weakest vital. Labels: High ≥ 80, Medium ≥ 55, Low otherwi
   `replyReceivedAt = replySentAt + delay`. States: queued (awaiting send) · sent · received · response pending ·
   response received (simulated acknowledgement).
 
+## Science & Limits — `src/lib/science`, `src/config/evidence-library.ts`, `src/data/osdr`
+
+- `config/data-provenance.ts` classifies every kind of content as *simulated data*, *real scientific data & evidence* or *demonstration rules*.
+- `config/evidence-library.ts` holds the verified NASA HRP evidence entries (`derivesThresholds: false`).
+- `scripts/import-osdr.mjs` stores a public OSDR file verbatim (with SHA-256) in `src/data/osdr/`; `lib/science/osdr.ts` parses it and returns per-timepoint summaries only.
+- Real data is read only by the Science & Limits components; the mission reducer, analysis engine and report never import it (tested).
+
 ## UI
 
 `src/app/layout.tsx` mounts `MissionProvider` and `AppShell` (header, sidebar navigation, footer). Each route renders one

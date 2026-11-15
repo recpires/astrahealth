@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Captures 16:9 presentation screenshots of every module and scenario.
+ * Captures 16:9 presentation screenshots of every module, scenario and the Science & Limits section.
  *
  *   npm run build && npm run start          # in one terminal
  *   npm run screenshots                     # in another (BASE_URL defaults to http://localhost:3000)
@@ -32,8 +32,13 @@ async function main() {
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
 
-  const shot = async (name) => {
-    await page.evaluate(() => window.scrollTo(0, 0));
+  const shot = async (name, { scrollTo } = {}) => {
+    if (scrollTo) {
+      await page.locator(scrollTo).first().evaluate((el) => el.scrollIntoView({ block: "start" }));
+      await page.evaluate(() => window.scrollBy(0, -90));
+    } else {
+      await page.evaluate(() => window.scrollTo(0, 0));
+    }
     await page.waitForTimeout(400);
     await page.screenshot({ path: path.join(OUT, `${name}.png`) });
     console.log(`captured ${name}.png`);
@@ -109,6 +114,9 @@ async function main() {
   await shot("11-monitoring-sensor-excluded");
   await nav("/science");
   await shot("12-science-and-limits");
+  await shot("13-science-evidence-library", { scrollTo: '[data-testid="evidence-hrp-dcs-hypoxia-2023"]' });
+  await shot("14-science-osdr-dataset", { scrollTo: 'h2:has-text("NASA OSDR dataset")' });
+  await shot("15-science-provenance", { scrollTo: 'h2:has-text("What is what")' });
 
   await browser.close();
   if (errors.length) {
