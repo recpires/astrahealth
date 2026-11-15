@@ -33,6 +33,7 @@ async function main() {
   page.on("pageerror", (e) => errors.push(e.message));
 
   const shot = async (name) => {
+    await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForTimeout(400);
     await page.screenshot({ path: path.join(OUT, `${name}.png`) });
     console.log(`captured ${name}.png`);

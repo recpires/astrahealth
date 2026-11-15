@@ -55,7 +55,15 @@ export const NASA_RESOURCE: NasaResourceRecord = {
 export function isResourceConfirmed(resource: NasaResourceRecord = NASA_RESOURCE): boolean {
   return (
     resource.status === "confirmed" &&
-    Boolean(resource.name && resource.origin && resource.url && resource.effectiveUse && resource.accessedOn)
+    Boolean(
+      resource.name &&
+        resource.origin &&
+        resource.url &&
+        resource.version &&
+        resource.accessedOn &&
+        resource.effectiveUse &&
+        resource.verifiedBy,
+    )
   );
 }
 

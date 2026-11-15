@@ -252,12 +252,12 @@ function ActionLog() {
     >
       <ul className="max-h-[360px] space-y-1.5 overflow-auto" data-testid="action-log">
         {rows.map((a) => (
-          <li key={a.id} className="flex gap-3 rounded-md border border-line/70 bg-space-850/50 px-3 py-1.5 text-sm">
-            <span className="tabular shrink-0 font-mono text-xs text-ink-faint">{formatMET(a.t)}</span>
-            <Badge tone={ACTION_TONE[a.kind]} className="shrink-0">
-              {a.kind}
-            </Badge>
-            <span className="min-w-0 text-ink-muted">{a.text}</span>
+          <li key={a.id} className="rounded-md border border-line/70 bg-space-850/50 px-3 py-1.5 text-sm">
+            <div className="flex items-center gap-2">
+              <span className="tabular font-mono text-xs text-ink-faint">{formatMET(a.t)}</span>
+              <Badge tone={ACTION_TONE[a.kind]}>{a.kind}</Badge>
+            </div>
+            <p className="mt-0.5 text-ink-muted">{a.text}</p>
           </li>
         ))}
       </ul>
