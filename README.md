@@ -768,11 +768,12 @@ Details: [AI_DISCLOSURE.md](AI_DISCLOSURE.md).
 
 **Team ANGARIS** — NASA Space Apps Challenge 2026.
 
-<!-- Add team members here, e.g.:
-| Name | Role | GitHub |
-|---|---|---|
-| … | … | … |
--->
+- Rodrigo Eufrásio Costa Pires
+- Vinicius Gomes Jeronimo
+- Jecika Lilia Cavalcante e Silva Saito
+- Diego Felippe Scorsi Prado
+- Yvna Marçal Sousa Rosa
+- Kennedy Teixeira da Silva
 
 ## 📄 License
 
