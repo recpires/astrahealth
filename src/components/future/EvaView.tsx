@@ -254,7 +254,7 @@ function PlanForm() {
   const [crew, setCrew] = useState<CrewId[]>(["crew-a", "crew-c"]);
   return (
     <div className="space-y-3">
-      <fieldset>
+      <fieldset className="min-w-0">
         <legend className="mb-1 text-xs font-medium text-ink-muted">EVA crew (choose two)</legend>
         <div className="flex flex-wrap gap-2">
           {CREW.map((c) => (
@@ -350,7 +350,7 @@ export function EvaView() {
         <Panel title={session ? `EVA ${session.id}` : "Plan an EVA"} icon={ClipboardCheck} className="xl:col-span-2" eyebrow={`Protocol ${EVA_PROTOCOL_REF} · ${EVA_PROTOCOL.status}`}>
           {session ? <SessionPanel session={session} /> : <PlanForm />}
         </Panel>
-        <div className="space-y-4">
+        <div className="min-w-0 space-y-4">
           <Panel title="Equipment availability" icon={Wrench} eyebrow="Demonstration assumption">
             <ul className="space-y-1.5">
               {EVA_PROTOCOL.equipment.map((e) => (

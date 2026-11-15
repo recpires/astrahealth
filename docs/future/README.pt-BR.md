@@ -123,7 +123,7 @@ Três deles (cardiovascular, hipóxia, condições médicas em missão) são cob
 ```bash
 npm run test:future            # 107 testes unitários, de integração e de interface (tests/future)
 npm run build
-npm run test:e2e:future        # 17 verificações no navegador: F01–F05, rede cortada, recarga, exportação
+npm run test:e2e:future        # 18 verificações no navegador: F01–F05, rede cortada, recarga, exportação, layout celular/tablet
 npm run test:regression        # os 77 testes originais
 npm run test:e2e:regression    # as 14 verificações de navegador dos três cenários
 npm run test:report:future     # gera docs/future/TEST_REPORT(.pt-BR).md

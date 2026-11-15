@@ -189,7 +189,7 @@ Beside the tested demo, **Platform preview** (`/future`) shows how ASTRA Health 
 
 Everything works with the Earth link lost: reports wait in a store-and-forward queue and leave in priority order (urgent → priority → routine) when it returns. All rules and protocols are **PROVISIONAL demonstration content**, not NASA procedures and not clinically validated.
 
-📘 [FUTURE modules documentation](docs/future/README.md) · 🧪 [FUTURE test report](docs/future/TEST_REPORT.md) — 107 automated tests + 17 browser checks (incl. network cut and reload) + full regression.
+📘 [FUTURE modules documentation](docs/future/README.md) · 🧪 [FUTURE test report](docs/future/TEST_REPORT.md) — 107 automated tests + 18 browser checks (incl. network cut, reload and phone/tablet layout) + full regression.
 
 <p align="center"><img src="docs/test-results/future/e2e/E2E-F02-02.png" alt="FUTURE 02 — symptom assessment with evidence, uncertainty and human review" width="90%" /></p>
 

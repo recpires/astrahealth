@@ -35,7 +35,7 @@ function PlatformBar() {
         </div>
         <DemoTag label="Demonstration modules" />
 
-        <div className="flex items-center gap-2 rounded-lg border border-line bg-space-950/60 px-2.5 py-1">
+        <div className="flex flex-wrap items-center gap-2 rounded-lg border border-line bg-space-950/60 px-2.5 py-1">
           <Clock aria-hidden className="h-4 w-4 text-accent" />
           <div>
             <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-ink-faint">Mission day (sim)</p>
@@ -43,7 +43,7 @@ function PlatformBar() {
               {formatMissionTime(clock)}
             </p>
           </div>
-          <div className="ml-1 flex gap-1" role="group" aria-label="Advance mission time">
+          <div className="flex gap-1 whitespace-nowrap" role="group" aria-label="Advance mission time">
             <Button size="sm" variant="ghost" onClick={() => dispatch({ type: "platform/advance", minutes: 15 })} data-testid="advance-15">
               +15 min
             </Button>
@@ -56,7 +56,7 @@ function PlatformBar() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 rounded-lg border border-line bg-space-950/60 px-2.5 py-1">
+        <div className="flex flex-wrap items-center gap-2 rounded-lg border border-line bg-space-950/60 px-2.5 py-1">
           {link.available ? <RadioTower aria-hidden className="h-4 w-4 text-level-nominal" /> : <WifiOff aria-hidden className="h-4 w-4 text-level-warning" />}
           <div>
             <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-ink-faint">Earth link (sim)</p>

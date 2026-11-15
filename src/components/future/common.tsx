@@ -109,9 +109,9 @@ export function ReferenceLink({ refId, compact }: { refId: string; compact?: boo
   if (!ref) return null;
   const level = evidenceLevel(ref);
   return (
-    <span className="inline-flex min-w-0 flex-wrap items-center gap-1.5">
-      <a href={ref.url} target="_blank" rel="noreferrer" className="inline-flex min-w-0 items-center gap-1 text-accent hover:underline">
-        <span className={cx(compact && "line-clamp-1")}>{compact ? `NASA HRR · ${ref.title}` : ref.title}</span>
+    <span className="flex min-w-0 flex-wrap items-center gap-1.5">
+      <a href={ref.url} target="_blank" rel="noreferrer" className="flex min-w-0 max-w-full items-center gap-1 text-accent hover:underline">
+        <span className={cx("min-w-0", compact && "line-clamp-1")}>{compact ? `NASA HRR · ${ref.title}` : ref.title}</span>
         <ExternalLink aria-hidden className="h-3 w-3 shrink-0" />
       </a>
       <Badge tone={EVIDENCE_TONE[level]}>{EVIDENCE_LEVEL_TEXT[level]}</Badge>

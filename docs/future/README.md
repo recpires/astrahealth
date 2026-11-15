@@ -131,7 +131,7 @@ Three of them (cardiovascular, hypoxia, in-mission medical conditions) are cover
 ```bash
 npm run test:future            # 107 unit, integration and interface tests (tests/future)
 npm run build
-npm run test:e2e:future        # 17 browser checks: F01–F05, network cut, reload, export
+npm run test:e2e:future        # 18 browser checks: F01–F05, network cut, reload, export, phone/tablet layout
 npm run test:regression        # the original 77 tests
 npm run test:e2e:regression    # the 14 browser checks of the three scenarios
 npm run test:report:future     # writes docs/future/TEST_REPORT(.pt-BR).md

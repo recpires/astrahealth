@@ -193,7 +193,7 @@ Ao lado da demo testada, **Platform preview** (`/future`) mostra como o ASTRA He
 
 Tudo funciona com o link com a Terra perdido: os relatórios aguardam numa fila store-and-forward e saem por ordem de prioridade (urgente → prioritário → rotina) quando ele volta. Todas as regras e protocolos são **conteúdo demonstrativo PROVISIONAL**, não são procedimentos da NASA e não são clinicamente validados.
 
-📘 [Documentação dos módulos FUTURE](docs/future/README.pt-BR.md) · 🧪 [Relatório de testes FUTURE](docs/future/TEST_REPORT.pt-BR.md) — 107 testes automatizados + 17 verificações no navegador (incl. rede cortada e recarga) + regressão completa.
+📘 [Documentação dos módulos FUTURE](docs/future/README.pt-BR.md) · 🧪 [Relatório de testes FUTURE](docs/future/TEST_REPORT.pt-BR.md) — 107 testes automatizados + 18 verificações no navegador (incl. rede cortada, recarga e layout em celular/tablet) + regressão completa.
 
 <p align="center"><img src="docs/test-results/future/e2e/E2E-F02-02.png" alt="FUTURE 02 — avaliação de sintomas com evidências, incerteza e revisão humana" width="90%" /></p>
 

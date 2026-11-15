@@ -191,7 +191,7 @@ export function ProfileView() {
         {crewId !== TELEMETRY_CREW && <Badge tone="neutral">No simulated telemetry for this crew member</Badge>}
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-3" data-testid="profile-domains">
+      <div className="grid gap-4 lg:grid-cols-2 2xl:grid-cols-3" data-testid="profile-domains">
         {domains.map((d) => (
           <Panel key={d.domain.id} title={d.domain.label} icon={HeartPulse} actions={<Badge tone={d.withData ? "accent" : "neutral"}>{d.withData}/{d.metrics.length} with data</Badge>}>
             <div data-testid={`domain-${d.domain.id}`}>

@@ -372,6 +372,25 @@ async function main() {
       return "vital cards + scenario buttons present · nav: Monitoring, Analysis, Response, Earth Link, Science & Limits, Platform preview";
     }, "top");
 
+    await check("E2E-RESP-01", "Platform", "Responsive layout of every FUTURE page", "No horizontal page scroll at phone (390 px) and tablet (820 px) widths; wide tables scroll inside their own panel", async () => {
+      const routes = ["/future", "/future/journal", "/future/assess", "/future/profile", "/future/eva", "/future/readiness"];
+      const problems = [];
+      for (const width of [390, 820]) {
+        await page.setViewportSize({ width, height: width === 390 ? 844 : 1180 });
+        for (const r of routes) {
+          await page.goto(`${server.url}${r}`, { waitUntil: "networkidle" });
+          // The page must really render (an error page would trivially have no overflow).
+          await page.waitForSelector(tid("future-clock"), { timeout: T });
+          await page.waitForTimeout(300);
+          const { sw, cw } = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth }));
+          if (sw > cw) problems.push(`${r} @${width}px: ${sw} > ${cw}`);
+        }
+      }
+      await page.setViewportSize(VIEWPORT);
+      must(!problems.length, problems.join("; "));
+      return `${routes.length} pages × 2 widths: no horizontal page scroll`;
+    });
+
     results.find((r) => r.id === "E2E-OFF-01").networkRequestsWhileOffline = offlineRequests.length;
   } finally {
     const browserVersion = browser.version();

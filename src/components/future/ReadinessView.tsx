@@ -106,7 +106,7 @@ export function ReadinessView() {
                     <span className="mr-1 font-mono text-[10px] text-ink-faint">{c.id}</span>
                     {c.label} <span className={cx("text-xs font-semibold", c.ok ? "text-level-nominal" : "text-level-warning")} data-testid={`verify-result-${c.id}`}>{c.ok ? "PASS" : "ATTENTION"}</span>
                   </p>
-                  <p className="break-words text-[11px] text-ink-muted">{c.detail}</p>
+                  <p className="text-[11px] text-ink-muted [overflow-wrap:anywhere]">{c.detail}</p>
                 </div>
               </li>
             ))}
@@ -124,7 +124,8 @@ export function ReadinessView() {
         </Panel>
 
         <Panel title="Versioned rule sets & protocols" icon={ListTree}>
-          <table className="w-full text-left text-xs" data-testid="rulesets">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[420px] text-left text-xs" data-testid="rulesets">
             <thead className="border-b border-line text-[10px] uppercase tracking-[0.12em] text-ink-faint">
               <tr>
                 <th className="py-1.5 pr-2">Module</th>
@@ -146,12 +147,13 @@ export function ReadinessView() {
               ))}
             </tbody>
           </table>
+          </div>
           <h3 className="mb-1.5 mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-ink-faint">Completion criteria — how they are verified</h3>
           <ul className="space-y-1.5 text-xs" data-testid="verification-matrix">
             {matrix.criteria.map((c) => (
               <li key={c.id}>
                 <span className="font-mono text-ink-faint">{c.id}</span> <span className="text-ink">{c.criterion}</span>
-                <p className="text-[11px] text-ink-muted">{c.how}</p>
+                <p className="text-[11px] text-ink-muted [overflow-wrap:anywhere]">{c.how}</p>
               </li>
             ))}
           </ul>
