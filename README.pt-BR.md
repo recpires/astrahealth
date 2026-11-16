@@ -28,6 +28,8 @@
 </p>
 
 <p align="center">
+  🌐 <a href="https://astrahealth.angaris.com.br"><b>Demo online — astrahealth.angaris.com.br</b></a>
+  &nbsp;·&nbsp;
   📄 <a href="docs/ASTRA_Health_ANGARIS_Technical_Documentation_EN.pdf"><b>Documentação técnica (PDF, em inglês)</b></a> — versão 1.0, 15 de novembro de 2026
 </p>
 

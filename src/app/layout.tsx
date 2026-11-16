@@ -6,6 +6,8 @@ import { AppShell } from "@/components/layout/AppShell";
 import { ServiceWorkerRegistration } from "@/components/layout/ServiceWorker";
 
 export const metadata: Metadata = {
+  // Public address of the demo: makes social-preview and icon URLs absolute.
+  metadataBase: new URL("https://astrahealth.angaris.com.br"),
   title: {
     default: "ASTRA Health — Autonomous Space Health Response Assistant",
     template: "%s · ASTRA Health",
