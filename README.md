@@ -12,7 +12,7 @@
   <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white" />
   <img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white" />
   <img alt="Recharts 3" src="https://img.shields.io/badge/Recharts-3-22D3EE" />
-  <img alt="Vitest: 77 tests" src="https://img.shields.io/badge/Vitest-77_tests_passing-6E9F18?logo=vitest&logoColor=white" />
+  <img alt="Vitest: 187 tests" src="https://img.shields.io/badge/Vitest-187_tests_passing-6E9F18?logo=vitest&logoColor=white" />
   <img alt="Vercel ready" src="https://img.shields.io/badge/Vercel-ready-000000?logo=vercel&logoColor=white" />
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2EA44F" /></a>
   <br/>
@@ -86,7 +86,7 @@
 - 📡 Earth–Mars link simulator with 3–22 min one-way delay, transmission queue, outage simulation and message states.
 - 🧾 Structured incident report (text + JSON) generated from the live state.
 - 📚 **Science & Limits**: verified NASA Human Research Program evidence (cardiovascular, hypoxia, medical capability) and a real NASA OSDR dataset, always kept apart from simulated data and demonstration rules.
-- 🧪 77 automated tests, including **17 acceptance cases and 14 browser checks** of the three scenarios — see the [test report](docs/TEST_REPORT.md).
+- 🧪 187 automated tests — 77 for the three tested scenarios (including the **17 acceptance cases**) and 110 for the FUTURE modules — plus **33 browser checks** (14 + 19); see the [scenario test report](docs/TEST_REPORT.md) and the [FUTURE test report](docs/future/TEST_REPORT.md).
 
 ---
 
