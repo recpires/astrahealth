@@ -776,7 +776,7 @@ Details: [AI_DISCLOSURE.md](AI_DISCLOSURE.md).
 | Jecika Lilia Cavalcante e Silva Saito | [jecikasaito](https://github.com/jecikasaito) |
 | Diego Felippe Scorsi Prado | [Dprado93](https://github.com/Dprado93) |
 | Yvna Marçal Sousa Rosa | [YVNAROSA](https://github.com/YVNAROSA) |
-| Kennedy Teixeira da Silva | — |
+| Kennedy Teixeira da Silva | [KennedyTeixeira](https://github.com/KennedyTeixeira) |
 
 ## 📄 License
 
